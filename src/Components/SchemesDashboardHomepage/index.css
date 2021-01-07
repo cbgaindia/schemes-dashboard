@@ -1,0 +1,71 @@
+.schemes-list-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.schemes-list-container .scheme-card {
+  flex: 1 0 25%;
+  margin: 1%;
+}
+
+.schemes-list-container .schemes-card:last-of-type {
+  flex-grow: 0;
+}
+
+/* .schemes-list-container .scheme-card:nth-child(1n){
+    margin-left: 32px;
+} */
+
+/* .schemes-list-container .scheme-card:nth-child(4n + 1), .schemes-list-container .scheme-card:first-child{
+    margin-left: 0;
+}  */
+
+@media (min-width: 960px) and (max-width: 1279px) {
+    .schemes-list-container .scheme-card {
+        flex: 1 0 260px;
+    }
+  /* .home-layout-wrapper{
+        margin-left: auto;
+        margin-right: auto;
+        min-width: 682px;
+    }
+    .schemes-list-container .scheme-card:nth-child(1n){
+        margin-left: 0;
+    }
+    .schemes-list-container .scheme-card:nth-child(4n + 1), .schemes-list-container .scheme-card:first-child{
+        margin-left: 0;
+    } 
+    .schemes-list-container .scheme-card{
+        width: 25%;
+    }
+    .schemes-list-container{
+        gap: 16px;
+    } */
+}
+
+@media (min-width: 1280px) {
+  /* .home-layout-wrapper{
+        margin-left: auto;
+        margin-right: auto;
+        width: 1136px;
+    } */
+    .schemes-list-container .scheme-card {
+        flex: 1 0 260px;
+    }
+}
+
+@media (min-width: 1440px) {
+  /* .home-layout-wrapper{
+        margin-left: auto;
+        margin-right: auto;
+        min-width: 1286px;
+        max-width: 1328px;
+        width: 74.54%;
+    }
+    .schemes-list-container .scheme-card{
+        width: 23%;
+    } */
+    .schemes-list-container .scheme-card {
+        flex: 1 0 23%;
+    }
+}

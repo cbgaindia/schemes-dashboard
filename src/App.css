@@ -1,38 +1,85 @@
-.App {
-  text-align: center;
+/**************** Common Styles *************/
+
+.mt-32{
+  margin-top: 32px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ml-24{
+  margin-left: 24px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ml-12{
+  margin-left: 12px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+.pl-16 {
+  padding-left: 16px;
+}
+.pt-32{
+  padding-top: 32px;
+}
+
+.button {
+  border: none;
+  background: white;
+  outline: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 16px;
+  max-width: 128px;
+  max-height: 40px;
+}
+
+.primary-button {
+  background: #4b4797;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.button-caret-down {
+  width: 10.4px;
+  height: 6.4px;
+  margin-left: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.arrow-btn{
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.horizontal-seperator{
+  height: 0;
+  width: auto;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+/********** Typography ***********/
+
+.text-dark{
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
+.page-heading {
+  font-size: 40px;
+  font-weight: 400;
+  margin: 0;
+}
+.page-introduction-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.64);
+  margin: 0;
+}
+
+.section-heading{
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0;
 }
