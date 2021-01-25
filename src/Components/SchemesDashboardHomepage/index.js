@@ -26,7 +26,7 @@ const schemes = [
 
 const SchemesDashboardHomepage = () => {
   return (
-    <div className="home-layout-wrapper mt-5">
+    <div className="home-layout-wrapper pt-5">
       <h1 className="page-heading text-dark pl-3 mb-2">Schemes</h1>
       <div className="horizontal-seperator mt-3"></div>
       <div className="radio-buttons-container"></div>

@@ -18,12 +18,14 @@ const socialMediaLinks = [
   },
 ];
 
-const SchemeIntroduction = () => {
+const SchemeIntroduction = (props) => {
+  console.log('testing intro props', props)
   return (
     <div className="scheme-introduction-wrapper pl-16 pt-32 mb-1">
+      <p className="d-block page-introduction-text fs-12 mb-3"><a href="/" className="page-introduction-text fs-12" >Shemes Dashboard</a>&nbsp;&nbsp; &gt;</p>
       <div className="d-flex align-items-center justify-content-between mb-3">
         <h1 className="page-heading text-dark">
-          Integrated Child Development Services
+          {props.data && props.data.name}
         </h1>
         <button className="button primary-button">
           <span>Download</span>
@@ -31,23 +33,20 @@ const SchemeIntroduction = () => {
         </button>
       </div>
       <p className="page-introduction-text mb-1">
-        Integrated Child Development Services (ICDS) is a government programme
-        in India which provides food, preschool education, primary healthcare,
-        immunization, health check-up and referral services to children under 6
-        years of age and their mothers
+        {props.data.description}
       </p>
       <div className="scheme-types-wrapper mt-3 d-flex align-items-center">
         <div className="frequency-container">
           <p className="page-introduction-text">
-            Frequency: <span className="text-dark">Yearly</span>
+            Frequency: <span className="text-dark">{props.data.frequency}</span>
           </p>
         </div>
         <div className="seperator"></div>
         <div className="type-container">
           <p className="page-introduction-text">
             Type of Scheme:{" "}
-            <a className="" href="" target="_blank">
-              #Centrally Sponsored Scheme
+            <a className="" href="/" target="_blank">
+              #{props.data.type}
             </a>
           </p>
         </div>

@@ -1,0 +1,68 @@
+.table-wrapper{
+   height: 100%;
+   overflow: auto;
+   -ms-overflow-style: none;  /* IE and Edge */
+   scrollbar-width: none;  /* Firefox */
+}
+
+.table-wrapper::-webkit-scrollbar {
+    display: none;
+}
+  
+.table-container{
+    font-size: 16px !important;
+    font-weight: 400 !important;
+}
+
+.scheme-table thead{
+    background:#F0F3F5;
+    border-radius: 8px;
+}
+.scheme-table thead th{
+    width: 184px;
+    padding: 8px !important;
+
+}
+.scheme-table tbody{
+    display: block;
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.scheme-table tbody::-webkit-scrollbar {
+    display: none;
+}
+.scheme-table tbody tr:nth-child(even){
+    background: #F0F3F5;
+}
+.scheme-table tbody tr td{
+    padding: 8px !important;
+    width: 184px;
+}
+
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;/* even columns width , fix width of table too*/
+    border-radius: 8px;
+}
+
+.scheme-table th, .scheme-table td{
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+}
+.scheme-table{
+    position: relative;
+}
+/* .scheme-table thead th:nth-child(2), .scheme-table tbody tr td:nth-child(2){
+    margin-left: 184px;
+} */
+/* .scheme-table .column-freeze{
+    position: absolute;
+    left: 0;
+    width: 184px;
+} */
