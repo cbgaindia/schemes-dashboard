@@ -115,7 +115,7 @@ const radioButtons = [
   },
 ];
 
-const DatavizViewControls = () => {
+const DatavizViewControls = (props) => {
   const [vizView, setVizView] = useState("map");
 
   const handleChangeVizView = (e) => {
@@ -132,11 +132,11 @@ const DatavizViewControls = () => {
               id={radio.val}
               name="radios"
               value={radio.val}
-              onChange={handleChangeVizView}
-              checked={radio.val === vizView}
+              onChange={(e) => props.handleChangeViz(e.target.value)}
+              checked={radio.val === props.view}
             />
             <label className={radio.class} htmlFor={radio.val}>
-              {radio.val === vizView ? radio.checkImage : radio.uncheckImage}
+              {radio.val === props.view ? radio.checkImage : radio.uncheckImage}
               {radio.title}
             </label>
           </Fragment>
