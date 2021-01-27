@@ -95,7 +95,7 @@ const SchemeDashboard = (props) => {
 
   const [activeNewsPage, setActiveNewsPage] = useState(1);
   const [showSwipeButton, setShowSwipeButton] = useState(true);
-  const [showViz, setShowViz] = useState(false);
+  const [showViz, setShowViz] = useState(true);
   const [activeViz, setActiveViz] = useState("map");
   const [schemeData, setSchemeData] = useState(schemesData[reverseSchemeSlugs[scheme_slug]]);
   const [relatedSchemes, setRelatedSchemes] = useState([])
