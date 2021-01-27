@@ -21,7 +21,8 @@
 }
 
 .button {
-  border: none;
+  box-sizing: border-box;
+  border: 2px solid transparent;
   background: white;
   outline: none;
   border-radius: 4px;
@@ -34,6 +35,12 @@
 .primary-button {
   background: #4b4797;
   color: white;
+}
+.primary-button:hover{
+  border: 2px solid #A090FF;
+}
+.primary-button:focus{
+  outline: none;
 }
 
 .button-caret-down {
@@ -104,6 +111,16 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
+
+/****************** Hide Scrollbar ***************/
+.hide-scrollbar{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+   display: none;
+}
 
 /******************* custom ******************/
 /* Choropleth */
@@ -280,7 +297,7 @@
 }
 
 .legend-square{
-  width: 24px;
+  min-width: 24px;
   height: 24px;
   border-radius: 4px;
 }
