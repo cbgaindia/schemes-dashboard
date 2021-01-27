@@ -13,6 +13,9 @@
     display: inline-block;
     color: rgba(0, 0, 0, 0.64);
 }
+.indicator-radio-button-input:checked + label{
+    color: #4B4797;
+}
 .indicator-radio-button-input:checked + label:before {
     content: '';
     position: absolute;
@@ -20,7 +23,7 @@
     top: 4px;
     width: 16px;
     height: 16px;
-    background: #612FB1;
+    background: #4B4797;
     border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 100%;
     box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.24);
