@@ -149,13 +149,13 @@ render (){
 
           {this.state.value[0] != null && this.state.selectedFigures !=null ? 
             (
-            <div className="d-flex flex-wrap  pl-3 mt-4">
+            <div className="hide-scrollbar d-flex flex-nowrap overflow-auto pl-3 mt-4">
               {
                 items.map((legend, index) => {
                   return (
                     <div className="d-flex mr-4" key={index}>
                       <div className="legend-square" style={{backgroundColor: legend.color}}></div>
-                      <p className="page-introduction-text text-black ml-2">{legend.title}</p>
+                      <p className="page-introduction-text text-black text-nowrap ml-2">{legend.title}</p>
                     </div>
                   )
                 })
