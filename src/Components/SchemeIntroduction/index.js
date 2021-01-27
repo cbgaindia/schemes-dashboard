@@ -45,8 +45,13 @@ const SchemeIntroduction = (props) => {
         <div className="type-container">
           <p className="page-introduction-text">
             Type of Scheme:{" "}
-            <a className="" href="/" target="_blank">
-              #{props.data.type}
+            <a
+              className=""
+              href="/"
+              target="_blank"
+              className="text-color-link"
+            >
+              <u>#{props.data.type}</u>
             </a>
           </p>
         </div>
