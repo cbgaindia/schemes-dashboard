@@ -6,10 +6,10 @@ import Table from "../Views/Table";
 
 import "./index.css";
 const SchemesDetailsView = (props) => {
-  const indicatorName = props.schemeData.data[props.activeIndicator].name;
+  const indicatorName = props.schemeData.data[props.activeIndicator] && props.schemeData.data[props.activeIndicator].name;
   const schemeName = props.schemeData.metadata.name;
   const activeYear = props.activeYear;
-  const unit = props.schemeData.data[props.activeIndicator].unit;
+  const unit = props.schemeData.data[props.activeIndicator] && props.schemeData.data[props.activeIndicator].unit;
   const dataSource = props.schemeData.metadata.source;
   return (
     <div className="schemes-details-view-wrapper">

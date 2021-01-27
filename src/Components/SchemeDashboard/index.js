@@ -88,18 +88,28 @@ const stateCodes = {
 
 const SchemeDashboard = (props) => {
   const { scheme_slug, indicator_slug } = useParams();
+  let reverseSchemeSlugs = {} 
+  Object.keys(schemesData).forEach((scheme) => {
+    reverseSchemeSlugs[schemesData[scheme].metadata.slug] = scheme;
+  });
 
   const [activeNewsPage, setActiveNewsPage] = useState(1);
   const [showSwipeButton, setShowSwipeButton] = useState(true);
   const [showViz, setShowViz] = useState(false);
   const [activeViz, setActiveViz] = useState("map");
-  const [schemeData, setSchemeData] = useState(schemesData[scheme_slug]);
+  const [schemeData, setSchemeData] = useState(schemesData[reverseSchemeSlugs[scheme_slug]]);
   const [relatedSchemes, setRelatedSchemes] = useState([])
   const [activeIndicator, setActiveIndicator] = useState(indicator_slug);
   const [activeYear, setActiveYear] = useState("2019-20")
+  console.log("testing slugs", indicator_slug, scheme_slug, reverseSchemeSlugs);
 
   useEffect(() => {
-    // console.log("testing slugs", indicator_slug, scheme_slug);
+    console.log("testing slugs", indicator_slug, scheme_slug);
+
+    let indicator_name = Object.keys(schemeData.data).find(indicator => schemeData.data[indicator].slug === indicator_slug)
+    setActiveIndicator(indicator_name)
+
+
     let allSchemes = Object.keys(schemesData)
                     .filter(scheme => (schemesData[scheme] !== scheme_slug) && schemesData[scheme].metadata.type === schemeData.metadata.type)
                     .slice(0,4)
@@ -129,8 +139,8 @@ const SchemeDashboard = (props) => {
     setShowSwipeButton(false);
   };
 
-  const handleIndicatorChange = (e) => {
-    setActiveIndicator(e.target.value);
+  const handleIndicatorChange = (indicator) => {
+    setActiveIndicator(indicator);
   };
   const setYearChange = (year) => {
     setActiveYear(year)
