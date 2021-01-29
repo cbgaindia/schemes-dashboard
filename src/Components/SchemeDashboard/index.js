@@ -84,11 +84,11 @@ const stateCodes = {
   35: "Ladakh",
   36: "Lakshadweep",
   37: "Puducherry",
-}
+};
 
 const SchemeDashboard = (props) => {
   const { scheme_slug, indicator_slug } = useParams();
-  let reverseSchemeSlugs = {} 
+  let reverseSchemeSlugs = {};
   Object.keys(schemesData).forEach((scheme) => {
     reverseSchemeSlugs[schemesData[scheme].metadata.slug] = scheme;
   });
@@ -97,29 +97,33 @@ const SchemeDashboard = (props) => {
   const [showSwipeButton, setShowSwipeButton] = useState(true);
   const [showViz, setShowViz] = useState(true);
   const [activeViz, setActiveViz] = useState("map");
-  const [schemeData, setSchemeData] = useState(schemesData[reverseSchemeSlugs[scheme_slug]]);
-  const [relatedSchemes, setRelatedSchemes] = useState([])
+  const [schemeData, setSchemeData] = useState(
+    schemesData[reverseSchemeSlugs[scheme_slug]]
+  );
+  const [relatedSchemes, setRelatedSchemes] = useState([]);
   const [activeIndicator, setActiveIndicator] = useState(indicator_slug);
-  const [activeYear, setActiveYear] = useState("2019-20")
-  console.log("testing slugs", indicator_slug, scheme_slug, reverseSchemeSlugs);
+  const [activeYear, setActiveYear] = useState("2019-20");
 
   useEffect(() => {
-    console.log("testing slugs", indicator_slug, scheme_slug);
-
-    let indicator_name = Object.keys(schemeData.data).find(indicator => schemeData.data[indicator].slug === indicator_slug)
-    setActiveIndicator(indicator_name)
-
+    let indicator_name = Object.keys(schemeData.data).find(
+      (indicator) => schemeData.data[indicator].slug === indicator_slug
+    );
+    setActiveIndicator(indicator_name);
 
     let allSchemes = Object.keys(schemesData)
-                    .filter(scheme => (schemesData[scheme] !== scheme_slug) && schemesData[scheme].metadata.type === schemeData.metadata.type)
-                    .slice(0,4)
-    const relatedSchemes = allSchemes.map((scheme, index) => (
-      {
-      title: schemesData[scheme].metadata.name, 
-      link: `http://localhost:3000/scheme/${scheme}/indicator_01`, class: `${index === 0 ? "" : "ml-4"}`, img: ""}
-      ))
-      setRelatedSchemes(relatedSchemes)
-    // console.log('testing all schemes', allSchemes, relatedSchemes)
+      .filter(
+        (scheme) =>
+          schemesData[scheme] !== scheme_slug &&
+          schemesData[scheme].metadata.type === schemeData.metadata.type
+      )
+      .slice(0, 4);
+    const relatedSchemes = allSchemes.map((scheme, index) => ({
+      title: schemesData[scheme].metadata.name,
+      link: `/scheme/${schemesData[scheme].metadata.slug}/${schemesData[scheme].data[indicator_name].slug}`,
+      class: `${index === 0 ? "" : "ml-4"}`,
+      img: "",
+    }));
+    setRelatedSchemes(relatedSchemes);
   }, []);
 
   const handleChangeViz = (type) => {
@@ -143,8 +147,8 @@ const SchemeDashboard = (props) => {
     setActiveIndicator(indicator);
   };
   const setYearChange = (year) => {
-    setActiveYear(year)
-  }
+    setActiveYear(year);
+  };
 
   return (
     <>
