@@ -131,7 +131,12 @@ class GraphComponent extends React.Component {
     }
 
     handleSelectChange (value) {
-      this.setState({ value });
+      if(value === null){
+        this.setState({ value: [] });
+      }
+      else{
+        this.setState({ value });
+      }
     }
 
 render (){
@@ -139,7 +144,6 @@ render (){
     const attributeKey = {"BE":" Budget Estimates", "RE":"Revised Estimates", "A":"Actuals"};
     const color = ['#26393D','#40627C','#D0A825','#D64700','#002A4A','#A7A37E','#B9121B','#1B1E26'].reverse();
     const items = this.state.selectedFigures && this.state.selectedFigures.map((value,index) =>  ({title: value.name, color:color[index]}))
-    // console.log('this state ', this.state.selectedFigures, this.props.schemeData)
     return(
      <div className="vis-wrapper">
         <div className="">
