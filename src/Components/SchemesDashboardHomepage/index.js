@@ -1,33 +1,12 @@
 import React, {useState, useRef, useEffect} from "react";
 import SchemesCard from "../SchemesCard";
 
-import schemesData from "../../Data/schemes (2).json";
+import schemesData from "../../Data/schemes.json";
 
 import RightCaret from "../../Images/arrow/right.svg"
 import LeftCaret from "../../Images/arrow/left.svg"
 
 import "./index.css";
-
-const schemes = [
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-  { title: "National Health Mission", link: "", class: "mt-4", img: "" },
-];
 
 const radioButtons = [
   { title: "All", val: "all"},
@@ -93,7 +72,7 @@ const SchemesDashboardHomepage = (props) => {
     <div className="layout-wrapper pt-5">
       <h1 className="page-heading text-dark pl-3 mb-2">Schemes Dashboard</h1>
       <div className="horizontal-seperator mt-3 mb-1"></div>
-      <div className="radio-toolbar-container mt-3">
+      {/* <div className="radio-toolbar-container mt-3">
         {
           showLeftScrollButton
           ?
@@ -123,7 +102,7 @@ const SchemesDashboardHomepage = (props) => {
           <button className="scroll-button right" onClick={() => handleScrollOnClick('right')}><img src={RightCaret} /></button>
           : null
         }
-      </div>
+      </div> */}
       <div className="schemes-list-container">
         {/* <div className="row"> */}
         {schemes.map((scheme, index) => {
