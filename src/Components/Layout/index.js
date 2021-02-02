@@ -5,8 +5,6 @@ import Header from "../Header";
 import SchemesDashboardHomepage from "../SchemesDashboardHomepage";
 import SchemeDashboard from "../SchemeDashboard";
 import Footer from "../Footer";
-
-import SchemesData from "../../Data/schemes (2).json";
 import "./index.css";
 
 const Layout = () => {
