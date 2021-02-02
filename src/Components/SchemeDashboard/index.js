@@ -225,7 +225,9 @@ const SchemeDashboard = (props) => {
       </div>
       <div className="mt-5 mb-3 layout-wrapper">
         <div className="d-flex justify-content-between">
-          <h2 className="section-heading text-dark ml-3">News</h2>
+          <h2 className="section-heading text-dark ml-3">
+            Recent Developments
+          </h2>
           <div className="section-controls d-flex mr-3">
             <button
               className="arrow-btn mr-1"
@@ -238,23 +240,25 @@ const SchemeDashboard = (props) => {
               />
             </button>
             <p className="mr-2 ml-2 page-introduction-text">
-              {activeNewsPage}/{newsData.length}
+              {activeNewsPage}/{recentDevelopments.length}
             </p>
             <button
               className="arrow-btn ml-1"
-              disabled={activeNewsPage === newsData.length}
+              disabled={activeNewsPage === recentDevelopments.length}
               onClick={() => handleChangeNewsPage(activeNewsPage + 1)}
             >
               <RightArrow
                 fill="#0D1018"
-                fillOpacity={activeNewsPage === newsData.length ? 0.4 : 0.87}
+                fillOpacity={
+                  activeNewsPage === recentDevelopments.length ? 0.4 : 0.87
+                }
               />
             </button>
           </div>
         </div>
         <div class="case-studies-cards-container mt-3">
-          {newsData[activeNewsPage - 1] &&
-            newsData[activeNewsPage - 1].map((news, index) => (
+          {recentDevelopments[activeNewsPage - 1] &&
+            recentDevelopments[activeNewsPage - 1].map((news, index) => (
               <NewsCard data={news} key={index} />
             ))}
         </div>
