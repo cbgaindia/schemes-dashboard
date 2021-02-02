@@ -78,6 +78,9 @@
 .text-dark{
   color: rgba(0, 0, 0, 0.87) !important;
 }
+.text-light{
+  color: rgba(0, 0, 0, 0.64) !important;
+}
 .text-bold{
   font-weight: 700 !important;
 }

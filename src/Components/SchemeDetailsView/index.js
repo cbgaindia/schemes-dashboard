@@ -17,7 +17,7 @@ const SchemesDetailsView = (props) => {
         {!props.showViz ? (
           <>
             <div className="d-flex flex-column">
-              <h2 className="m-0">Indicator Definitions </h2>
+              <h2 className="m-0">Editorial Notes</h2>
             </div>
             <div className="d-flex flex-column align-items-end">
               <button onClick={() => props.handleToggleShowViz(true)}>
@@ -35,7 +35,7 @@ const SchemesDetailsView = (props) => {
             </div>
             <div className="d-flex flex-column align-items-end">
               <button onClick={() => props.handleToggleShowViz(false)}>
-                View Indicator Definitions
+                View Editorial Notes
               </button>
               <p className="m-0 mt-1">Unit : {unit}</p>
             </div>
