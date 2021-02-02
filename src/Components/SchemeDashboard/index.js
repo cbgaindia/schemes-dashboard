@@ -10,7 +10,8 @@ import NewsCard from "../NewsCard";
 import SchemeCard from "../SchemesCard";
 
 import { receipts_data as data } from "../../Data/receipts_data";
-import schemesData from "../../Data/schemes (2).json";
+import schemesData from "../../Data/schemes.json";
+import { recentDevelopmentsData } from "../../Data/schemeNews";
 
 import { ReactComponent as LeftArrow } from "../../Images/left-arrow.svg";
 import { ReactComponent as RightArrow } from "../../Images/right-arrow.svg";
@@ -76,23 +77,30 @@ const stateCodes = {
   26: "Uttar Pradesh",
   27: "Uttarakhand",
   28: "West Bengal",
-  29: "Andaman and Nicobar Islands",
+  29: "Andaman & Nicobar",
   30: "Chandigarh",
   31: "Dadra and Nagar Haveli",
   32: "Daman and Diu",
   33: "Delhi",
-  34: "Jammu and Kashmir",
-  35: "Ladakh",
+  34: "Jammu & Kashmir ",
+  35: "Ladakh ",
   36: "Lakshadweep",
   37: "Puducherry",
 };
 
 const SchemeDashboard = (props) => {
   const { scheme_slug, indicator_slug } = useParams();
-  let reverseSchemeSlugs = {};
+  const reverseSchemeSlugs = {};
   Object.keys(schemesData).forEach((scheme) => {
     reverseSchemeSlugs[schemesData[scheme].metadata.slug] = scheme;
   });
+  const indicator = Object.keys(
+    schemesData[reverseSchemeSlugs[scheme_slug]].data
+  ).find(
+    (indicator) =>
+      schemesData[reverseSchemeSlugs[scheme_slug]].data[indicator].slug ===
+      indicator_slug
+  );
 
   const [activeNewsPage, setActiveNewsPage] = useState(1);
   const [showSwipeButton, setShowSwipeButton] = useState(true);
@@ -102,29 +110,41 @@ const SchemeDashboard = (props) => {
     schemesData[reverseSchemeSlugs[scheme_slug]]
   );
   const [relatedSchemes, setRelatedSchemes] = useState([]);
-  const [activeIndicator, setActiveIndicator] = useState(indicator_slug);
+  const [activeIndicator, setActiveIndicator] = useState(indicator);
   const [activeYear, setActiveYear] = useState("2019-20");
+  const [recentDevelopments, setRecentDevelopmentsData] = useState([]);
 
   useEffect(() => {
-    let indicator_name = Object.keys(schemeData.data).find(
-      (indicator) => schemeData.data[indicator].slug === indicator_slug
-    );
-    setActiveIndicator(indicator_name);
-
+    // Setting Related Schemes Data
     let allSchemes = Object.keys(schemesData)
       .filter(
         (scheme) =>
-          schemesData[scheme] !== scheme_slug &&
+          schemesData[scheme].metadata.slug !== scheme_slug &&
           schemesData[scheme].metadata.type === schemeData.metadata.type
       )
       .slice(0, 4);
     const relatedSchemes = allSchemes.map((scheme, index) => ({
       title: schemesData[scheme].metadata.name,
-      link: `/scheme/${schemesData[scheme].metadata.slug}/${schemesData[scheme].data[indicator_name].slug}`,
+      link: `/scheme/${schemesData[scheme].metadata.slug}/${schemesData[scheme].data[activeIndicator].slug}`,
       class: `${index === 0 ? "" : "ml-4"}`,
       img: "",
     }));
     setRelatedSchemes(relatedSchemes);
+
+    // Setting Recent Developments Data
+    const recentDevelopmentsArray = [];
+    while (
+      recentDevelopmentsData[reverseSchemeSlugs[scheme_slug]].metadata.news
+        .length
+    ) {
+      recentDevelopmentsArray.push(
+        recentDevelopmentsData[
+          reverseSchemeSlugs[scheme_slug]
+        ].metadata.news.splice(0, 2)
+      );
+    }
+    setRecentDevelopmentsData(recentDevelopmentsArray);
+    console.log("testing recent dvelopments", recentDevelopmentsArray);
   }, []);
 
   const handleChangeViz = (type) => {
