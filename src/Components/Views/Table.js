@@ -6,7 +6,7 @@ const Table = (props) => {
   let indicatorName = props.schemeData.name;
 console.log('testing table', props.schemeData)
   return (
-    <div className="table-wrapper">
+    <div className="table-wrapper" id="report-container">
       <table className="scheme-table">
         <thead>
           <tr>
