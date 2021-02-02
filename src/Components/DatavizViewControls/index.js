@@ -49,6 +49,7 @@ const radioButtons = [
         height="16"
         viewBox="0 0 16 16"
         fill="none"
+        className="mr-2"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -63,6 +64,7 @@ const radioButtons = [
         height="16"
         viewBox="0 0 16 16"
         fill="none"
+        className="mr-2"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -71,9 +73,9 @@ const radioButtons = [
         />
       </svg>
     ),
-    title: "",
+    title: "Chloropleth",
     val: "map",
-    class: "left-curved-border",
+    class: "text-light left-curved-border",
   },
   {
     uncheckImage: (
@@ -82,6 +84,7 @@ const radioButtons = [
         height="16"
         viewBox="0 0 16 16"
         fill="none"
+        className="mr-2"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -99,6 +102,7 @@ const radioButtons = [
         height="16"
         viewBox="0 0 16 16"
         fill="none"
+        className="mr-2"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -109,9 +113,9 @@ const radioButtons = [
         />
       </svg>
     ),
-    title: "",
+    title: "Table",
     val: "table",
-    class: "right-curved-border",
+    class: "text-light right-curved-border",
   },
 ];
 

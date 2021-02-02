@@ -15,11 +15,12 @@
   
   .radio-toolbar input[type="radio"]:checked+label {
     background-color: #4B4797;
-    color: white;
+    color: white !important;
   }
 
 .left-curved-border{
     border-radius: 8px 0px 0px 8px !important;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .right-curved-border{
