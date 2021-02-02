@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import domtoimage from "dom-to-image";
 
 import SchemeIntroduction from "../SchemeIntroduction";
 import DatavizViewControls from "../DatavizViewControls";
@@ -150,9 +151,33 @@ const SchemeDashboard = (props) => {
     setActiveYear(year);
   };
 
+  const filterElements = (node) => {
+      try {
+        return (node.getAttribute("class") !== 'statetooltip' && node.getAttribute("class")!== "tcontainer" && node.getAttribute("class")!== "select-container" && node.nodeType !=8 && node.getAttribute("class") !="see-details-text");
+      }
+      catch(err) {
+        return true;
+      }		
+    
+  }
+
+  const handleDownloadReportImage = () => {
+    domtoimage
+      .toPng(document.getElementById("report-container"), { filter: filterElements })
+      .then((dataURL) => {
+        var link = document.createElement('a');
+        link.download = 'Visualization Report.png';
+        link.href = dataURL;
+        link.click();
+      })
+      .catch(function (error) {
+        console.log('inside errror', error)
+      });
+  };
+
   return (
     <>
-      <SchemeIntroduction data={schemeData.metadata} />
+      <SchemeIntroduction data={schemeData.metadata} handleDownloadReportImage={handleDownloadReportImage}/>
       <div className="mt-3 mb-3 layout-wrapper">
         <div className="horizontal-seperator mb-3"></div>
         <DatavizViewControls

@@ -46,7 +46,7 @@ const SchemeIntroduction = (props) => {
           {
             dropdownActive
             ?
-            <Dropdown />
+            <Dropdown handleDownloadReportImage={props.handleDownloadReportImage}/>
             : null            
           }
         </div>
