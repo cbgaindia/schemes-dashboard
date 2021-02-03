@@ -137,7 +137,7 @@ export default class Choropleth extends Component {
         }
       })
     );
-    min = min - min * 0.1;
+    min = min - Math.abs(min * 0.1);
     let retvalue = {
       "20%": [min, min + (20 * (max - min)) / 100, 1],
       "40%": [
@@ -189,9 +189,10 @@ export default class Choropleth extends Component {
       if (stateCode !== null) {
         let fiscalYears = Object.keys(this.props.schemeData.fiscal_year);
         fiscalYears.map((year) => {
-          state.properties[year] = this.props.schemeData.fiscal_year[year][
-            stateCode
-          ];
+          let valueToSet = this.props.schemeData.fiscal_year[year][stateCode];
+          valueToSet =
+            valueToSet === "NA" || valueToSet === undefined ? null : valueToSet;
+          state.properties[year] = valueToSet;
         });
       }
       return state;
