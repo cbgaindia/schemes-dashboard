@@ -78,7 +78,11 @@ class GraphComponent extends React.Component {
           Object.keys(this.props.schemeData).map((financialYear) => {
             let tempFigure = {};
             tempFigure.x = financialYear;
-            tempFigure.y = this.props.schemeData[financialYear][state];
+            tempFigure.y = isNaN(
+              parseFloat(this.props.schemeData[financialYear][state])
+            )
+              ? 0
+              : parseFloat(this.props.schemeData[financialYear][state]);
             tempFigure.grpby_name = this.props.stateCodes[state];
             tempState.figures.push(tempFigure);
           });
@@ -142,6 +146,11 @@ class GraphComponent extends React.Component {
     }
   }
 
+  handleNoOptionsMessage = () => {
+    return this.state.value.length > 14
+      ? "Oops! Only 15 states can be selected at a time."
+      : "No results found";
+  };
   render() {
     let accessthis = this;
     const attributeKey = {
@@ -181,8 +190,12 @@ class GraphComponent extends React.Component {
               simpleValue
               value={this.state.value}
               placeholder="Select States"
-              noOptionsMessage={() => "Oops! Only 15 states can be selected at a time."}
-              options={this.state.value.length < 15 ? this.state.stateOptions : this.state.value}
+              noOptionsMessage={this.handleNoOptionsMessage}
+              options={
+                this.state.value.length < 15
+                  ? this.state.stateOptions
+                  : this.state.value
+              }
               onChange={this.handleSelectChange}
             />
           </div>
