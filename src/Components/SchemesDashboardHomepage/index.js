@@ -2,6 +2,7 @@ import React, {useState, useRef, useEffect} from "react";
 import SchemesCard from "../SchemesCard";
 
 import schemesData from "../../Data/schemes.json";
+import schemeLogos from "../../Data/schemesLogos"
 
 import RightCaret from "../../Images/arrow/right.svg"
 import LeftCaret from "../../Images/arrow/left.svg"
@@ -34,7 +35,10 @@ const SchemesDashboardHomepage = (props) => {
     let schemes = Object.keys(schemesData).map((scheme, index) => (
       {
       title: schemesData[scheme].metadata.name, 
-      link: `/scheme/${schemesData[scheme].metadata.slug}/${schemesData[scheme].data['indicator_01'].slug}`, class: "mt-4", img: ""}
+      link: `/scheme/${schemesData[scheme].metadata.slug}/${schemesData[scheme].data['indicator_01'].slug}`, 
+      class: "mt-4", 
+      img: schemeLogos[scheme]
+      }
       ))
     setSchemes(schemes)
   }, [])

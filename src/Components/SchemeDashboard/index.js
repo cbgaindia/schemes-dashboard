@@ -12,6 +12,7 @@ import SchemeCard from "../SchemesCard";
 import { receipts_data as data } from "../../Data/receipts_data";
 import schemesData from "../../Data/schemes.json";
 import { recentDevelopmentsData } from "../../Data/schemeNews";
+import schemeLogos from "../../Data/schemesLogos"
 
 import { ReactComponent as LeftArrow } from "../../Images/left-arrow.svg";
 import { ReactComponent as RightArrow } from "../../Images/right-arrow.svg";
@@ -127,7 +128,7 @@ const SchemeDashboard = (props) => {
       title: schemesData[scheme].metadata.name,
       link: `/scheme/${schemesData[scheme].metadata.slug}/${schemesData[scheme].data[activeIndicator].slug}`,
       class: `${index === 0 ? "" : "ml-4"}`,
-      img: "",
+      img: schemeLogos[scheme],
     }));
     setRelatedSchemes(relatedSchemes);
 

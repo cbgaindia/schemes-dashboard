@@ -10,7 +10,9 @@ const SchemesCard = (props) => {
       target="_blank"
       className={`scheme-card card-link-container ${props.scheme.class}`}
     >
-      <div class="image-container"></div>
+      <div class="image-container">
+        <img src={props.scheme.img} alt="scheme-logo" />
+      </div>
       <div class="text-container mt-2">
         <h4>{props.scheme.title}</h4>
       </div>
