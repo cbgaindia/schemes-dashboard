@@ -16,7 +16,7 @@ const Layout = () => {
     <div className="app-container">
       {/* Here comes the Header */}
       <Header />
-      <div className="app-content-wrapper">
+      <div className="app-content-wrapper position-relative">
         {/* Here comes the main app content */}
         <Switch>
           <Route
