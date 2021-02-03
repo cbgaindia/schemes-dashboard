@@ -21,10 +21,14 @@
 }
 
 .scheme-dropdown-item{
+    display: block;
     padding: 12px 24px !important;
     color: #4B4797;
     text-decoration: underline;
     cursor: pointer;
+}
+.scheme-dropdown-item:hover{
+    color: #4B4797;
 }
 .scheme-dropdown-item.first{
     border-top-left-radius: 12px;

@@ -1,13 +1,20 @@
-import React from "react"
-import "./index.css"
+import React from "react";
+import "./index.css";
 
 const Dropdown = (props) => {
-    return(
-        <div className="scheme-download-dropdown-container">
-            <div className="scheme-dropdown-item first" onClick={props.handleDownloadReportImage}>Download Report</div>
-            <div className="scheme-dropdown-item second">Go to Dataset</div>
-        </div>
-    )
-}
+  return (
+    <div className="scheme-download-dropdown-container">
+      <div
+        className="scheme-dropdown-item first"
+        onClick={props.handleDownloadReportImage}
+      >
+        Download Report
+      </div>
+        <a href="https://openbudgetsindia.org/organization/state-wise-schemes-data" target="_blank" className="scheme-dropdown-item second">
+          Go to Dataset
+        </a>
+    </div>
+  );
+};
 
 export default Dropdown;
