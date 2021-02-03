@@ -100,9 +100,7 @@ export default class Choropleth extends Component {
       } else {
         this.computeBands(MappedFigures, this.state.selectedYear);
       }
-      setTimeout(() => {
-        this.setState({ selectedFigure: MappedFigures }, () => console.log('this state set in did update'));        
-      }, 100);
+      this.setState({ selectedFigure: MappedFigures });
     }
   }
 
@@ -118,7 +116,7 @@ export default class Choropleth extends Component {
         ) {
           return parseFloat(state.properties[year]);
         } else {
-          return -Infinity;
+          return null;
         }
       })
     );
@@ -133,34 +131,50 @@ export default class Choropleth extends Component {
         ) {
           return parseFloat(state.properties[year]);
         } else {
-          return Infinity;
+          return null;
         }
       })
     );
     min = min - Math.abs(min * 0.1);
-    let retvalue = {
-      "20%": [min, min + (20 * (max - min)) / 100, 1],
-      "40%": [
-        min + (20 * (max - min)) / 100,
-        min + (40 * (max - min)) / 100,
-        2,
-      ],
-      "60%": [
-        min + (40 * (max - min)) / 100,
-        min + (60 * (max - min)) / 100,
-        3,
-      ],
-      "80%": [
-        min + (60 * (max - min)) / 100,
-        min + (80 * (max - min)) / 100,
-        4,
-      ],
-      "100%": [
-        min + (80 * (max - min)) / 100,
-        min + (100 * (max - min)) / 100,
-        5,
-      ],
-    };
+    
+    max = isNaN(parseFloat(max)) ? 0 : max;
+    min = isNaN(parseFloat(min)) ? 0 : min;
+
+    let retvalue = {}
+    if((min + (max-min)) === 0){
+      retvalue = {
+        "20%": [0, 0, 1],
+        "40%": [0, 0, 2],
+        "60%": [0, 0, 3],
+        "80%": [0, 0, 4],
+        "100%": [0, 0, 5],
+      }
+    }
+    else{
+      retvalue = {
+        "20%": [min, min + (20 * (max - min)) / 100, 1],
+        "40%": [
+          min + (20 * (max - min)) / 100,
+          min + (40 * (max - min)) / 100,
+          2,
+        ],
+        "60%": [
+          min + (40 * (max - min)) / 100,
+          min + (60 * (max - min)) / 100,
+          3,
+        ],
+        "80%": [
+          min + (60 * (max - min)) / 100,
+          min + (80 * (max - min)) / 100,
+          4,
+        ],
+        "100%": [
+          min + (80 * (max - min)) / 100,
+          min + (100 * (max - min)) / 100,
+          5,
+        ],
+      };
+    }
     this.setState({ bandFigures: retvalue });
   }
 
@@ -368,23 +382,18 @@ export default class Choropleth extends Component {
             />
           </div>
           <FeatureGroup>
-            {
-              this.state.selectedFigure && this.state.selectedFigure.features.map((data, index) => {
-                return(
-                <GeoJSON
-                              // data={this.state.selectedFigure}
-                              data={data}
-                              weight={config.geojson.weight}
-                              style={this.getstyle}
-                              // valueProperty={(feature) => feature.properties.NAME_1}
-                              valueProperty={(feature) => feature.properties.ST_NM}
-                              onEachFeature={this.onEachFeature.bind(null, this)}
-                              ref={this.geojson}
-                              key={index*11}
-                            />
-                )
-              })
-            }
+            {this.state.selectedFigure && (
+              <GeoJSON
+                key={Math.random() * Math.random()}
+                data={this.state.selectedFigure}
+                weight={config.geojson.weight}
+                style={(feature) => this.getstyle(feature)}
+                // valueProperty={(feature) => feature.properties.NAME_1}
+                valueProperty={(feature) => feature.properties.ST_NM}
+                onEachFeature={this.onEachFeature.bind(null, this)}
+                ref={this.geojson}
+              />
+            )}
           </FeatureGroup>
 
           <div className="legendcontainer">
