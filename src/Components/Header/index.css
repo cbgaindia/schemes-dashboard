@@ -79,3 +79,24 @@
     width: 215px;
   }
 }
+
+@media (max-width: 640px){
+  .header-container{
+    padding: 20px 20px;
+  }
+  .header-container .logo-container .powered-by {
+    display: none;
+  }
+  .header-container .logo-container .screen-reader-icon-seperator {
+    display: none;
+  }
+  .home-primary-button{
+    display: none;  
+  }
+}
+
+@media (max-width: 767px){
+  .header-container{
+    padding: 20px 20px;
+  }
+}

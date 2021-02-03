@@ -8,3 +8,9 @@
         padding: 0 56px 80px;
     }   
 }
+
+@media(max-width: 767px){
+    .app-content-wrapper{
+        padding: 80px 20px;
+    }   
+}

@@ -8,8 +8,10 @@ import Footer from "../Footer";
 import "./index.css";
 
 const Layout = () => {
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
   }, []);
 
   return (
@@ -18,26 +20,22 @@ const Layout = () => {
       <Header />
       <div className="app-content-wrapper position-relative">
         {/* Here comes the main app content */}
-        <Switch>
-          <Route
-            path="/"
-            render={(props) => (
-              <SchemesDashboardHomepage
-                {...props}
-              />
-            )}
-            exact
-          />
-          <Route
-            path="/scheme/:scheme_slug/:indicator_slug"
-            render={(props) => (
-              <SchemeDashboard
-                {...props}
-              />
-            )}
-          />
-          <Redirect to="/" />
-        </Switch>
+        {isMobile ? (
+          <h4 className="page-introduction-text">The content on this page is suitable for viewing on Tablets and desktops.</h4>
+        ) : (
+          <Switch>
+            <Route
+              path="/"
+              render={(props) => <SchemesDashboardHomepage {...props} />}
+              exact
+            />
+            <Route
+              path="/scheme/:scheme_slug/:indicator_slug"
+              render={(props) => <SchemeDashboard {...props} />}
+            />
+            <Redirect to="/" />
+          </Switch>
+        )}
       </div>
       {/* Here comes the footer */}
       <Footer />

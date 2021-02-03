@@ -198,7 +198,7 @@
     }
     @media(min-width: 360px) and (max-width: 767px){
         .footer-links-container{
-            padding: 40px 48px 48px 48px;
+            padding: 40px 20px 48px 20px;
         }
         .footer-links-container .site-logo{
             width: 242px;
@@ -211,7 +211,7 @@
             /* align-items: center; */
         }
         .footer-links-container .footer-links .links-container.ml-32{
-            margin-left: 0px;
+            margin-left: 0px !important;
             margin-top: 48px;
         }
         .footer-links-container .footer-links .dashboard-links, 
