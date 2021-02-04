@@ -64,7 +64,7 @@ export default class Choropleth extends Component {
     this.getBandNum = this.getBandNum.bind(this);
     this.fillColor = this.fillColor.bind(this);
 
-    this.geojson = React.createRef();
+    this.geojson = React.createRef(null);
   }
 
   componentDidMount() {
@@ -101,6 +101,11 @@ export default class Choropleth extends Component {
         this.computeBands(MappedFigures, this.state.selectedYear);
       }
       this.setState({ selectedFigure: MappedFigures });
+    }
+    if(prevState.selectedFigure != this.state.selectedFigure || prevState.selectedYear != this.state.selectedYear){
+      if (this.geojson.current) {
+        this.geojson.current.clearLayers().addData(this.state.selectedFigure);
+      }
     }
   }
 
