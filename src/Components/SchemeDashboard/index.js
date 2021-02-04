@@ -266,7 +266,7 @@ const SchemeDashboard = (props) => {
       </div>
       <div className="related-scheme-section mt-5 layout-wrapper">
         <div className="d-flex justify-content-between">
-          <h2 className="section-heading text-dark ml-3">Related Schemes</h2>
+          <h2 className="section-heading text-dark ml-3">Other Schemes</h2>
           <a href="/" target="_blank" className="mr-3">
             View All Schemes
           </a>
