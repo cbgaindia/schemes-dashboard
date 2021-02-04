@@ -1,465 +1,99 @@
-  /********* Header Section *********/
-  .masthead{
-    min-height: auto;
-    padding: 20px 80px;
-    background: #0F1525;
-    height: 50px;
-    width: 100%;
-    color: white;
-    padding: 20px;
+/********* Header Section *********/
+
+.header-container {
+  background: #0f1525;
+  padding: 20px 56px;
 }
-.navbar .nav-container{
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
+.header-container .logo-container {
+  display: flex;
+  align-items: center;
 }
-.mobile-menu-btn{
-    background: none;
-    outline: none;
-    border: none;
-}
-.mobile-menu-btn img{
-    width: 24px;
-    height: 15px;
-}
-.nav-container .header-image .logo img{
-    margin-left: 0;
-    height: 40px;
-    max-width: 295px;
-}
-nav.section.navigation{
-    margin-right: 0;
-}
-.masthead .nav-collapse{
-    float: none;
-}
-.navbar .nav-pills  li{
-    height: 40px;
-    display: flex;
-    align-items: center;
-    margin-left: 44px;
-}
-.navbar .nav-pills  li.dropdown{
-    box-sizing: border-box;
-    /* padding: 0 8px 0 8px; */
-    cursor: pointer;
-    border-radius: 4px;
-}
-.navbar .nav-pills  li.dropdown:hover,
-.navbar .nav-pills  li.dropdown:focus,
-.navbar .nav-pills  li.dropdown:active{
-    background: #273051;
-}
-.navbar .nav-pills  li.ml-0{
-    margin-left: 0;
-}
-.navbar .nav-pills .nav-link-caret{
-    width: 24px;
-    height: 24.2px;
-    margin-left: 4px;
-}
-.navbar .nav-pills  li.dropdown a{
-    width: 100%;
-    height: 100%;
-    padding: 0px 8px;
+.header-container .logo-container .brand-name {
+  color: #ffffff !important;
+  font-size: 24px;
+  text-decoration: none;
 }
 
-/** When dropdown is active - color or nav link **/
-.navbar .nav li.dropdown.open>.dropdown-toggle {
-    background: none;
-    color: #FFFFFF;
+.header-container .logo-container .screen-reader-icon-seperator {
+  /* display: inline-block; */
+  height: 32px;
+  border-right: 1px solid rgba(255, 255, 255, 0.4);
+  margin: 0 16px;
 }
-.masthead .navigation .nav-pills li a:hover, .masthead .navigation .nav-pills li.active a {
-    color: #FFFFFF;
-    background: none;
+.header-container .logo-container .screen-reader-icon {
+  width: 24px;
+  height: 24px;
 }
-.home-primary-button{
-    box-sizing: border-box;
-    background: #4B4797;
-    border-radius: 4px;
-    border: 2px solid transparent;
-    font-weight: 400;
-    font-size: 16px;
-    color: #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.header-container .logo-container .powered-by {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.64) !important;
+  text-decoration: none;
 }
-.masthead .navigation .nav-pills li a.home-primary-button:hover{
-    background: #4B4797;
+
+.header-container .logo-container .powered-by-logo {
+  width: 177px;
+  height: 24px;
 }
-.home-primary-button:hover{
-    border: 2px solid #A090FF;
-    /* color: #4B4797; */
-    /* background: #FFFFFF; */
-    /* background-color: transparent; */
+
+.home-primary-button {
+  box-sizing: border-box;
+  background: #4b4797;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.masthead .navigation .nav-pills li a.home-primary-button:focus,
-.home-primary-button:focus{
-    background: #273051;
-    border: 2px solid #4B4797;
-    /* color: #4B4797; */
-    /* background: #FFFFFF; */
-    /* background-color: transparent; */
+.home-primary-button:hover {
+  background: #4b4797;
+  border: 2px solid #a090ff;
+  color: #ffffff !important;
+  text-decoration: none;
 }
-.dashboards-button.home-primary-button:hover{
-    border: 2px solid #A090FF;
-    /* color: #4B4797; */
-    /* background: #FFFFFF; */
-    /* background-color: transparent; */
+.home-primary-button:focus {
+  background: #273051;
+  border: 2px solid #4b4797;
 }
-.dashboards-button.home-primary-button:focus{
-    background: #273051;
-    border: 2px solid #4B4797;
+.budget-basics-btn {
+  width: 252px;
+  height: 40px;
 }
-.navbar .nav>li>a{
-    padding: 0;
-    display: flex;
-    align-items: center;
+@media (max-width: 1279px) {
+  .header-container .logo-container .brand-name {
+    font-size: 20px;
+  }
+  .header-container .logo-container .screen-reader-icon-seperator {
+    height: 28px;
+  }
+  .home-primary-button {
+    font-size: 14px;
+  }
+  .budget-basics-btn {
+    width: 215px;
+  }
 }
-.budget-basics-btn{
-    width: 140px;
-    height: 40px;
-}
-.btn-tab{
+
+@media (max-width: 700px){
+  .header-container{
+    padding: 20px 20px;
+  }
+  .header-container .logo-container .powered-by {
     display: none;
-}
-.navbar .mobile-menu-btn{
+  }
+  .header-container .logo-container .screen-reader-icon-seperator {
     display: none;
-}
-.navbar .nav-container .screen-reader-icon-seperator{
-    /* display: inline-block; */
-    height: 100%;
-    border-right: 1px solid rgba(255, 255, 255, 0.7);
-    margin: 0 16px;
-}
-.navbar .nav-container .screen-reader-icon{
-    width: 24px;
-    height: 24px;
+  }
+  .home-primary-button{
+    display: none;  
+  }
 }
 
-/****** Header Dropdowns ************/
-.nav-pills .dropdown-menu{
-    border-radius: 12px;
-}
-
-.navbar .nav>li>.dropdown-menu:after{
-    border-left: 14px solid transparent;
-    border-right: 14px solid transparent;
-    border-bottom: 17px solid #ffffff;
-    top: -10px;
-    left: 26px;
-    z-index: -1;
-    /* border: 2px solid #D6D9EB;
-    box-sizing: border-box;
-    border-radius: 2px; */
-}
-.navbar .nav-pills .dropdown-menu li{
-    padding: 0;
-    margin-left: 0;
-    height: auto;
-}
-.navbar .nav-pills .dropdown-menu li:first-child{
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-}
-.navbar .nav-pills .dropdown-menu li:last-child{
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-}
-.navbar .nav-pills .dropdown-menu li:hover{
-    background: #F0F3F5;
-    color: #4B4797;
-    cursor: pointer;
-}
-.navbar .nav>li>.dropdown-menu:before{
-    display: none;
-}
-.dropdown:hover .dropdown-menu {
-    display: block;
-    /* margin-top: 0; */
- }
-
-.dropdown-menu{
-    box-sizing: border-box;
-    padding: 0px;
-    min-width: 168px;
-    max-width: 296px;
-    box-shadow: none;
-    border: none;
-    box-shadow: 0px 4px 12px 0px rgba(0,0,0,0.04);
-
-}
-.dropdown-menu>li>a{
-    padding: 0;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
-    width: 100%;
-    text-decoration: underline;
-    background-color: transparent !important;
-    color: #4B4797;
-    white-space: break-spaces;
-    display: flex;
-    align-items: center;
-    padding: 12px 24px !important;
-}
-.dropdown-menu .dashboards-span{
-    width: max-content;
-    max-width: 174px;
-    margin-left: 0;
-}
-.dropdown-menu .dropdown-menu-link a{
-    text-decoration: none;
-}
-.dropdown-menu .dropdown-menu-link a>span{
-    display: inline-block;
-    width: 160px;
-    margin-right: 14px;
-    text-decoration: underline;
-}
-.masthead .navigation .dropdown-menu li a,
-.masthead .navigation .dropdown-menu li a:hover,  
-.masthead .navigation .dropdown-menu li a:active,  
-.masthead .navigation .dropdown-menu li a:visited{
-    color: #4B4797;
-    text-decoration: underline;
-}
-.navbar .nav-pills .dropdown-menu li:not(:first-child){
-    /* margin-top: 32px; */
-}
-
-.dropdown-menu .dropdown-right-arrow{
-    width: 24px;
-    height: 24px;
-    color: #4B4797;
-}
-
-.screen-reader-tooltip .dropdown-menu{
-    max-width: 328px !important;
-    left: -140px;
-    top: 40px
-}
-.screen-reader-tooltip .dropdown-menu:after{
-    content: '';
-    display: inline-block;
-    position: absolute;
-    border-left: 14px solid transparent;
-    border-right: 14px solid transparent;
-    border-bottom: 17px solid #ffffff;
-    top: -10px;
-    left: 140px;
-    z-index: -1;
-}
-.screen-reader-tooltip-text{
-    padding: 16px 20px;
-    margin: 0;
-    width: 288px;
-    font-size: 16px;
-    line-height: 150%;
-    font-weight: 400;
-    color: rgba(13, 16, 24, 0.87);
-}
-
-.mobile-menu-sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #0F1525;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 90px;
+@media (max-width: 767px){
+  .header-container{
+    padding: 20px 20px;
   }
-  
-  .mobile-menu-sidebar a {
-    padding: 16px 8px 16px 32px;
-    text-decoration: underline;
-    font-size: 16px;
-    color: #FFFFFF;
-    display: flex;
-    align-items: center;
-    /* transition: 0.3s; */
-  }
-  
-  .mobile-menu-sidebar a:hover {
-    /* color: #f1f1f1; */
-  }
-  
-  .mobile-menu-sidebar .closebtn {
-    position: absolute;
-    top: 30px;
-    left: 0;
-    font-size: 36px;
-    background-image: url("../../Images/x-small.svg");
-    background-repeat: no-repeat;
-    margin-left: 24px;
-    width: 30px;
-    height: 30px;
-    background-color: transparent;
-    outline: none;
-    border: none;
-  }
-  .mobile-menu-sidebar a>span{
-      display: inline-block;
-      min-width: 150px;
-      width: 180px;
-      max-width: 210px;
-  }
-  .mobile-menu-sidebar .dropdown-right-arrow{
-    width: 24px;
-    height: 24px;
-    margin-left: 10px;
-  }
-
-  #mobile-menu-content.fade-out{
-    opacity: 0;
-    transition: opacity 400ms;   
-  }
-
-  .menu-title-bar{
-      position: absolute;
-      top: 24px;
-      left: 0;
-      font-size: 24px;
-      font-weight: 600;
-      margin-left: 30px;
-      color: rgba(255, 255, 255, 0.7);
-      display: flex;
-      align-items: center;
-      width: 250px;
-  }
-
-  .mobile-menu-back-button{
-      display: inline-block;
-      padding: 0;
-      width: 30px;
-      height: 30px;
-      background-color: transparent;
-      outline: none;
-      border: none;
-      background-image: url("../../Images/arrow/left-white.svg");
-      background-position: center;
-      margin-right: 15px;
-  }
-  .mobile-menu-sidebar .budget-basics-button-container{
-     border-top: 1px solid rgba(255, 255, 255, 0.7);
-     width: inherit;
-     position: absolute;
-     bottom: 9%;
-     padding: 24px 74px;
-  }
-  .mobile-menu-sidebar .budget-basics-button-container .budget-basics-btn{
-      width: 156px;
-      height: 48px;
-      padding: 0;
-  }
-  .dropdown-title-bar{
-    display: flex;
-    align-items: center;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 130%;
-    text-decoration-line: underline;
-    color: rgba(13, 16, 24, 0.64);
-    padding: 12px 20px 20px 17px;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-  }
-  .dropdown-title-bar:hover{
-     background-color:  #f3f3f3;
-  }
-  .dropdown-menu-back-button{
-    display: inline-block;
-    padding: 0;
-    width: 10px;
-    height: 10px;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    background-image: url("../../Images/arrow/left.svg");
-    background-position: center;
-    margin-right: 7px;
-  }
-  #dropdown-menu-content.fade-out{
-    opacity: 0;
-    transition: opacity 400ms;   
-  }
-@media(min-width: 1440px){
-    .navbar .nav-container{
-        max-width: 1312px;
-        min-width: 1120px;
-        margin-right: auto;
-        margin-left: auto;
-    }
 }
-@media(max-width: 1279px){
-    .masthead{
-        padding: 20px 16px 20px 24px;
-    }
-    .navbar .nav-container{
-        max-width: 1120px;
-        min-width: 728px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    .navbar .mobile-menu-btn {
-        display: block;
-        margin-right: 20px;
-    }
-    .btn-tab{
-        display: flex;
-    }
-    .nav-collapse, .nav-collapse.collapse {
-        overflow: hidden;
-        height: 0;
-        width: 0;
-    }
-    .nav-collapse {
-        clear: both;
-    }
-    .screen-reader-tooltip .dropdown-menu{
-        left: auto;
-        right: -14px;
-    }
-    .screen-reader-tooltip .dropdown-menu:after{
-        left: auto;
-        right: 10px;
-    }
-    .nav-container .header-image .logo img{
-        max-width: 242px;
-        height: 32px;
-    }
-}
-@media(min-width: 360px) and (max-width: 767px){
-
-    .masthead{
-        padding: 20px 24px 20px 24px;
-    }
-    .navbar .nav-container{
-        max-width: 720px;
-        min-width: 272px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    .btn-tab{
-        display: none;
-    }
-    .mobile-menu-navbar-content{
-        width: 100%;
-        justify-content: space-between;
-    }
-    .navbar .mobile-menu-btn{
-        margin-right: 0;
-    }
-    .navbar .nav-container .screen-reader-icon-seperator{
-        display: none;
-    }
-    .nav-container .header-image .logo img{
-        max-width: 182px;
-        height: 24px;
-    }
-}
-

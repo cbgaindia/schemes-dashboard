@@ -1,7 +1,7 @@
 .radio-toolbar-container{
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 .radio-toolbar-container .scroll-button {
     border: none;
@@ -17,10 +17,10 @@
 }
 .radio-toolbar-container .scroll-button.right {
     background: linear-gradient(270deg, #F0F3F5 68.75%, rgba(255, 255, 255, 0) 100%);
-    right: 0;
+    right: 0px;
 }
 .radio-toolbar-container .radio-toolbar{
-    width: 95%;
+    width: 100%;
 }
 .radio-toolbar-container .radio-toolbar::-webkit-scrollbar{
     display: none;
@@ -65,7 +65,7 @@
 
 .schemes-list-container .scheme-card {
   flex: 1 0 25%;
-  margin: 1%;
+  margin-right: 1%;
 }
 
 .schemes-list-container .schemes-card:last-of-type {

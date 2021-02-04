@@ -12,6 +12,7 @@
     }
     .case-studies-cards-container .case-studies-card{
         min-width: 320px;
+        width: 50%;
     }
     .case-studies-card .right-aligned{
         padding: 8px 16px 8px 8px;
@@ -35,6 +36,7 @@
     .case-studies-card .card-container{
         position: relative;
         display: flex;  
+        height: 100%;
     }
     .case-studies-card .right-aligned .image-container{
         min-width: 208px;

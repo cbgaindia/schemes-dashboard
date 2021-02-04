@@ -3,23 +3,24 @@ import "./index.css";
 
 const NewsCard = (props) => {
   return (
-        <a
-          href="https://blog.openbudgetsindia.org/himachal-pradesh-fiscal-data-explorer-introductory-blog-5a3d344803ab"
-          target="_blank"
-          class={`case-studies-card card-link-container ${props.data.class}`}
-        >
-          <div class="right-aligned card-container">
-            <div class="image-container first"></div>
-            <div class="text-container">
-              <h4>Himachal Pradesh Fiscal Data Explorer - Introductory Blog</h4>
-              <p>
-                Fiscal Data Explorer is a unique tool where citizens can explore
-                both budgets and spending data of Himachal Pradesh in an easy to
-                comprehend and simple to use manner.
-              </p>
-            </div>
+    <a
+      href={props.data.link}
+      target="_blank"
+      class={`case-studies-card card-link-container ${props.data.class}`}
+    >
+      <div class="right-aligned card-container pt-2 pr-3 pb-3 pl-3">
+        {/* <div class="image-container first"></div> */}
+        <div class="text-container ml-1 mr-1 d-flex flex-column">
+          <h4>{props.data.title}</h4>
+          <div className="d-flex flex-column justify-content-between flex-grow-1">
+            <p>{props.data.text}</p>
+            <p className="m-0 fs-12 text-light mt-2">
+              Published On: {props.data.accessed_on}
+            </p>
           </div>
-        </a>
+        </div>
+      </div>
+    </a>
   );
 };
 
