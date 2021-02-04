@@ -34,6 +34,6 @@
   .indicator-sidebar-wrapper{
     max-width: 304px;
     width: 23.2%;
-    height: 628px;
+    min-height: 628px;
   }
 }
