@@ -261,19 +261,19 @@ export default class Choropleth extends Component {
       return "#858585";
     }
     if (band === 1) {
-      return "#C5C2FF";
+      return "#D3D1FF";
     }
     if (band === 2) {
-      return "#B1ADFF";
+      return "#CEA8FF";
     }
     if (band === 3) {
-      return "#9E99FF";
+      return "#AB71F5";
     }
     if (band === 4) {
-      return "#857FF5";
+      return "#7C46C2";
     }
     if (band === 5) {
-      return "#6E67EB";
+      return "#441E75";
     }
   }
 
@@ -384,7 +384,6 @@ export default class Choropleth extends Component {
           <FeatureGroup>
             {this.state.selectedFigure && (
               <GeoJSON
-                key={Math.random() * Math.random()}
                 data={this.state.selectedFigure}
                 weight={config.geojson.weight}
                 style={(feature) => this.getstyle(feature)}
@@ -401,27 +400,27 @@ export default class Choropleth extends Component {
               {this.state.bandFigures ? (
                 <ul className="legend-labels">
                   <LegendStep
-                    bgColor="#C5C2FF"
+                    bgColor="#D3D1FF"
                     band="20%"
                     range={this.state.bandFigures["20%"]}
                   />
                   <LegendStep
-                    bgColor="#B1ADFF"
+                    bgColor="#CEA8FF"
                     band="40%"
                     range={this.state.bandFigures["40%"]}
                   />
                   <LegendStep
-                    bgColor="#9E99FF"
+                    bgColor="#AB71F5"
                     band="60%"
                     range={this.state.bandFigures["60%"]}
                   />
                   <LegendStep
-                    bgColor="#857FF5"
+                    bgColor="#7C46C2"
                     band="80%"
                     range={this.state.bandFigures["80%"]}
                   />
                   <LegendStep
-                    bgColor="#6E67EB"
+                    bgColor="#441E75"
                     band="100%"
                     range={this.state.bandFigures["100%"]}
                   />
