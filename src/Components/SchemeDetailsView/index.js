@@ -64,7 +64,7 @@ const SchemesDetailsView = (props) => {
             <Chloropleth
               data={props.record}
               budgetAttr={"A"}
-              unit={props.record.unit}
+              unit={props.schemeData.data[props.activeIndicator].unit}
               stateCodes={props.stateCodes}
               schemeData={props.schemeData.data[props.activeIndicator]}
               setYearChange={props.setYearChange}
