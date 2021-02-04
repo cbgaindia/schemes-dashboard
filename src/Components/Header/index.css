@@ -32,8 +32,8 @@
 }
 
 .header-container .logo-container .powered-by-logo {
-  width: 122px;
-  height: 16px;
+  width: 177px;
+  height: 24px;
 }
 
 .home-primary-button {
@@ -69,9 +69,6 @@
   .header-container .logo-container .screen-reader-icon-seperator {
     height: 28px;
   }
-  .header-container .logo-container .powered-by-logo {
-    width: 100px;
-  }
   .home-primary-button {
     font-size: 14px;
   }
@@ -80,7 +77,7 @@
   }
 }
 
-@media (max-width: 640px){
+@media (max-width: 700px){
   .header-container{
     padding: 20px 20px;
   }
