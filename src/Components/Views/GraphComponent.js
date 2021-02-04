@@ -160,20 +160,20 @@ class GraphComponent extends React.Component {
     };
     const color = [
       "#19165C",
-      "#672448",
+      "#FFC2E2",
       "#38663A",
-      "#4B4797",
-      "#A34879",
-      "#5FA362",
+      "#FFD873",
+      "#0F5C66",
       "#6E67EB",
       "#EB67AD",
       "#7FE984",
-      "#9E99FF",
-      "#FF99CF",
-      "#A6F5AA",
+      "#CCA43D",
+      "#3DCCC3",
       "#CFCCFF",
-      "#FFC2E2",
+      "#672448",
       "#C2FFC5",
+      "#664E0F",
+      "#73FFFF"
     ];
     const items =
       this.state.selectedFigures &&
