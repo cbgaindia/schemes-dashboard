@@ -1,6 +1,6 @@
-import pmay from "../Images/schemesLogos/pmay.svg"
+import pmay from "../Images/schemesLogos/pmay.png"
 import icds from "../Images/schemesLogos/icds.png"
-import mdm from "../Images/schemesLogos/mdm.svg"
+import mdm from "../Images/schemesLogos/mdm.png"
 import mgnrega from "../Images/schemesLogos/mgnrega.png"
 import nhm from "../Images/schemesLogos/nhm.png"
 
