@@ -30,7 +30,7 @@ const SchemeIntroduction = (props) => {
     <div className="scheme-introduction-wrapper pl-3 pr-3 pt-32 mb-1">
       <p className="d-block page-introduction-text fs-12 mb-3">
         <a href="/" className="page-introduction-text fs-12">
-          <u>Shemes Dashboard</u>
+          <u>Schemes Dashboard</u>
         </a>
         &nbsp;&nbsp; &gt;
       </p>
