@@ -9,12 +9,12 @@ import "./index.css";
 
 const socialMediaLinks = [
   {
-    link: "https://twitter.com/OpenBudgetsIn",
+    link: "https://www.facebook.com/OpenBudgetsIndia",
     class: "link ml-12",
     child: <FacebookIcon fill="#95989D" />,
   },
   {
-    link: "https://www.facebook.com/OpenBudgetsIndia",
+    link: "https://twitter.com/OpenBudgetsIn",
     class: "link ml-12",
     child: <TwitterIcon fill="#95989D" />,
   },
