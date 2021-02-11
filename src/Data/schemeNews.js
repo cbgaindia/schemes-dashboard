@@ -51,7 +51,29 @@ export let recentDevelopmentsData = {
           class: "ml-4",
           link:
             "https://www.thehindu.com/news/cities/Tiruchirapalli/training-to-new-mothers-at-gh-through-icds/article33482060.ece",
-        }
+        },
+        {
+          title:
+            "ICDS and other nutrition schemes rationalised in Budget 2021-22",
+          text:
+            "ICDS has been clubbed with other nutrition schemes and the overall allocation for these schemes has reduced in Union Budget 2021-22. Experts suggest that priority must be given to such schemes for future development gains.",
+          img: "",
+          accessed_on: "10 February 2021",
+          class: "",
+          link:
+            "https://www.livemint.com/budget/news/reduced-allocation-for-nutritional-schemes-to-impact-health-of-women-children-11612358960796.html",
+        },  
+        {
+          title:
+            "Finance Commission withdraws grant for Supplementary Nutrition under ICDS",
+          text:
+            "The 15th Finance Commission had proposed in its initial report for 2020-21 a grant of Rs 7,735 crore for states, to strengthen supplementary nutrition. This recommendation has not been retained in the final report.",
+          img: "",
+          accessed_on: "10 February 2021",
+          class: "ml-4",
+          link:
+            "https://thewire.in/rights/does-mission-poshan-2-0-have-the-ammunition-it-will-need-to-be-successful",
+        },      
       ],
     },
   },
@@ -77,7 +99,29 @@ export let recentDevelopmentsData = {
           class: "ml-4",
           link:
             "https://thekashmirimages.com/2020/12/29/ku-releases-social-audit-report-of-mid-day-meal-scheme/",
-        }
+        },
+        {
+          title:
+            "Chhattisgarh performs well in Mid-day Meal delivery during pandemic",
+          text:
+            "An OXFAM survey of 5 states found that over 90% of children in Chhattisgarh received midday meals in the form of home delivery, during May-June 2020.",
+          img: "",
+          accessed_on: "10 February 2021",
+          class: "",
+          link:
+            "https://d1ns4ht6ytuzzo.cloudfront.net/oxfamdata/oxfamdatapublic/2020-09/Status%20report%20Government%20and%20private%20schools%20during%20COVID%20-%2019%20V3.1.pdf",
+        },  
+        {
+          title:
+            "Odisha distributes ‘happiness kits’ to school students using unutilised MDM resources",
+          text:
+            "Odisha will distribute ‘happiness kits’ comprising nutritious food products to school students in five districts. The kits are being provided by Akshaya Patra Foundation, using resources for MDM which were unutilised during the pandemic.",
+          img: "",
+          accessed_on: "10 February 2021",
+          class: "ml-4",
+          link:
+            "https://www.newindianexpress.com/good-news/2021/feb/01/happiness-kits-for-students-as-schools-reopen-inodisha-2257878.html",
+        },   
       ],
     },
   },
@@ -202,17 +246,17 @@ export let recentDevelopmentsData = {
   scheme_06: {
     metadata: {
       news: [
-        {
-          title:
-            "Last-mile hurdles in NREGA payments puncture India’s techno-utopian delusions",
-          text:
-            "A latest report by LibTech India, Length of the Last Mile, paints a grim and startling picture of these last-mile hurdles, based on a careful survey of 1,947 NREGA workers in Andhra Pradesh, Jharkhand and Rajasthan.",
-          img: "",
-          accessed_on: "29 January 2021",
-          class: "",
-          link:
-            "https://scroll.in/article/978862/jean-dreze-last-mile-hurdles-in-nrega-payments-puncture-indias-techno-utopian-delusions",
-        },
+        // {
+        //   title:
+        //     "Last-mile hurdles in NREGA payments puncture India’s techno-utopian delusions",
+        //   text:
+        //     "A latest report by LibTech India, Length of the Last Mile, paints a grim and startling picture of these last-mile hurdles, based on a careful survey of 1,947 NREGA workers in Andhra Pradesh, Jharkhand and Rajasthan.",
+        //   img: "",
+        //   accessed_on: "29 January 2021",
+        //   class: "",
+        //   link:
+        //     "https://scroll.in/article/978862/jean-dreze-last-mile-hurdles-in-nrega-payments-puncture-indias-techno-utopian-delusions",
+        // },
         {
           title:
             "Centre left with mere 10% NREGA funds as scheme sees 243% jump in Corona times",
@@ -220,10 +264,32 @@ export let recentDevelopmentsData = {
             "In the time of Covid pandemic, the Central government has made a record payment to MGNREGA workers in the financial year 2020-21. Though there was a surge for NREGA work demand in 2020, a report (by People Action for Employment Guarantee (PAEG), a network of NGOs) states that the average work provided to individual households was less than the previous years.",
           img: "",
           accessed_on: "29 January 2021",
-          class: "ml-4",
+          class: "",
           link:
             "https://www.hindustantimes.com/india-news/center-left-with-mere-10-nrega-funds-as-scheme-sees-243-jump-in-corona-times/story-vyKbeho4tgGUCsJBf6XFaK.html",
-        }
+        },
+        {
+          title:
+            "Uttarakhand increases MGNREGA working days from 100 to 150",
+          text:
+            "The Uttarakhand Government has increased the number of working days under MGNREGA. The state will bear the associated increase in cost.",
+          img: "",
+          accessed_on: "10 February 2021",
+          class: "ml-4",
+          link:
+            "https://www.business-standard.com/article/current-affairs/uttarakhand-increases-number-of-working-days-from-100-to-150-under-mgnrega-121011900586_1.html ",
+        },  
+        {
+          title:
+            "Employment demand under MGNREGA was 39% higher in 2020-21",
+          text:
+            " The Ministry of Rural Development reported a 39% jump in demand for employment under MGNREGA between April-Sep 2020, compared to the same period last year.",
+          img: "",
+          accessed_on: "10 February 2021",
+          class: "",
+          link:
+            "https://pib.gov.in/PressReleaseIframePage.aspx?PRID=1654683",
+        },   
       ],
     },
   },
