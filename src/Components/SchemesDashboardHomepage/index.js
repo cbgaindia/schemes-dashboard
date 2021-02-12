@@ -40,6 +40,7 @@ const SchemesDashboardHomepage = (props) => {
       img: schemeLogos[scheme]
       }
       ))
+      schemes.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()))
     setSchemes(schemes)
   }, [])
 
