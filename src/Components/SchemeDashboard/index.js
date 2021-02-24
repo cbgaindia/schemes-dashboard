@@ -198,7 +198,7 @@ const SchemeDashboard = (props) => {
 
   return (
     <>
-      <SchemeIntroduction data={schemeData.metadata} handleDownloadReportImage={handleDownloadReportImage}/>
+      <SchemeIntroduction data={schemeData.metadata} handleDownloadReportImage={handleDownloadReportImage} showViz={showViz}/>
       <div className="mt-3 mb-3 layout-wrapper">
         <div className="horizontal-seperator mb-3"></div>
         <DatavizViewControls

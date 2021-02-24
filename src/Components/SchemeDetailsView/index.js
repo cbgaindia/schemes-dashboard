@@ -12,7 +12,8 @@ const SchemesDetailsView = (props) => {
   const unit = props.schemeData.data[props.activeIndicator] && props.schemeData.data[props.activeIndicator].unit;
   const dataSource = props.schemeData.metadata.source;
   return (
-    <div className="schemes-details-view-wrapper" id={props.showViz ? "report-container" : ""}>
+    <div className="schemes-details-view-wrapper">
+      <div id={props.showViz ? "report-container": ""}>
       <div className="introduction-container">
         {!props.showViz ? (
           <>
@@ -91,6 +92,7 @@ const SchemesDetailsView = (props) => {
         <p className="m-0">
           Data Source: <span className="text-dark">{dataSource}</span>
         </p>
+      </div>
       </div>
     </div>
   );
