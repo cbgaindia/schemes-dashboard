@@ -79,7 +79,7 @@ const SchemesDashboardHomepage = (props) => {
   }
   return (
     <div className="layout-wrapper pt-5">
-      <h1 className="page-heading text-dark pl-3 mb-2">Schemes Dashboards</h1>
+      <h1 className="page-heading text-dark pl-3 mb-2">Schemes Dashboard</h1>
       <div className="horizontal-seperator mt-3 mb-1"></div>
       {/* <div className="radio-toolbar-container mt-3">
         {

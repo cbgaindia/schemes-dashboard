@@ -11,7 +11,7 @@ const Header = () => {
       <div className="layout-wrapper d-flex align-items-center justify-content-between">
         <div className="logo-container">
           <a href="/" className="brand-name">
-            Schemes Dashboards
+            Schemes Dashboard
           </a>
           <span className="screen-reader-icon-seperator"></span>
           <a href="https://openbudgetsindia.org/" className="powered-by">

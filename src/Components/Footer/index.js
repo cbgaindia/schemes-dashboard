@@ -22,7 +22,7 @@ const dashboardLinks = {
         { title: "Krishna District Treasury", link: "https://dash.openbudgetsindia.org/superset/dashboard/ap_krishna_treasury_dashboard/?standalone=true" }
     ],
     schemes: [
-        { title: "Schemes Dashboards", link: "https://schemes.openbudgetsindia.org/" },
+        { title: "Schemes Dashboard", link: "https://schemes.openbudgetsindia.org/" },
     ],
     story: [
         { title: "Story Generator", link: "https://cbgaindia.github.io/story-generator/" }
@@ -84,7 +84,7 @@ const Footer = () => {
                                     (<a href={dashboard.link} target="_blank">{dashboard.title}</a>)
                                 )
                             }
-                            <h4>Schemes Dashboards</h4>
+                            <h4>Schemes Dashboard</h4>
                             {
                                 dashboardLinks.schemes.map(dashboard =>
                                     (<a href={dashboard.link} target="_blank">{dashboard.title}</a>)
