@@ -10,7 +10,7 @@ const Dropdown = (props) => {
         onClick={props.handleDownloadReportImage}
         disabled={!props.showViz}
       >
-        Download Report
+        Download Visualisation
       </div>
         <a href="https://openbudgetsindia.org/organization/state-wise-schemes-data" target="_blank" className="scheme-dropdown-item second">
           Go to Dataset
