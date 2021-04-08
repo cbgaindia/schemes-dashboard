@@ -39,6 +39,8 @@ const platformLinks = [
     { title: "How to use the OBI Platform", link: "https://openbudgetsindia.org/pages/how-to-use-the-portal" },
     { title: "FAQs on the Platform", link: "https://openbudgetsindia.org/pages/faqs" },
     { title: "About OBI Platform", link: "https://openbudgetsindia.org/about" },
+    { title: "Video: OBI Platform", link: "https://youtu.be/xKjzH1ZB3c4" },
+    { title: "Video: Budget Basics", link: "https://youtu.be/fGxNh5Xfn2I" },
 ]
 
 const attributionLinks = [

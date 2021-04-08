@@ -73,7 +73,7 @@ const radioButtons = [
         />
       </svg>
     ),
-    title: "Chloropleth",
+    title: "Choropleth",
     val: "map",
     class: "text-light left-curved-border",
   },
