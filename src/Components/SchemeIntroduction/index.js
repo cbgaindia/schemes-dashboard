@@ -9,12 +9,12 @@ import "./index.css";
 
 const socialMediaLinks = [
   {
-    link: "https://twitter.com/OpenBudgetsIn",
+    link: "https://www.facebook.com/OpenBudgetsIndia",
     class: "link ml-12",
     child: <FacebookIcon fill="#95989D" />,
   },
   {
-    link: "https://www.facebook.com/OpenBudgetsIndia",
+    link: "https://twitter.com/OpenBudgetsIn",
     class: "link ml-12",
     child: <TwitterIcon fill="#95989D" />,
   },
@@ -30,7 +30,7 @@ const SchemeIntroduction = (props) => {
     <div className="scheme-introduction-wrapper pl-3 pr-3 pt-32 mb-1">
       <p className="d-block page-introduction-text fs-12 mb-3">
         <a href="/" className="page-introduction-text fs-12">
-          <u>Shemes Dashboard</u>
+          <u>Schemes Dashboard</u>
         </a>
         &nbsp;&nbsp; &gt;
       </p>
@@ -46,7 +46,7 @@ const SchemeIntroduction = (props) => {
           {
             dropdownActive
             ?
-            <Dropdown handleDownloadReportImage={props.handleDownloadReportImage}/>
+            <Dropdown handleDownloadReportImage={props.handleDownloadReportImage} showViz={props.showViz}/>
             : null            
           }
         </div>

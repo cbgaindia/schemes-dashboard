@@ -182,7 +182,7 @@ class GraphComponent extends React.Component {
         color: color[index],
       }));
     return (
-      <div className="vis-wrapper" id="report-container">
+      <div className="vis-wrapper" >
         <div className="">
           <div className="">
             <Select

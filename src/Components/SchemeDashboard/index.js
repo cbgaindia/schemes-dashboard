@@ -174,7 +174,7 @@ const SchemeDashboard = (props) => {
 
   const filterElements = (node) => {
       try {
-        return (node.getAttribute("class") !== 'statetooltip' && node.getAttribute("class")!== "tcontainer" && node.getAttribute("class")!== "select-container" && node.nodeType !=8 && node.getAttribute("class") !="see-details-text");
+        return (node.getAttribute("id") !== 'hide-this-button' && node.getAttribute("class") !== 'statetooltip' && node.getAttribute("class")!== "tcontainer" && node.getAttribute("class")!== "select-container" && node.nodeType !=8 && node.getAttribute("class") !="see-details-text");
       }
       catch(err) {
         return true;
@@ -198,7 +198,7 @@ const SchemeDashboard = (props) => {
 
   return (
     <>
-      <SchemeIntroduction data={schemeData.metadata} handleDownloadReportImage={handleDownloadReportImage}/>
+      <SchemeIntroduction data={schemeData.metadata} handleDownloadReportImage={handleDownloadReportImage} showViz={showViz}/>
       <div className="mt-3 mb-3 layout-wrapper">
         <div className="horizontal-seperator mb-3"></div>
         <DatavizViewControls

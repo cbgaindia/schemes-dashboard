@@ -15,7 +15,7 @@ const NewsCard = (props) => {
           <div className="d-flex flex-column justify-content-between flex-grow-1">
             <p>{props.data.text}</p>
             <p className="m-0 fs-12 text-light mt-2">
-              Published On: {props.data.accessed_on}
+              Accessed On: {props.data.accessed_on}
             </p>
           </div>
         </div>

@@ -13,6 +13,7 @@ const SchemesDetailsView = (props) => {
   const dataSource = props.schemeData.metadata.source;
   return (
     <div className="schemes-details-view-wrapper">
+      <div id={props.showViz ? "report-container": ""}>
       <div className="introduction-container">
         {!props.showViz ? (
           <>
@@ -34,7 +35,7 @@ const SchemesDetailsView = (props) => {
               </p>
             </div>
             <div className="d-flex flex-column align-items-end">
-              <button onClick={() => props.handleToggleShowViz(false)}>
+              <button onClick={() => props.handleToggleShowViz(false)} id="hide-this-button">
                 View Editorial Notes
               </button>
               <p className="m-0 mt-1">Unit : {unit}</p>
@@ -91,6 +92,7 @@ const SchemesDetailsView = (props) => {
         <p className="m-0">
           Data Source: <span className="text-dark">{dataSource}</span>
         </p>
+      </div>
       </div>
     </div>
   );

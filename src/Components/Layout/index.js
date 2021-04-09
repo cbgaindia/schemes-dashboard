@@ -11,7 +11,7 @@ const Layout = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
+    // setIsMobile(window.innerWidth < 768);
   }, []);
 
   return (

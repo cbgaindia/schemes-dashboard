@@ -7,6 +7,8 @@ import schemeLogos from "../../Data/schemesLogos"
 import RightCaret from "../../Images/arrow/right.svg"
 import LeftCaret from "../../Images/arrow/left.svg"
 
+import {generateSitemap} from "../../utils/sitemap-update"
+
 import "./index.css";
 
 const radioButtons = [
@@ -40,7 +42,10 @@ const SchemesDashboardHomepage = (props) => {
       img: schemeLogos[scheme]
       }
       ))
+      schemes.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()))
     setSchemes(schemes)
+
+    // generateSitemap(schemesData)
   }, [])
 
   const handleChangeSchemesType = (e) => {

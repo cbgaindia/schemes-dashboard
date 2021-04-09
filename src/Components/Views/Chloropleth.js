@@ -356,7 +356,7 @@ export default class Choropleth extends Component {
 
   render() {
     return (
-      <div className="vis-wrapper" id="report-container">
+      <div className="vis-wrapper">
         <MapContainer
           center={config.params.center}
           zoom={config.params.zoom}

@@ -42,3 +42,7 @@
 .scheme-dropdown-item:hover{
     background: #F0F3F5;
 }
+
+.scheme-dropdown-item[disabled]{
+    pointer-events: none;
+}

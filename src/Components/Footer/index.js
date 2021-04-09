@@ -7,6 +7,7 @@ import "./index.css"
 
 const dashboardLinks = {
     union: [
+        { title: "Union Budget Explorer 2021-22", link: "https://union.openbudgetsindia.org/en/" },
         { title: "Union Budget Explorer 2020-21", link: "https://union2020.openbudgetsindia.org/en/" },
         { title: "Union Budget Explorer 2019-20", link: "https://union2019.openbudgetsindia.org/en/" },
         { title: "Union Budget Explorer 2019-20 (I)", link: "https://union2019i.openbudgetsindia.org/en/" },
@@ -19,6 +20,9 @@ const dashboardLinks = {
     district: [
         { title: "Balasore District Treasury", link: "https://dash.openbudgetsindia.org/superset/dashboard/odisha_balasore_treasury_dashboard/?standalone=true" },
         { title: "Krishna District Treasury", link: "https://dash.openbudgetsindia.org/superset/dashboard/ap_krishna_treasury_dashboard/?standalone=true" }
+    ],
+    schemes: [
+        { title: "Schemes Dashboard", link: "https://schemes.openbudgetsindia.org/" },
     ],
     story: [
         { title: "Story Generator", link: "https://cbgaindia.github.io/story-generator/" }
@@ -35,6 +39,8 @@ const platformLinks = [
     { title: "How to use the OBI Platform", link: "https://openbudgetsindia.org/pages/how-to-use-the-portal" },
     { title: "FAQs on the Platform", link: "https://openbudgetsindia.org/pages/faqs" },
     { title: "About OBI Platform", link: "https://openbudgetsindia.org/about" },
+    { title: "Video: OBI Platform", link: "https://youtu.be/xKjzH1ZB3c4" },
+    { title: "Video: Budget Basics", link: "https://youtu.be/fGxNh5Xfn2I" },
 ]
 
 const attributionLinks = [
@@ -77,6 +83,12 @@ const Footer = () => {
                             <h4>District Dashboards</h4>
                             {
                                 dashboardLinks.district.map(dashboard =>
+                                    (<a href={dashboard.link} target="_blank">{dashboard.title}</a>)
+                                )
+                            }
+                            <h4>Schemes Dashboard</h4>
+                            {
+                                dashboardLinks.schemes.map(dashboard =>
                                     (<a href={dashboard.link} target="_blank">{dashboard.title}</a>)
                                 )
                             }
