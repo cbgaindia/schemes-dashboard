@@ -1,0 +1,72 @@
+
+.swipe-right-button{
+    width: 75px;
+    height: 24px;
+    background: #FF90A0;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    cursor: auto;        
+}
+
+.swipe-right-button svg {
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+}
+
+.scheme-details-view-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+@media(min-width: 768px) and (max-width: 1279px){
+    .tab-horizontal-scroll{
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+    .tab-horizontal-scroll::-webkit-scrollbar {
+        display: none;
+    }
+    .swipe-right-button{
+        display: flex;
+    }
+    .layout-wrapper{
+        margin-left: auto;
+        margin-right: auto;
+        min-width: 656px;
+    }
+}
+
+@media(min-width: 1280px){
+    .layout-wrapper{
+        margin-left: auto;
+        margin-right: auto;
+        width: 1120px;
+    }
+    .scheme-details-view-wrapper{
+        flex-direction: row;
+    }
+}
+
+@media(min-width: 1440px){
+    .layout-wrapper{
+        margin-left: auto;
+        margin-right: auto;
+        min-width: 1270px;
+        max-width: 1312px;
+        width: 74.54%;
+    }
+}

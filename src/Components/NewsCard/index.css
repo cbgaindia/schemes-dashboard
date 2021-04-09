@@ -1,0 +1,140 @@
+    /**** Case Studies Section ****/
+    .case-studies-cards-container{
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+        /* -webkit-overflow-scrolling:touch; */
+    }
+    .case-studies-cards-container::-webkit-scrollbar {
+        display: none;
+    }
+    .case-studies-cards-container .case-studies-card{
+        min-width: 320px;
+        width: 50%;
+    }
+    .case-studies-card .right-aligned{
+        padding: 8px 16px 8px 8px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
+        border: 2px solid transparent;
+        border-radius: 12px;
+    }
+    .case-studies-card .right-aligned:hover{
+        border: 2px solid #4B4797;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
+        border-radius: 12px;
+        cursor: pointer;
+    }
+    .case-studies-cards-container .card-link-container:hover,
+    .case-studies-cards-container .card-link-container:focus,
+    .case-studies-cards-container .card-link-container:active,
+    .case-studies-cards-container .card-link-container:visited{
+        text-decoration: none;
+    }
+    .case-studies-card .card-container{
+        position: relative;
+        display: flex;  
+        height: 100%;
+    }
+    .case-studies-card .right-aligned .image-container{
+        min-width: 208px;
+        height: 184px;
+        margin-right: 16px;
+        background: #F0F3F5;
+        border-radius: 8px; 
+    }
+    .case-studies-card .right-aligned .image-container{
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .case-studies-card .right-aligned .image-container.first{
+        background-image: url("../../Images/hpfde-blog.jpg");
+    }
+    .case-studies-card .right-aligned .image-container.second{
+        background-image: url("../../Images/subrat-blog.jpg");
+    }
+    .case-studies-card .right-aligned .text-container{
+        margin-top: 8px;
+    }
+    .case-studies-card .right-aligned .text-container h4{
+        font-size: 16px;
+        line-height: 150%;
+        color: rgba(13, 16, 24, 0.87);
+        font-weight: 600;
+        margin: 0;
+        margin-bottom: 8px;
+    }
+    .case-studies-card .right-aligned .text-container p{
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        color: rgba(13, 16, 24, 0.87);
+        margin: 0;
+        /* white-space: nowrap; */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        /* max-width: 500ch; */
+    }
+    @media (min-width: 1440px){
+        .case-studies-cards-container{
+            /* width: 1312px; */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .case-studies-card .right-aligned .image-container{
+            height: 216px;
+        }
+    } 
+    @media (min-width: 1280px) and (max-width: 1439px){
+        .case-studies-cards-container{
+            width: 1120px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    @media(max-width: 1279px){
+        .case-studies-card .right-aligned{
+            padding: 8px 8px 20px 8px;
+        }
+        .case-studies-card .card-container{
+            flex-direction: column;
+            align-items: center;
+        }
+        .case-studies-card .right-aligned .image-container{
+            min-width: 304px;
+            height: 240px;
+            width: 100%;
+            margin-right: 0;
+        }
+        .case-studies-card .right-aligned .text-container{
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+        .case-studies-card.ml-4{
+            margin-left: 16px !important;
+        }
+        .case-studies-card .right-aligned .text-container{
+            margin-top: 16px;
+        }
+    }
+    @media(min-width: 320px) and (max-width: 767px){
+        .case-studies-cards-container .case-studies-card{
+            width: auto;
+        }
+        .case-studies-cards-container .case-studies-card.ml-32{
+            margin-left: 0;
+        }
+        .case-studies-card .right-aligned .text-container{
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+        .case-studies-card .right-aligned .image-container{
+            width: auto;
+        }
+    }
