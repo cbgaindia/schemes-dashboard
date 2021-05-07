@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import domtoimage from "dom-to-image";
+import {Helmet} from 'react-helmet';
 
 import SchemeIntroduction from "../SchemeIntroduction";
 import DatavizViewControls from "../DatavizViewControls";
@@ -198,6 +199,14 @@ const SchemeDashboard = (props) => {
 
   return (
     <>
+      <Helmet>
+        <title> {schemeData.metadata.name} | Open Budgets India </title>
+        <meta
+          name="title"
+          content={schemeData.metadata.name +  " | Open Budgets India"}
+        />
+      </Helmet>
+
       <SchemeIntroduction data={schemeData.metadata} handleDownloadReportImage={handleDownloadReportImage} showViz={showViz}/>
       <div className="mt-3 mb-3 layout-wrapper">
         <div className="horizontal-seperator mb-3"></div>

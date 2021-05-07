@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from "react";
+import {Helmet} from 'react-helmet';
 import SchemesCard from "../SchemesCard";
 
 import schemesData from "../../Data/schemes.json";
@@ -78,6 +79,15 @@ const SchemesDashboardHomepage = (props) => {
 
   }
   return (
+    <>	
+    <Helmet>
+        <title> Schemes Dashboard | Open Budgets India </title>
+        <meta
+          name="title"
+          content="Schemes Dashboard | Open Budgets India"
+        />
+    </Helmet>
+
     <div className="layout-wrapper pt-5">
       <h1 className="page-heading text-dark pl-3 mb-2">Schemes Dashboard</h1>
       <div className="horizontal-seperator mt-3 mb-1"></div>
@@ -124,6 +134,7 @@ const SchemesDashboardHomepage = (props) => {
         {/* </div> */}
       </div>
     </div>
+  </>
   );
 };
 
