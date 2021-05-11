@@ -200,11 +200,12 @@ const SchemeDashboard = (props) => {
   return (
     <>
       <Helmet>
-        <title> {schemeData.metadata.name} | Open Budgets India </title>
-        <meta
-          name="title"
-          content={schemeData.metadata.name +  " | Open Budgets India"}
-        />
+        <title> {schemeData.metadata.name} State-wise Budget & Expenditure | Open Budgets India </title>
+        <meta name="title" content={schemeData.metadata.name +  " State-wise Budget & Expenditure | Open Budgets India"}/>
+        <meta property="og:url" content={"https://schemes.openbudgetsindia.org/scheme/" + schemeData.metadata.slug + "/" + schemeData.data[activeIndicator].slug}/>
+        <meta property="og:title" content={schemeData.metadata.name +  " State-wise Budget & Expenditure | Open Budgets India"}/>
+        <meta property="twitter:url" content={"https://schemes.openbudgetsindia.org/scheme/" + schemeData.metadata.slug + "/" + schemeData.data[activeIndicator].slug}/>
+        <meta property="twitter:title" content={schemeData.metadata.name +  " State-wise Budget & Expenditure | Open Budgets India"}/>
       </Helmet>
 
       <SchemeIntroduction data={schemeData.metadata} handleDownloadReportImage={handleDownloadReportImage} showViz={showViz}/>

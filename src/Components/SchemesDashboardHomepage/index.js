@@ -82,10 +82,11 @@ const SchemesDashboardHomepage = (props) => {
     <>	
     <Helmet>
         <title> Schemes Dashboard | Open Budgets India </title>
-        <meta
-          name="title"
-          content="Schemes Dashboard | Open Budgets India"
-        />
+        <meta name="title" content="Schemes Dashboard | Open Budgets India"/>
+        <meta property="og:url" content="https://schemes.openbudgetsindia.org/"/>
+        <meta property="og:title" content="Schemes Dashboard | Open Budgets India"/>
+        <meta property="twitter:url" content="https://schemes.openbudgetsindia.org/"/>
+        <meta property="twitter:title" content="Schemes Dashboard | Open Budgets India"/>
     </Helmet>
 
     <div className="layout-wrapper pt-5">
