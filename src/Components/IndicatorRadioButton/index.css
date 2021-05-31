@@ -1,0 +1,73 @@
+.indicator-radio-button-input:checked,
+.indicator-radio-button-input:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+.indicator-radio-button-input:checked + label,
+.indicator-radio-button-input:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 150%;
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.64);
+}
+.indicator-radio-button-input:checked + label{
+    color: #4B4797;
+}
+.indicator-radio-button-input:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    background: #4B4797;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 100%;
+    box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.24);
+}
+.indicator-radio-button-input:not(:checked) + label:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 100%;
+    box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.24);
+}
+
+.indicator-radio-button-input:checked + label:after,
+.indicator-radio-button-input:not(:checked) + label:after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #FFFFFF;
+    position: absolute;
+    top: 8px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.indicator-radio-button-input:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.indicator-radio-button-input:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.radio-button-text{
+    font-size: 12px;
+    line-height: 165%;
+    color: rgba(0, 0, 0, 0.64);
+    margin: 0;
+}
