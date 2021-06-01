@@ -965,7 +965,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_sbmu: {
+  scheme_sbmg: {
     metadata: {
       news: [
         {

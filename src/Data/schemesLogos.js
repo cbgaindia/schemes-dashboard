@@ -35,7 +35,7 @@ const schemeLogos = {
     scheme_osc  : osc,
     scheme_pa   : pa,
     scheme_ssa  : ssa,
-    scheme_sbmu : sbmu,
+    scheme_sbmg : sbmu,
     scheme_icps : icps,
     scheme_nhm  : nhm,
 } 
