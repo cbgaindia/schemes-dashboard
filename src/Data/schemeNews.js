@@ -1051,7 +1051,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  icps: {
+  scheme_icps: {
     metadata: {
       news: [
         {
