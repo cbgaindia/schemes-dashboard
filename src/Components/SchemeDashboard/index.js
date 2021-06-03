@@ -12,7 +12,8 @@ import SchemeCard from "../SchemesCard";
 
 import { receipts_data as data } from "../../Data/receipts_data";
 import schemesData from "../../Data/schemes.json";
-import { recentDevelopmentsData } from "../../Data/schemeNews";
+//import { recentDevelopmentsData } from "../../Data/schemeNews";
+import  recentDevelopmentsData  from "../../Data/schemeNews.json";
 import schemeLogos from "../../Data/schemesLogos"
 
 import { ReactComponent as LeftArrow } from "../../Images/left-arrow.svg";
@@ -270,7 +271,7 @@ const SchemeDashboard = (props) => {
         <div class="case-studies-cards-container mt-3">
           {recentDevelopments[activeNewsPage - 1] &&
             recentDevelopments[activeNewsPage - 1].map((news, index) => (
-              <NewsCard data={news} key={index} />
+              <NewsCard data={news} cardindex={index} key={index} />
             ))}
         </div>
       </div>
