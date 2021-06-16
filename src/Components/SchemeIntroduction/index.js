@@ -12,20 +12,25 @@ const socialMediaLinks = [
     link: "https://www.facebook.com/OpenBudgetsIndia",
     class: "link ml-12",
     child: <FacebookIcon fill="#95989D" />,
+    share: 'https://www.facebook.com/sharer/sharer.php?u='
   },
   {
     link: "https://twitter.com/OpenBudgetsIn",
     class: "link ml-12",
     child: <TwitterIcon fill="#95989D" />,
+    share: 'https://twitter.com/intent/tweet?text=Share on twitter&url='
   },
 ];
+
 
 const SchemeIntroduction = (props) => {
   const [dropdownActive, setDropdownActive] = useState(false)
 
   const handleToggleDropdown = (val) => {
     setDropdownActive(val)
+ 
   }
+
   return (
     <div className="scheme-introduction-wrapper pl-3 pr-3 pt-32 mb-1">
       <p className="d-block page-introduction-text fs-12 mb-3">
@@ -69,7 +74,7 @@ const SchemeIntroduction = (props) => {
           <p className="page-introduction-text">Share on social media:</p>
           <div class="social-media-links">
             {socialMediaLinks.map((link) => (
-              <a className={link.class} href={link.link} target="_blank">
+              <a href="javascript:void(0)" className={link.class} onClick={() => window.open(link.share+encodeURIComponent(window.location.href))}>
                 {link.child}
               </a>
             ))}
