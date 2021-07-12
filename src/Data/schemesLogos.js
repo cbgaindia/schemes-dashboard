@@ -16,6 +16,9 @@ import pa from "../Images/schemesLogos/pa.png"
 import rkvy from "../Images/schemesLogos/rkvy.png"
 import sbmu from "../Images/schemesLogos/sbmu.png"
 import sg from "../Images/schemesLogos/sg.jpeg"
+import ms from "../Images/schemesLogos/ms.jpg"
+import scs from "../Images/schemesLogos/scs.jpg"
+import sts from "../Images/schemesLogos/sts.jpg"
 
 
 const schemeLogos = {
@@ -38,6 +41,9 @@ const schemeLogos = {
     scheme_sbmg : sbmu,
     scheme_icps : icps,
     scheme_nhm  : nhm,
+    scheme_ms   : ms,  
+    scheme_scs  : scs,
+    scheme_sts  : sts,
 } 
 
 export default schemeLogos;
