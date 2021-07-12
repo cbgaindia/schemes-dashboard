@@ -31,7 +31,7 @@ const SchemesDetailsView = (props) => {
             <div className="d-flex flex-column">
               <h2 className="m-0">{indicatorName}</h2>
               <p className="m-0 mt-1">
-                {activeYear} | {schemeName}
+                {props.activeViz === "map" ? (activeYear + " | " + schemeName) : schemeName}
               </p>
             </div>
             <div className="d-flex flex-column align-items-end">
