@@ -1,5 +1,5 @@
 export let recentDevelopmentsData = {
-  scheme_01: {
+  scheme_jjm: {
     metadata: {
       news: [
         {
@@ -65,7 +65,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_02: {
+  scheme_icds: {
     metadata: {
       news: [
         {
@@ -115,7 +115,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_03: {
+  scheme_sg: {
     metadata: {
       news: [
         {
@@ -181,7 +181,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_04: {
+  scheme_pmgsy: {
     metadata: {
       news: [
         {
@@ -242,7 +242,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_05: {
+  scheme_mgnrega: {
     metadata: {
       news: [
         // {
@@ -292,7 +292,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_06: {
+  scheme_smsa: {
     metadata: {
       news: [
         {
@@ -349,7 +349,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_07: {
+  scheme_bbbp: {
     metadata: {
       news: [
         {
@@ -435,7 +435,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_08: {
+  scheme_mdm: {
     metadata: {
       news: [
         {
@@ -483,7 +483,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_09: {
+  scheme_pmay: {
     metadata: {
       news: [
         {
@@ -511,7 +511,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_10: {
+  scheme_rmsa: {
     metadata: {
       news: [
         {
@@ -569,7 +569,7 @@ export let recentDevelopmentsData = {
     },
   },
 
-  scheme_11: {
+  scheme_sbmu: {
     metadata: {
       news: [
         {
@@ -615,7 +615,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_12: {
+  scheme_rkvy: {
     metadata: {
       news: [
         {
@@ -671,7 +671,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_13: {
+  scheme_br: {
     metadata: {
       news: [
         {
@@ -777,7 +777,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_14: {
+  scheme_osc: {
     metadata: {
       news: [
         {
@@ -853,7 +853,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_15: {
+  scheme_pa: {
     metadata: {
       news: [
         {
@@ -909,7 +909,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_16: {
+  scheme_ssa: {
     metadata: {
       news: [
         {
@@ -965,7 +965,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_17: {
+  scheme_sbmg: {
     metadata: {
       news: [
         {
@@ -1051,7 +1051,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_18: {
+  scheme_icps: {
     metadata: {
       news: [
         {
@@ -1117,7 +1117,7 @@ export let recentDevelopmentsData = {
       ],
     },
   },
-  scheme_19: {
+  scheme_nhm: {
     metadata: {
       news: [
         {

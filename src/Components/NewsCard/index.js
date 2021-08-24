@@ -6,7 +6,7 @@ const NewsCard = (props) => {
     <a
       href={props.data.link}
       target="_blank"
-      class={`case-studies-card card-link-container ${props.data.class}`}
+      className={"case-studies-card card-link-container" +  (props.cardindex % 2 == 0 ? "" : " ml-4")}
     >
       <div class="right-aligned card-container pt-2 pr-3 pb-3 pl-3">
         {/* <div class="image-container first"></div> */}

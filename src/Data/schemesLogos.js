@@ -16,27 +16,34 @@ import pa from "../Images/schemesLogos/pa.png"
 import rkvy from "../Images/schemesLogos/rkvy.png"
 import sbmu from "../Images/schemesLogos/sbmu.png"
 import sg from "../Images/schemesLogos/sg.jpeg"
+import ms from "../Images/schemesLogos/ms.jpg"
+import scs from "../Images/schemesLogos/scs.jpg"
+import sts from "../Images/schemesLogos/sts.jpg"
 
 
 const schemeLogos = {
-    scheme_01 : jjm,
-    scheme_02 : icds,
-    scheme_03 : sg,
-    scheme_04 : pmgsy,
-    scheme_05 : mgnrega,
-    scheme_06 : smsa,
-    scheme_07 : bbbp,
-    scheme_08 : mdm,
-    scheme_09 : pmay,
-    scheme_10 : rmsa,
-    scheme_11 : sbmu,
-    scheme_12 : rkvy,
-    scheme_13 : br,
-    scheme_14 : osc,
-    scheme_15 : pa,
-    scheme_16 : ssa,
-    scheme_17 : sbmu,
-    scheme_18 : icps,
-    scheme_19 : nhm,
+    scheme_jjm  : jjm,
+    scheme_icds : icds,
+    scheme_sg   : sg,
+    scheme_pmgsy: pmgsy,
+    scheme_mgnrega : mgnrega,
+    scheme_smsa : smsa,
+    scheme_bbbp : bbbp,
+    scheme_mdm  : mdm,
+    scheme_pmay : pmay,
+    scheme_rmsa : rmsa,
+    scheme_sbmu : sbmu,
+    scheme_rkvy : rkvy,
+    scheme_br   : br,
+    scheme_osc  : osc,
+    scheme_pa   : pa,
+    scheme_ssa  : ssa,
+    scheme_sbmg : sbmu,
+    scheme_icps : icps,
+    scheme_nhm  : nhm,
+    scheme_ms   : ms,  
+    scheme_scs  : scs,
+    scheme_sts  : sts,
 } 
+
 export default schemeLogos;
