@@ -33,6 +33,10 @@ const Layout = () => {
               path="/scheme/:scheme_slug/:indicator_slug"
               render={(props) => <SchemeDashboard {...props} />}
             />
+            <Route
+              path="/scheme/:scheme_slug"
+              render={(props) => <SchemeDashboard {...props} />}
+            />
             <Redirect to="/" />
           </Switch>
         )}

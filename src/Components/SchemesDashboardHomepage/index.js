@@ -1,19 +1,17 @@
-import React, {useState, useRef, useEffect} from "react";
-import {Helmet} from 'react-helmet';
+import React, { useState, useRef, useEffect } from "react";
+import { Helmet } from 'react-helmet';
 import SchemesCard from "../SchemesCard";
-
-import schemesData from "../../Data/schemes.json";
-import schemeLogos from "../../Data/schemesLogos"
-
+import DataSchemes from "../../Data/schemesData"
+import { dataTransform } from "../../utils/helpers"
 import RightCaret from "../../Images/arrow/right.svg"
 import LeftCaret from "../../Images/arrow/left.svg"
 
-import {generateSitemap} from "../../utils/sitemap-update"
-
+import { generateSitemap } from "../../utils/sitemap-update"
+import { read, utils as xlsxUtil } from 'xlsx'
 import "./index.css";
 
 const radioButtons = [
-  { title: "All", val: "all"},
+  { title: "All", val: "all" },
   { title: "Agriculture and Allied Activities ", val: "Agriculture and Allied Activities" },
   { title: "Drinking Water & Sanitation", val: "Drinking Water & Sanitation" },
   { title: "Education", val: "Education" },
@@ -25,6 +23,7 @@ const radioButtons = [
   { title: "Food, Civil Supplies and Co-operation", val: "Food, Civil Supplies and Co-operation" },
 ];
 
+
 const SchemesDashboardHomepage = (props) => {
   const [schemeType, setSchemeType] = useState("all")
   const [showLeftScrollButton, setShowLeftScrollButton] = useState(false)
@@ -34,17 +33,17 @@ const SchemesDashboardHomepage = (props) => {
   const toolbarScrollRef = useRef(null)
 
   useEffect(() => {
-    console.log('testing scheme slugs', props.schemeSlugs)
-    let schemes = Object.keys(schemesData).map((scheme, index) => (
+    let schemes = Object.keys(DataSchemes).map((scheme) => (
       {
-      title: schemesData[scheme].metadata.name, 
-      link: `/scheme/${schemesData[scheme].metadata.slug}/${schemesData[scheme].data['indicator_01'].slug}`, 
-      class: "mt-4", 
-      img: schemeLogos[scheme]
+        title: DataSchemes[scheme].name,
+        link: `/scheme/${DataSchemes[scheme].slug}`,
+        class: "mt-4",
+        img: DataSchemes[scheme].logo
       }
-      ))
-      schemes.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()))
+    ))
+    schemes.sort((a, b) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()))
     setSchemes(schemes)
+
 
     // generateSitemap(schemesData)
   }, [])
@@ -54,24 +53,24 @@ const SchemesDashboardHomepage = (props) => {
   }
 
   const handleScrollOnClick = (dir) => {
-    if(dir === 'left'){
+    if (dir === 'left') {
       toolbarScrollRef.current.scrollLeft -= 200;
     }
-    else{
+    else {
       toolbarScrollRef.current.scrollLeft += 200;
     }
   }
 
   const handleFilterOptionScroll = (e) => {
-    if(e.target.scrollLeft < 30){
+    if (e.target.scrollLeft < 30) {
       setShowLeftScrollButton(false)
       setShowRightScrollButton(true)
     }
-    else{
-      if((e.target.scrollLeft + e.target.clientWidth) > e.target.scrollWidth - 30 ){
+    else {
+      if ((e.target.scrollLeft + e.target.clientWidth) > e.target.scrollWidth - 30) {
         setShowRightScrollButton(false)
       }
-      else{
+      else {
         setShowRightScrollButton(true)
       }
       setShowLeftScrollButton(true)
@@ -79,20 +78,20 @@ const SchemesDashboardHomepage = (props) => {
 
   }
   return (
-    <>	
-    <Helmet>
+    <>
+      <Helmet>
         <title> Schemes Dashboard | Open Budgets India </title>
-        <meta name="title" content="Schemes Dashboard | Open Budgets India"/>
-        <meta property="og:url" content="https://schemes.openbudgetsindia.org/"/>
-        <meta property="og:title" content="Schemes Dashboard | Open Budgets India"/>
-        <meta property="twitter:url" content="https://schemes.openbudgetsindia.org/"/>
-        <meta property="twitter:title" content="Schemes Dashboard | Open Budgets India"/>
-    </Helmet>
+        <meta name="title" content="Schemes Dashboard | Open Budgets India" />
+        <meta property="og:url" content="https://schemes.openbudgetsindia.org/" />
+        <meta property="og:title" content="Schemes Dashboard | Open Budgets India" />
+        <meta property="twitter:url" content="https://schemes.openbudgetsindia.org/" />
+        <meta property="twitter:title" content="Schemes Dashboard | Open Budgets India" />
+      </Helmet>
 
-    <div className="layout-wrapper pt-5">
-      <h1 className="page-heading text-dark pl-3 mb-2">Schemes Dashboard</h1>
-      <div className="horizontal-seperator mt-3 mb-1"></div>
-      {/* <div className="radio-toolbar-container mt-3">
+      <div className="layout-wrapper pt-5">
+        <h1 className="page-heading text-dark pl-3 mb-2">Schemes Dashboard</h1>
+        <div className="horizontal-seperator mt-3 mb-1"></div>
+        {/* <div className="radio-toolbar-container mt-3">
         {
           showLeftScrollButton
           ?
@@ -123,19 +122,19 @@ const SchemesDashboardHomepage = (props) => {
           : null
         }
       </div> */}
-      <div className="schemes-list-container">
-        {/* <div className="row"> */}
-        {schemes.map((scheme, index) => {
-          return (
-            // <div className="col-md-3 mr-3">
-            <SchemesCard scheme={scheme} key={index} />
-            // </div>
-          );
-        })}
-        {/* </div> */}
+        <div className="schemes-list-container">
+          {/* <div className="row"> */}
+          {schemes.map((scheme, index) => {
+            return (
+              // <div className="col-md-3 mr-3">
+              <SchemesCard scheme={scheme} key={index} />
+              // </div>
+            );
+          })}
+          {/* </div> */}
+        </div>
       </div>
-    </div>
-  </>
+    </>
   );
 };
 

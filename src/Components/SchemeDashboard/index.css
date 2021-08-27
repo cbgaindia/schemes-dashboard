@@ -70,3 +70,9 @@
         width: 74.54%;
     }
 }
+
+.loader {
+    min-height: 80vh;
+    display: grid;
+    place-content: center;
+}

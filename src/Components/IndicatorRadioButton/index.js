@@ -13,8 +13,7 @@ const IndicatorRadioButton = (props) => {
           "/scheme/" +
           props.schemeSlug +
           "/" +
-          props.indicatorData[props.indicatorName].slug
-          
+          props.indicatorData[props.indicatorName].slug 
         }`}
         onClick={() => props.handleIndicatorChange(props.indicatorName)}
       >

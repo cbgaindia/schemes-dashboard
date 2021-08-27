@@ -31,7 +31,7 @@ const IndicatorSelector = (props) => {
               checked={indicator === props.activeIndicator}
               key={index}
               indicatorName={indicator}
-              schemeSlug={props.schemeData.metadata.slug}
+              schemeSlug={props.currentSlug}
               indicatorData={props.schemeData.data}
               handleIndicatorChange={props.handleIndicatorChange}
             />
