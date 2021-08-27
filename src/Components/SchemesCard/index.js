@@ -7,7 +7,6 @@ const SchemesCard = (props) => {
   return (
     <Link
       to={props.scheme.link}
-      target="_blank"
       className={`scheme-card card-link-container ${props.scheme.class}`}
     >
       <div class="image-container">
