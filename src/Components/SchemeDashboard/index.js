@@ -130,6 +130,8 @@ const SchemeDashboard = () => {
           )
           .slice(0, 4);
 
+        // console.log(obj.metadata.type.toLowerCase());
+
         const otherSchemes = allSchemes.map((scheme) => ({
           title: DataSchemes[scheme].name,
           link: `/scheme/${DataSchemes[scheme].slug}`,

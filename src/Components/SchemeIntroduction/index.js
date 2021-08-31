@@ -84,9 +84,10 @@ const SchemeIntroduction = (props) => {
         <div className="d-flex align-items-center social-links-container">
           <p className="page-introduction-text">Share on social media:</p>
           <div className="social-media-links">
-            {socialMediaLinks.map((link) => (
+            {socialMediaLinks.map((link, index) => (
               <a
                 href="#social"
+                key={`socialLink-${index}`}
                 className={link.class}
                 onClick={() =>
                   window.open(

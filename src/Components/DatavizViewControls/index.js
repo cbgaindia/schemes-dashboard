@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React from 'react';
 
 import './index.css';
 
@@ -115,36 +115,32 @@ const radioButtons = [
   },
 ];
 
-const DatavizViewControls = (props) => {
-  const [vizView, setVizView] = useState('map');
+const DatavizViewControls = (props) => (
+  // const [vizView, setVizView] = useState('map');
 
-  const handleChangeVizView = (e) => {
-    console.log('testing value', e.target.value);
-    setVizView(e.target.value);
-  };
-  return (
-    <div className="viz-controls-container">
-      <div className="radio-toolbar d-flex justify-content-end">
-        {radioButtons.map((radio, index) => (
-          <>
-            <input
-              key={`dataviz-${index}`}
-              type="radio"
-              id={radio.val}
-              name="radios"
-              value={radio.val}
-              onChange={(e) => props.handleChangeViz(e.target.value)}
-              checked={radio.val === props.view}
-            />
-            <label className={radio.class} htmlFor={radio.val}>
-              {radio.val === props.view ? radio.checkImage : radio.uncheckImage}
-              {radio.title}
-            </label>
-          </>
-        ))}
-      </div>
+  // const handleChangeVizView = (e) => {
+  //   console.log('testing value', e.target.value);
+  //   setVizView(e.target.value);
+  // };
+  <div className="viz-controls-container">
+    <div className="radio-toolbar d-flex justify-content-end">
+      {radioButtons.map((radio, index) => (
+        <React.Fragment key={`dataviz-${index}`}>
+          <input
+            type="radio"
+            id={radio.val}
+            name="radios"
+            value={radio.val}
+            onChange={(e) => props.handleChangeViz(e.target.value)}
+            checked={radio.val === props.view}
+          />
+          <label className={radio.class} htmlFor={radio.val}>
+            {radio.val === props.view ? radio.checkImage : radio.uncheckImage}
+            {radio.title}
+          </label>
+        </React.Fragment>
+      ))}
     </div>
-  );
-};
-
+  </div>
+);
 export default DatavizViewControls;
