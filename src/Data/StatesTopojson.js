@@ -1,4 +1,5 @@
-export let TopojsonData = {
+/* eslint-disable */
+export const TopojsonData = {
   type: "Topology",
   transform: {
     scale: [0.0004479274563322561, 0.00042369142822232486],

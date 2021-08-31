@@ -1,35 +1,42 @@
-import React, {useState, useEffect} from "react";
-import Dropdown from "../Dropdown";
+import React, { useState, useEffect } from 'react';
+import Dropdown from '../Dropdown';
 
-import caretDown from "../../Images/arrow/caret-down-white2.svg";
-import { ReactComponent as FacebookIcon } from "../../Images/facebook-icon.svg";
-import { ReactComponent as TwitterIcon } from "../../Images/twitter-icon.svg";
+import caretDown from '../../Images/arrow/caret-down-white2.svg';
+import { ReactComponent as FacebookIcon } from '../../Images/facebook-icon.svg';
+import { ReactComponent as TwitterIcon } from '../../Images/twitter-icon.svg';
 
-import "./index.css";
+import './index.css';
 
 const socialMediaLinks = [
   {
-    link: "https://www.facebook.com/OpenBudgetsIndia",
-    class: "link ml-12",
+    link: 'https://www.facebook.com/OpenBudgetsIndia',
+    class: 'link ml-12',
     child: <FacebookIcon fill="#95989D" />,
-    share: 'https://www.facebook.com/sharer/sharer.php?u='
+    share: 'https://www.facebook.com/sharer/sharer.php?u=',
   },
   {
-    link: "https://twitter.com/OpenBudgetsIn",
-    class: "link ml-12",
+    link: 'https://twitter.com/OpenBudgetsIn',
+    class: 'link ml-12',
     child: <TwitterIcon fill="#95989D" />,
-    share: 'https://twitter.com/intent/tweet?text=Share on twitter&url='
+    share: 'https://twitter.com/intent/tweet?text=Share on twitter&url=',
   },
 ];
 
-
 const SchemeIntroduction = (props) => {
-  const [dropdownActive, setDropdownActive] = useState(false)
+  const [dropdownActive, setDropdownActive] = useState(false);
+
+  useEffect(() => {
+    const links = document.querySelectorAll('a[href="#social"');
+    links.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+      });
+    });
+  }, []);
 
   const handleToggleDropdown = (val) => {
-    setDropdownActive(val)
- 
-  }
+    setDropdownActive(val);
+  };
 
   return (
     <div className="scheme-introduction-wrapper pl-3 pr-3 pt-32 mb-1">
@@ -44,16 +51,20 @@ const SchemeIntroduction = (props) => {
           {props.data && props.data.name}
         </h1>
         <div>
-          <button className="button primary-button" onClick={() => handleToggleDropdown(!dropdownActive)}>
+          <button
+            type="button"
+            className="button primary-button"
+            onClick={() => handleToggleDropdown(!dropdownActive)}
+          >
             <span>Download</span>
             <img className="button-caret-down" src={caretDown} alt="icon" />
           </button>
-          {
-            dropdownActive
-            ?
-            <Dropdown handleDownloadReportImage={props.handleDownloadReportImage} showViz={props.showViz}/>
-            : null            
-          }
+          {dropdownActive ? (
+            <Dropdown
+              handleDownloadReportImage={props.handleDownloadReportImage}
+              showViz={props.showViz}
+            />
+          ) : null}
         </div>
       </div>
       <p className="page-introduction-text mb-1">{props.data.description}</p>
@@ -63,18 +74,26 @@ const SchemeIntroduction = (props) => {
             Frequency: <span className="text-dark">{props.data.frequency}</span>
           </p>
         </div>
-        <div className="seperator"></div>
+        <div className="seperator" />
         <div className="type-container">
           <p className="page-introduction-text">
             Type of Scheme: <span className="text-dark">{props.data.type}</span>
           </p>
         </div>
-        <div className="seperator"></div>
+        <div className="seperator" />
         <div className="d-flex align-items-center social-links-container">
           <p className="page-introduction-text">Share on social media:</p>
-          <div class="social-media-links">
+          <div className="social-media-links">
             {socialMediaLinks.map((link) => (
-              <a href="javascript:void(0)" className={link.class} onClick={() => window.open(link.share+encodeURIComponent(window.location.href))}>
+              <a
+                href="#social"
+                className={link.class}
+                onClick={() =>
+                  window.open(
+                    link.share + encodeURIComponent(window.location.href)
+                  )
+                }
+              >
                 {link.child}
               </a>
             ))}

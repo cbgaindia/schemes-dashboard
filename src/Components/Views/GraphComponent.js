@@ -1,6 +1,7 @@
-import React, { PropTypes } from "react";
-import { Link, IndexLink } from "react-router";
-import Select from "react-select";
+/* eslint-disable */
+import React from 'react';
+import { Link, IndexLink } from 'react-router';
+import Select from 'react-select';
 // import 'react-select/dist/react-select.css';
 import {
   Hint,
@@ -14,9 +15,9 @@ import {
   DiscreteColorLegend,
   DynamicHints,
   YAxis,
-} from "react-vis";
+} from 'react-vis';
 
-import "../../../node_modules/react-vis/dist/style.css";
+import '../../../node_modules/react-vis/dist/style.css';
 
 const { LEFT, RIGHT, TOP, BOTTOM_EDGE, RIGHT_EDGE, TOP_EDGE } = Hint.ALIGN;
 
@@ -25,7 +26,7 @@ class GraphComponent extends React.Component {
     super();
     this.state = {
       value: [],
-      budgetAttr: "A",
+      budgetAttr: 'A',
       selectedFigures: null,
       stateOptions: null,
       hoverValue: null,
@@ -47,7 +48,7 @@ class GraphComponent extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("inside component updated");
+    console.log('inside component updated');
     if (this.state.budgetAttr != this.props.budgetAttr) {
       this.setState({ budgetAttr: this.props.budgetAttr });
     }
@@ -59,7 +60,7 @@ class GraphComponent extends React.Component {
       prevProps.schemeData != this.props.schemeData
     ) {
       if (this.state.value.length != 0) {
-        let stateArray = this.state.value.map((states) => states.value);
+        const stateArray = this.state.value.map((states) => states.value);
         // let selectedFigures = [];
         // for(let selectedState in stateArray){
         //   selectedFigures.push(this.props.data.record_figures.find(function(value, index) {
@@ -70,13 +71,13 @@ class GraphComponent extends React.Component {
         //   ));
         // }
 
-        let mungedFigures = [];
+        const mungedFigures = [];
         stateArray.map((state) => {
-          let tempState = {};
+          const tempState = {};
           tempState.name = this.props.stateCodes[state];
           tempState.figures = [];
           Object.keys(this.props.schemeData).map((financialYear) => {
-            let tempFigure = {};
+            const tempFigure = {};
             tempFigure.x = financialYear;
             tempFigure.y = isNaN(
               parseFloat(this.props.schemeData[financialYear][state])
@@ -109,6 +110,7 @@ class GraphComponent extends React.Component {
       }
     }
   }
+
   setBudgetAttr() {
     this.setState({ budgetAttr: this.props.budgetAttr });
   }
@@ -116,7 +118,7 @@ class GraphComponent extends React.Component {
   getrecord_figures() {
     let statesData = [];
     statesData = Object.keys(this.props.stateCodes).map((state) => {
-      let temp = {};
+      const temp = {};
       temp.value = state;
       temp.label = this.props.stateCodes[state];
       return temp;
@@ -134,10 +136,6 @@ class GraphComponent extends React.Component {
     this.setState({ hoverValue: d });
   }
 
-  outBarHover(d, info) {
-    this.setState({ hoverValue: null });
-  }
-
   handleSelectChange(value) {
     if (value === null) {
       this.setState({ value: [] });
@@ -146,34 +144,38 @@ class GraphComponent extends React.Component {
     }
   }
 
-  handleNoOptionsMessage = () => {
-    return this.state.value.length > 14
-      ? "Oops! Only 15 states can be selected at a time."
-      : "No results found";
-  };
+  outBarHover(d, info) {
+    this.setState({ hoverValue: null });
+  }
+
+  handleNoOptionsMessage = () =>
+    this.state.value.length > 14
+      ? 'Oops! Only 15 states can be selected at a time.'
+      : 'No results found';
+
   render() {
-    let accessthis = this;
+    const accessthis = this;
     const attributeKey = {
-      BE: " Budget Estimates",
-      RE: "Revised Estimates",
-      A: "Actuals",
+      BE: ' Budget Estimates',
+      RE: 'Revised Estimates',
+      A: 'Actuals',
     };
     const color = [
-      "#19165C",
-      "#FFC2E2",
-      "#38663A",
-      "#FFD873",
-      "#0F5C66",
-      "#6E67EB",
-      "#EB67AD",
-      "#7FE984",
-      "#CCA43D",
-      "#3DCCC3",
-      "#CFCCFF",
-      "#672448",
-      "#C2FFC5",
-      "#664E0F",
-      "#73FFFF"
+      '#19165C',
+      '#FFC2E2',
+      '#38663A',
+      '#FFD873',
+      '#0F5C66',
+      '#6E67EB',
+      '#EB67AD',
+      '#7FE984',
+      '#CCA43D',
+      '#3DCCC3',
+      '#CFCCFF',
+      '#672448',
+      '#C2FFC5',
+      '#664E0F',
+      '#73FFFF',
     ];
     const items =
       this.state.selectedFigures &&
@@ -182,11 +184,11 @@ class GraphComponent extends React.Component {
         color: color[index],
       }));
     return (
-      <div className="vis-wrapper" >
+      <div className="vis-wrapper">
         <div className="">
           <div className="">
             <Select
-              isMulti={true}
+              isMulti
               simpleValue
               value={this.state.value}
               placeholder="Select States"
@@ -202,25 +204,23 @@ class GraphComponent extends React.Component {
 
           {this.state.value[0] != null && this.state.selectedFigures != null ? (
             <div className="hide-scrollbar d-flex flex-nowrap overflow-auto pl-3 mt-4">
-              {items.map((legend, index) => {
-                return (
-                  <div className="d-flex mr-4" key={index}>
-                    <div
-                      className="legend-square"
-                      style={{ backgroundColor: legend.color }}
-                    ></div>
-                    <p className="page-introduction-text text-black text-nowrap ml-2">
-                      {legend.title}
-                    </p>
-                  </div>
-                );
-              })}
+              {items.map((legend, index) => (
+                <div className="d-flex mr-4" key={index}>
+                  <div
+                    className="legend-square"
+                    style={{ backgroundColor: legend.color }}
+                  />
+                  <p className="page-introduction-text text-black text-nowrap ml-2">
+                    {legend.title}
+                  </p>
+                </div>
+              ))}
             </div>
           ) : null}
           <div className="mt-2">
             {this.state.value[0] != null &&
             this.state.selectedFigures != null ? (
-              <div id="chart" style={{ backgroundColor: "white" }}>
+              <div id="chart" style={{ backgroundColor: 'white' }}>
                 <XYPlot
                   width={650}
                   height={350}
@@ -230,17 +230,15 @@ class GraphComponent extends React.Component {
                   <HorizontalGridLines />
 
                   <VerticalGridLines />
-                  {this.state.selectedFigures.map(function (state, index) {
-                    return (
-                      <VerticalBarSeries
-                        color={color[index]}
-                        onValueMouseOver={accessthis.onBarHover}
-                        onValueMouseOut={accessthis.outBarHover}
-                        data={state.figures}
-                        key={state.name}
-                      />
-                    );
-                  })}
+                  {this.state.selectedFigures.map((state, index) => (
+                    <VerticalBarSeries
+                      color={color[index]}
+                      onValueMouseOver={accessthis.onBarHover}
+                      onValueMouseOut={accessthis.outBarHover}
+                      data={state.figures}
+                      key={state.name}
+                    />
+                  ))}
 
                   <XAxis title="Fiscal Years" />
                   <YAxis title="Indicator" />
@@ -250,7 +248,7 @@ class GraphComponent extends React.Component {
                       <div className="rv-hint__content">
                         <div>
                           <span className="rv-hint__title">
-                            {" "}
+                            {' '}
                             {this.state.hoverValue.grpby_name}
                           </span>
                           <br />
