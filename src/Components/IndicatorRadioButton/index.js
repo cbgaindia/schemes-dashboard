@@ -19,6 +19,7 @@ const IndicatorRadioButton = (props) => (
           className="indicator-radio-button-input"
           value={props.indicatorName}
           checked={props.checked}
+          readOnly
         />
         <label htmlFor={props.indicatorName}>
           {props.indicatorData[props.indicatorName].name}

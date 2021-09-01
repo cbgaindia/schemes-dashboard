@@ -1,12 +1,14 @@
 import { read, utils as xlsxUtil } from 'xlsx';
 
 export function generateSlug(slug) {
-  const temp = slug.toLowerCase().replace(/\W/g, '-'); // lower case and replace space and special chars witn '-'
+  const temp = slug.toLowerCase().replace(/\W/g, '-'); // lower case and replace space & special chars witn '-'
   return temp.replace(/-+/g, '-').replace(/-$/, ''); // remove multiple '-' and remove '-' from end of string
 }
 
 export async function dataTransform(id) {
   const obj = {};
+  let name = '';
+  let type = '';
   let url = '';
   await fetch(id)
     .then((res) => res.json())
@@ -19,6 +21,8 @@ export async function dataTransform(id) {
       } else {
         url = data.result.resources[0].url;
       }
+      name = data.result.extras[0].value;
+      type = data.result.extras[1].value;
     });
 
   await fetch(url)
@@ -46,21 +50,18 @@ export async function dataTransform(id) {
         if (val[0]) {
           metaObj = {
             ...metaObj,
-            [val[0].replace(/^\s+|\s+$/g, '')]: val[1], // regex is to remove white space from start/end of keys
+            [generateSlug(val[0])]: val[1],
           };
         }
       });
 
-      const urlArr = url.split('/');
-
       obj.metadata = {
-        description: metaObj['Scheme Description'],
-        name: metaObj['Name of the Scheme'],
-        frequency: metaObj.Frequency,
-        slug: urlArr[urlArr.length - 1].split('.')[0],
-        source: metaObj['Data Source'],
-        type: metaObj['Type of Scheme'],
-        note: metaObj.Note,
+        description: metaObj['scheme-description'],
+        name,
+        frequency: metaObj.frequency,
+        source: metaObj['data-source'],
+        type,
+        note: metaObj['note:'],
       };
 
       // Tabular Data
@@ -80,14 +81,48 @@ export async function dataTransform(id) {
           ...obj.data,
           [`indicator_0${i - 2}`]: {
             fiscal_year,
-            name: metaObj[`Indicator ${i - 2} - Name`],
-            description: metaObj[`Indicator ${i - 2} - Description`],
-            note: metaObj[`Indicator ${i - 2} - Note`],
-            slug: generateSlug(metaObj[`Indicator ${i - 2} - Name`]),
-            unit: metaObj[`Indicator ${i - 2} - Unit`],
+            name: metaObj[`indicator-${i - 2}-name`],
+            description: metaObj[`indicator-${i - 2}-description`],
+            note: metaObj[`indicator-${i - 2}-note`],
+            slug: generateSlug(metaObj[`indicator-${i - 2}-name`]),
+            unit: metaObj[`indicator-${i - 2}-unit`],
           },
         };
       }
     });
   return obj;
+}
+
+function findLink(data) {
+  const newObj = {};
+  Object.keys(data).forEach((elm) => {
+    newObj[data[elm].name] = {
+      slug: data[elm].slug,
+      logo: data[elm].logo,
+    };
+  });
+  return newObj;
+}
+
+export async function fetchRelated(name, type, data) {
+  const newObj = findLink(data);
+  const otherSchemes = [];
+  await fetch(
+    `https://openbudgetsindia.org/api/3/action/package_search?fq=schemeType:"${type}"+organization:state-wise-schemes-data&rows=10`
+  )
+    .then((res) => res.json())
+    .then((tags) => {
+      const similar = tags.result.results
+        .filter((scheme) => scheme.extras[0].value != name)
+        .splice(0, 4);
+
+      similar.forEach((scheme) => {
+        otherSchemes.push({
+          title: scheme.extras[0].value,
+          link: `/scheme/${newObj[scheme.extras[0].value].slug}`,
+          img: newObj[scheme.extras[0].value].logo,
+        });
+      });
+    });
+  return otherSchemes;
 }

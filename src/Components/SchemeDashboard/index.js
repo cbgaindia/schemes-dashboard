@@ -12,48 +12,15 @@ import NewsCard from '../NewsCard';
 import SchemeCard from '../SchemesCard';
 
 import { receipts_data as data } from '../../Data/receipts_data';
-import schemesData from '../../Data/schemes.json';
-// import { recentDevelopmentsData } from "../../Data/schemeNews";
+// import schemesData from '../../Data/schemes.json';
 import recentDevelopmentsData from '../../Data/schemeNews.json';
-// import schemeLogos from '../../Data/schemesLogos';
 
 import { ReactComponent as LeftArrow } from '../../Images/left-arrow.svg';
 import { ReactComponent as RightArrow } from '../../Images/right-arrow.svg';
-import { dataTransform } from '../../utils/helpers';
+import { dataTransform, fetchRelated } from '../../utils/helpers';
 import DataSchemes from '../../Data/schemesData';
-
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import './index.css';
-
-// const newsData = [
-//   [
-//     { title: '', text: '', link: '', img: '', class: '' },
-//     { title: '', text: '', link: '', img: '', class: 'ml-4' },
-//   ],
-//   [
-//     { title: '#0D1018', text: '0.4', link: '0.87', img: '', class: '' },
-//     { title: '', text: '', link: '', img: '', class: 'ml-4' },
-//   ],
-//   [
-//     { title: '', text: '', link: '', img: '', class: '' },
-//     { title: '', text: '', link: '', img: '', class: 'ml-4' },
-//   ],
-//   [
-//     { title: '', text: '', link: '', img: '', class: '' },
-//     { title: '', text: '', link: '', img: '', class: 'ml-4' },
-//   ],
-//   [
-//     { title: '', text: '', link: '', img: '', class: '' },
-//     { title: '', text: '', link: '', img: '', class: 'ml-4' },
-//   ],
-// ];
-
-// const relatedSchemes = [
-//   { title: "National Health Mission", link: "", class: "", img: "" },
-//   { title: "National Health Mission", link: "", class: "ml-4", img: "" },
-//   { title: "National Health Mission", link: "", class: "ml-4", img: "" },
-//   { title: "National Health Mission", link: "", class: "ml-4", img: "" },
-// ];
 
 const stateCodes = {
   1: 'Andhra Pradesh',
@@ -101,19 +68,13 @@ const SchemeDashboard = () => {
   const dataID = DataSchemes[currentScheme].dataId;
   const currentSlug = DataSchemes[currentScheme].slug;
 
-  let currentIndicator = Object.keys(schemesData[currentScheme].data).find(
-    (indicator) =>
-      schemesData[currentScheme].data[indicator].slug === indicator_slug
-  );
-  if (currentIndicator === undefined) currentIndicator = 'indicator_01';
-
   const [activeNewsPage, setActiveNewsPage] = useState(1);
   const [showSwipeButton, setShowSwipeButton] = useState(true);
   const [showViz, setShowViz] = useState(true);
   const [activeViz, setActiveViz] = useState('map');
   const [schemeData, setSchemeData] = useState({});
   const [relatedSchemes, setRelatedSchemes] = useState([]);
-  const [activeIndicator, setActiveIndicator] = useState(currentIndicator);
+  const [activeIndicator, setActiveIndicator] = useState('');
   const [activeYear, setActiveYear] = useState('2019-20');
   const [recentDevelopments, setRecentDevelopmentsData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -121,36 +82,30 @@ const SchemeDashboard = () => {
   useEffect(() => {
     if (!schemeData.data) {
       dataTransform(dataID).then((obj) => {
-        // Setting Related Schemes Data
-        const allSchemes = Object.keys(DataSchemes)
-          .filter(
-            (scheme) =>
-              DataSchemes[scheme].slug !== scheme_slug &&
-              DataSchemes[scheme].type === obj.metadata.type
-          )
-          .slice(0, 4);
-
-        // console.log(obj.metadata.type.toLowerCase());
-
-        const otherSchemes = allSchemes.map((scheme) => ({
-          title: DataSchemes[scheme].name,
-          link: `/scheme/${DataSchemes[scheme].slug}`,
-          img: DataSchemes[scheme].logo,
-        }));
-
         setSchemeData(obj);
-        setRelatedSchemes(otherSchemes);
 
-        // Setting Recent Developments Data
-        const recentDevelopmentsArray = [];
-        while (recentDevelopmentsData[currentScheme].metadata.news.length) {
-          recentDevelopmentsArray.push(
-            recentDevelopmentsData[currentScheme].metadata.news.splice(0, 2)
-          );
-        }
-        setRecentDevelopmentsData(recentDevelopmentsArray);
+        let currentIndicator = Object.keys(obj.data).find(
+          (indicator) => obj.data[indicator].slug === indicator_slug
+        );
+        if (currentIndicator === undefined) currentIndicator = 'indicator_01';
+        setActiveIndicator(currentIndicator);
         setLoading(false);
+
+        fetchRelated(obj.metadata.name, obj.metadata.type, DataSchemes).then(
+          (res) => {
+            setRelatedSchemes(res);
+          }
+        );
       });
+
+      // Setting Recent Developments Data
+      const recentDevelopmentsArray = [];
+      while (recentDevelopmentsData[currentScheme].metadata.news.length) {
+        recentDevelopmentsArray.push(
+          recentDevelopmentsData[currentScheme].metadata.news.splice(0, 2)
+        );
+      }
+      setRecentDevelopmentsData(recentDevelopmentsArray);
     }
   }, []);
 
@@ -212,9 +167,8 @@ const SchemeDashboard = () => {
         <>
           <Helmet>
             <title>
-              {' '}
               {schemeData.metadata.name} State-wise Budget & Expenditure | Open
-              Budgets India{' '}
+              Budgets India
             </title>
             <meta
               name="title"
@@ -269,48 +223,53 @@ const SchemeDashboard = () => {
               />
             </div>
           </div>
-          <div className="mt-5 mb-3 layout-wrapper">
-            <div className="d-flex justify-content-between">
-              <h2 className="section-heading text-dark ml-3">
-                Recent Developments
-              </h2>
-              <div className="section-controls d-flex mr-3">
-                <button
-                  className="arrow-btn mr-1"
-                  disabled={activeNewsPage === 1}
-                  onClick={() => handleChangeNewsPage(activeNewsPage - 1)}
-                  type="button"
-                >
-                  <LeftArrow
-                    fill="#0D1018"
-                    fillOpacity={activeNewsPage === 1 ? 0.4 : 0.87}
-                  />
-                </button>
-                <p className="mr-2 ml-2 page-introduction-text">
-                  {activeNewsPage}/{recentDevelopments.length}
-                </p>
-                <button
-                  className="arrow-btn ml-1"
-                  disabled={activeNewsPage === recentDevelopments.length}
-                  onClick={() => handleChangeNewsPage(activeNewsPage + 1)}
-                  type="button"
-                >
-                  <RightArrow
-                    fill="#0D1018"
-                    fillOpacity={
-                      activeNewsPage === recentDevelopments.length ? 0.4 : 0.87
-                    }
-                  />
-                </button>
+          {recentDevelopments.length > 0 && (
+            <div className="mt-5 mb-3 layout-wrapper">
+              <div className="d-flex justify-content-between">
+                <h2 className="section-heading text-dark ml-3">
+                  Recent Developments
+                </h2>
+                <div className="section-controls d-flex mr-3">
+                  <button
+                    className="arrow-btn mr-1"
+                    disabled={activeNewsPage === 1}
+                    onClick={() => handleChangeNewsPage(activeNewsPage - 1)}
+                    type="button"
+                  >
+                    <LeftArrow
+                      fill="#0D1018"
+                      fillOpacity={activeNewsPage === 1 ? 0.4 : 0.87}
+                    />
+                  </button>
+                  <p className="mr-2 ml-2 page-introduction-text">
+                    {activeNewsPage}/{recentDevelopments.length}
+                  </p>
+                  <button
+                    className="arrow-btn ml-1"
+                    disabled={activeNewsPage === recentDevelopments.length}
+                    onClick={() => handleChangeNewsPage(activeNewsPage + 1)}
+                    type="button"
+                  >
+                    <RightArrow
+                      fill="#0D1018"
+                      fillOpacity={
+                        activeNewsPage === recentDevelopments.length
+                          ? 0.4
+                          : 0.87
+                      }
+                    />
+                  </button>
+                </div>
+              </div>
+              <div className="case-studies-cards-container mt-3">
+                {recentDevelopments[activeNewsPage - 1] &&
+                  recentDevelopments[activeNewsPage - 1].map((news, index) => (
+                    <NewsCard data={news} cardindex={index} key={index} />
+                  ))}
               </div>
             </div>
-            <div className="case-studies-cards-container mt-3">
-              {recentDevelopments[activeNewsPage - 1] &&
-                recentDevelopments[activeNewsPage - 1].map((news, index) => (
-                  <NewsCard data={news} cardindex={index} key={index} />
-                ))}
-            </div>
-          </div>
+          )}
+
           <div className="related-scheme-section mt-5 layout-wrapper">
             <div className="d-flex justify-content-between">
               <h2 className="section-heading text-dark ml-3">Other Schemes</h2>
@@ -328,9 +287,10 @@ const SchemeDashboard = () => {
                   <RightArrow fill="#0D1018" fillOpacity={0.87} />
                 </button>
               ) : null}
-              {relatedSchemes.map((scheme, index) => (
-                <SchemeCard scheme={scheme} key={index} />
-              ))}
+              {relatedSchemes.length > 0 &&
+                relatedSchemes.map((scheme, index) => (
+                  <SchemeCard scheme={scheme} key={index} />
+                ))}
             </div>
           </div>
         </>
