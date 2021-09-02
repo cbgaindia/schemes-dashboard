@@ -5,27 +5,26 @@ export function generateSlug(slug) {
   return temp.replace(/-+/g, '-').replace(/-$/, ''); // remove multiple '-' and remove '-' from end of string
 }
 
-export async function dataTransform(id) {
-  const obj = {};
-  let name = '';
-  let type = '';
-  let url = '';
-  await fetch(id)
+async function fetchQuery(query, value) {
+  let result = {};
+  await fetch(
+    `https://openbudgetsindia.org/api/3/action/package_search?fq=${query}:"${value}"+organization:state-wise-schemes-data`,
+    {
+      headers: {
+        Authorization: process.env.REACT_APP_Authorization,
+      },
+    }
+  )
     .then((res) => res.json())
-    .then((data) => {
-      if (
-        data.result.resources[1] &&
-        data.result.resources[1].url.includes('.xlsx')
-      ) {
-        url = data.result.resources[1].url;
-      } else {
-        url = data.result.resources[0].url;
-      }
-      name = data.result.extras[0].value;
-      type = data.result.extras[1].value;
+    .then((obj) => {
+      result = obj.result.results;
     });
+  return result;
+}
 
-  await fetch(url)
+async function fetchSheets(link) {
+  const result = [];
+  await fetch(link)
     .then((res) => {
       if (!res.ok) throw new Error('fetch failed');
       return res.arrayBuffer();
@@ -34,95 +33,143 @@ export async function dataTransform(id) {
       const file = new Uint8Array(ab);
       const workbook = read(file, { type: 'array' });
 
-      const dataName = workbook.SheetNames[0];
-      const data = workbook.Sheets[dataName];
+      workbook.SheetNames.forEach((bookName) => {
+        const data = workbook.Sheets[bookName];
 
-      const metaName = workbook.SheetNames[1];
-      const meta = workbook.Sheets[metaName];
+        const dataParse = xlsxUtil.sheet_to_json(data, {
+          header: 1,
+          blankrows: false,
+        });
+        result.push(dataParse);
+      });
+    });
+  return result;
+}
 
-      const dataParse = xlsxUtil.sheet_to_json(data, { header: 1 });
-      const metaParse = xlsxUtil.sheet_to_json(meta, { header: 1 });
+export async function dataTransform(id) {
+  const obj = {};
+  let name;
+  let type;
+  let url;
 
-      let metaObj = {};
-
-      // Meta Data
-      metaParse.forEach((val) => {
-        if (val[0]) {
-          metaObj = {
-            ...metaObj,
-            [generateSlug(val[0])]: val[1],
-          };
-        }
+  await fetch(id)
+    .then((res) => res.json())
+    .then((data) => {
+      data.result.resources.forEach((file) => {
+        if (file.url.includes('.xlsx')) url = file.url;
       });
 
-      obj.metadata = {
-        description: metaObj['scheme-description'],
-        name,
-        frequency: metaObj.frequency,
-        source: metaObj['data-source'],
-        type,
-        note: metaObj['note:'],
-      };
+      name = data.result.extras[0].value;
+      type = data.result.extras[1].value;
+    });
 
-      // Tabular Data
-      for (let i = 3; i < dataParse[0].length; i += 1) {
-        const fiscal_year = {};
+  await fetchSheets(url).then((res) => {
+    const dataParse = res[0];
+    const metaParse = res[1];
+    let metaObj = {};
 
-        for (let j = 1; j < dataParse.length; j += 1) {
-          if (dataParse[j][2]) {
-            fiscal_year[dataParse[j][2]] = {
-              ...fiscal_year[dataParse[j][2]],
-              [dataParse[j][1]]: dataParse[j][i],
-            };
-          }
-        }
-
-        obj.data = {
-          ...obj.data,
-          [`indicator_0${i - 2}`]: {
-            fiscal_year,
-            name: metaObj[`indicator-${i - 2}-name`],
-            description: metaObj[`indicator-${i - 2}-description`],
-            note: metaObj[`indicator-${i - 2}-note`],
-            slug: generateSlug(metaObj[`indicator-${i - 2}-name`]),
-            unit: metaObj[`indicator-${i - 2}-unit`],
-          },
+    // Meta Data
+    metaParse.forEach((val) => {
+      if (val[0]) {
+        metaObj = {
+          ...metaObj,
+          [generateSlug(val[0])]: val[1],
         };
       }
     });
+
+    obj.metadata = {
+      description: metaObj['scheme-description'],
+      name,
+      frequency: metaObj.frequency,
+      source: metaObj['data-source'],
+      type,
+      note: metaObj['note:'],
+    };
+
+    // Tabular Data
+    for (let i = 3; i < dataParse[0].length; i += 1) {
+      const fiscal_year = {};
+
+      for (let j = 1; j < dataParse.length; j += 1) {
+        if (dataParse[j][2]) {
+          fiscal_year[dataParse[j][2]] = {
+            ...fiscal_year[dataParse[j][2]],
+            [dataParse[j][1]]: dataParse[j][i],
+          };
+        }
+      }
+
+      obj.data = {
+        ...obj.data,
+        [`indicator_0${i - 2}`]: {
+          fiscal_year,
+          name: metaObj[`indicator-${i - 2}-name`],
+          description: metaObj[`indicator-${i - 2}-description`],
+          note: metaObj[`indicator-${i - 2}-note`],
+          slug: generateSlug(metaObj[`indicator-${i - 2}-name`]),
+          unit: metaObj[`indicator-${i - 2}-unit`],
+        },
+      };
+    }
+  });
+
   return obj;
 }
 
-function findLink(data) {
-  const newObj = {};
+export async function fetchNews() {
+  const result = {};
+  let link;
+  await fetchQuery('schemeType', 'news').then((newsLink) => {
+    link = newsLink[0].resources[0].url;
+  });
+  await fetchSheets(link).then((res) => {
+    const allNews = res[0];
+
+    allNews.forEach((news, index) => {
+      if (!index == 0) {
+        const resultArr = {
+          title: news[2],
+          text: news[3],
+          img: news[4] || '',
+          accessed_on: news[5],
+          class: news[6] || '',
+          link: news[7],
+        };
+
+        if (result[news[0]]) {
+          result[news[0]][result[news[0]].length] = resultArr;
+        } else {
+          result[news[0]] = [resultArr];
+        }
+      }
+    });
+  });
+  return result;
+}
+
+export async function fetchRelated(name, type, data) {
+  const newObj = {}; // flatten main data file
   Object.keys(data).forEach((elm) => {
     newObj[data[elm].name] = {
       slug: data[elm].slug,
       logo: data[elm].logo,
     };
   });
-  return newObj;
-}
 
-export async function fetchRelated(name, type, data) {
-  const newObj = findLink(data);
   const otherSchemes = [];
-  await fetch(
-    `https://openbudgetsindia.org/api/3/action/package_search?fq=schemeType:"${type}"+organization:state-wise-schemes-data&rows=10`
-  )
-    .then((res) => res.json())
-    .then((tags) => {
-      const similar = tags.result.results
-        .filter((scheme) => scheme.extras[0].value != name)
-        .splice(0, 4);
+  await fetchQuery('schemeType', type).then((res) => {
+    const similar = res
+      .filter((scheme) => scheme.extras[0].value != name)
+      .splice(0, 4);
 
-      similar.forEach((scheme) => {
-        otherSchemes.push({
-          title: scheme.extras[0].value,
-          link: `/scheme/${newObj[scheme.extras[0].value].slug}`,
-          img: newObj[scheme.extras[0].value].logo,
-        });
+    similar.forEach((scheme) => {
+      otherSchemes.push({
+        title: scheme.extras[0].value,
+        link: `/scheme/${newObj[scheme.extras[0].value].slug}`,
+        img: newObj[scheme.extras[0].value].logo,
       });
     });
+  });
   return otherSchemes;
 }

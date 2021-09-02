@@ -4,6 +4,14 @@ import domtoimage from 'dom-to-image';
 import { Helmet } from 'react-helmet';
 import Loader from 'react-loader-spinner';
 
+import ReactPlaceholder from 'react-placeholder';
+import {
+  TextBlock,
+  MediaBlock,
+  TextRow,
+  RectShape,
+  RoundShape,
+} from 'react-placeholder/lib/placeholders';
 import SchemeIntroduction from '../SchemeIntroduction';
 import DatavizViewControls from '../DatavizViewControls';
 import IndicatorSelector from '../IndicatorSelector';
@@ -12,13 +20,13 @@ import NewsCard from '../NewsCard';
 import SchemeCard from '../SchemesCard';
 
 import { receipts_data as data } from '../../Data/receipts_data';
-// import schemesData from '../../Data/schemes.json';
-import recentDevelopmentsData from '../../Data/schemeNews.json';
 
 import { ReactComponent as LeftArrow } from '../../Images/left-arrow.svg';
 import { ReactComponent as RightArrow } from '../../Images/right-arrow.svg';
-import { dataTransform, fetchRelated } from '../../utils/helpers';
-import DataSchemes from '../../Data/schemesData';
+import { dataTransform, fetchRelated, fetchNews } from '../../utils/helpers';
+import SchemesData from '../../Data/schemesData';
+import 'react-placeholder/lib/reactPlaceholder.css';
+
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import './index.css';
 
@@ -65,8 +73,7 @@ const stateCodes = {
 const SchemeDashboard = () => {
   const { scheme_slug, indicator_slug } = useParams();
   const currentScheme = `scheme_${scheme_slug}`;
-  const dataID = DataSchemes[currentScheme].dataId;
-  const currentSlug = DataSchemes[currentScheme].slug;
+  const { slug: currentSlug, dataId } = SchemesData[currentScheme];
 
   const [activeNewsPage, setActiveNewsPage] = useState(1);
   const [showSwipeButton, setShowSwipeButton] = useState(true);
@@ -78,12 +85,14 @@ const SchemeDashboard = () => {
   const [activeYear, setActiveYear] = useState('2019-20');
   const [recentDevelopments, setRecentDevelopmentsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [newsReady, setNewsReady] = useState(false);
 
   useEffect(() => {
     if (!schemeData.data) {
-      dataTransform(dataID).then((obj) => {
+      dataTransform(dataId).then((obj) => {
         setSchemeData(obj);
 
+        // Setting current indicator
         let currentIndicator = Object.keys(obj.data).find(
           (indicator) => obj.data[indicator].slug === indicator_slug
         );
@@ -91,21 +100,25 @@ const SchemeDashboard = () => {
         setActiveIndicator(currentIndicator);
         setLoading(false);
 
-        fetchRelated(obj.metadata.name, obj.metadata.type, DataSchemes).then(
+        // Fetch news section
+        fetchNews('news').then((recentDevelopmentsData) => {
+          const recentDevelopmentsArray = [];
+          while (recentDevelopmentsData[currentScheme].length) {
+            recentDevelopmentsArray.push(
+              recentDevelopmentsData[currentScheme].splice(0, 2)
+            );
+          }
+          setRecentDevelopmentsData(recentDevelopmentsArray);
+          setNewsReady(true);
+        });
+
+        // Fetch related Schemes
+        fetchRelated(obj.metadata.name, obj.metadata.type, SchemesData).then(
           (res) => {
             setRelatedSchemes(res);
           }
         );
       });
-
-      // Setting Recent Developments Data
-      const recentDevelopmentsArray = [];
-      while (recentDevelopmentsData[currentScheme].metadata.news.length) {
-        recentDevelopmentsArray.push(
-          recentDevelopmentsData[currentScheme].metadata.news.splice(0, 2)
-        );
-      }
-      setRecentDevelopmentsData(recentDevelopmentsArray);
     }
   }, []);
 
@@ -160,6 +173,13 @@ const SchemeDashboard = () => {
         link.click();
       });
   };
+
+  const awesomePlaceholder = (
+    <div className="my-awesome-placeholder">
+      <RectShape color="blue" style={{ width: 30, height: 80 }} />
+      <TextBlock rows={7} color="yellow" />
+    </div>
+  );
 
   return (
     <>
@@ -223,52 +243,58 @@ const SchemeDashboard = () => {
               />
             </div>
           </div>
-          {recentDevelopments.length > 0 && (
-            <div className="mt-5 mb-3 layout-wrapper">
-              <div className="d-flex justify-content-between">
-                <h2 className="section-heading text-dark ml-3">
-                  Recent Developments
-                </h2>
-                <div className="section-controls d-flex mr-3">
-                  <button
-                    className="arrow-btn mr-1"
-                    disabled={activeNewsPage === 1}
-                    onClick={() => handleChangeNewsPage(activeNewsPage - 1)}
-                    type="button"
-                  >
-                    <LeftArrow
-                      fill="#0D1018"
-                      fillOpacity={activeNewsPage === 1 ? 0.4 : 0.87}
-                    />
-                  </button>
-                  <p className="mr-2 ml-2 page-introduction-text">
-                    {activeNewsPage}/{recentDevelopments.length}
-                  </p>
-                  <button
-                    className="arrow-btn ml-1"
-                    disabled={activeNewsPage === recentDevelopments.length}
-                    onClick={() => handleChangeNewsPage(activeNewsPage + 1)}
-                    type="button"
-                  >
-                    <RightArrow
-                      fill="#0D1018"
-                      fillOpacity={
-                        activeNewsPage === recentDevelopments.length
-                          ? 0.4
-                          : 0.87
-                      }
-                    />
-                  </button>
-                </div>
-              </div>
-              <div className="case-studies-cards-container mt-3">
-                {recentDevelopments[activeNewsPage - 1] &&
-                  recentDevelopments[activeNewsPage - 1].map((news, index) => (
-                    <NewsCard data={news} cardindex={index} key={index} />
-                  ))}
+
+          <div className="mt-5 mb-3 layout-wrapper">
+            <div className="d-flex justify-content-between">
+              <h2 className="section-heading text-dark ml-3">
+                Recent Developments
+              </h2>
+              <div className="section-controls d-flex mr-3">
+                <button
+                  className="arrow-btn mr-1"
+                  disabled={activeNewsPage === 1}
+                  onClick={() => handleChangeNewsPage(activeNewsPage - 1)}
+                  type="button"
+                >
+                  <LeftArrow
+                    fill="#0D1018"
+                    fillOpacity={activeNewsPage === 1 ? 0.4 : 0.87}
+                  />
+                </button>
+                <p className="mr-2 ml-2 page-introduction-text">
+                  {activeNewsPage}/{recentDevelopments.length}
+                </p>
+                <button
+                  className="arrow-btn ml-1"
+                  disabled={activeNewsPage === recentDevelopments.length}
+                  onClick={() => handleChangeNewsPage(activeNewsPage + 1)}
+                  type="button"
+                >
+                  <RightArrow
+                    fill="#0D1018"
+                    fillOpacity={
+                      activeNewsPage === recentDevelopments.length ? 0.4 : 0.87
+                    }
+                  />
+                </button>
               </div>
             </div>
-          )}
+            <div className="case-studies-cards-container mt-3">
+              {recentDevelopments[activeNewsPage - 1] ? (
+                recentDevelopments[activeNewsPage - 1].map((news, index) => (
+                  <NewsCard data={news} cardindex={index} key={index} />
+                ))
+              ) : (
+                <ReactPlaceholder
+                  type="text"
+                  rows={6}
+                  ready={recentDevelopments.length > 0}
+                  delay={1000}
+                  style={{ width: '360px' }}
+                />
+              )}
+            </div>
+          </div>
 
           <div className="related-scheme-section mt-5 layout-wrapper">
             <div className="d-flex justify-content-between">
@@ -287,10 +313,19 @@ const SchemeDashboard = () => {
                   <RightArrow fill="#0D1018" fillOpacity={0.87} />
                 </button>
               ) : null}
-              {relatedSchemes.length > 0 &&
+              {relatedSchemes.length > 0 ? (
                 relatedSchemes.map((scheme, index) => (
                   <SchemeCard scheme={scheme} key={index} />
-                ))}
+                ))
+              ) : (
+                <ReactPlaceholder
+                  type="media"
+                  rows={5}
+                  ready={relatedSchemes.length > 0}
+                  delay={1000}
+                  style={{ width: '320px' }}
+                />
+              )}
             </div>
           </div>
         </>
