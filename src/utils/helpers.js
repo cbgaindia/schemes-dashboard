@@ -90,7 +90,8 @@ export async function dataTransform(id) {
         if (dataParse[j][2]) {
           fiscal_year[dataParse[j][2]] = {
             ...fiscal_year[dataParse[j][2]],
-            [dataParse[j][1]]: dataParse[j][i],
+            [dataParse[j][1]]:
+              Math.round((dataParse[j][i] + Number.EPSILON) * 100) / 100,
           };
         }
       }

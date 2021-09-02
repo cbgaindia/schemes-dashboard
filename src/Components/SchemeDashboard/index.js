@@ -5,13 +5,6 @@ import { Helmet } from 'react-helmet';
 import Loader from 'react-loader-spinner';
 
 import ReactPlaceholder from 'react-placeholder';
-import {
-  TextBlock,
-  MediaBlock,
-  TextRow,
-  RectShape,
-  RoundShape,
-} from 'react-placeholder/lib/placeholders';
 import SchemeIntroduction from '../SchemeIntroduction';
 import DatavizViewControls from '../DatavizViewControls';
 import IndicatorSelector from '../IndicatorSelector';
@@ -85,7 +78,6 @@ const SchemeDashboard = () => {
   const [activeYear, setActiveYear] = useState('2019-20');
   const [recentDevelopments, setRecentDevelopmentsData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [newsReady, setNewsReady] = useState(false);
 
   useEffect(() => {
     if (!schemeData.data) {
@@ -109,7 +101,6 @@ const SchemeDashboard = () => {
             );
           }
           setRecentDevelopmentsData(recentDevelopmentsArray);
-          setNewsReady(true);
         });
 
         // Fetch related Schemes
@@ -173,13 +164,6 @@ const SchemeDashboard = () => {
         link.click();
       });
   };
-
-  const awesomePlaceholder = (
-    <div className="my-awesome-placeholder">
-      <RectShape color="blue" style={{ width: 30, height: 80 }} />
-      <TextBlock rows={7} color="yellow" />
-    </div>
-  );
 
   return (
     <>
