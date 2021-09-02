@@ -8,12 +8,7 @@ export function generateSlug(slug) {
 async function fetchQuery(query, value) {
   let result = {};
   await fetch(
-    `https://openbudgetsindia.org/api/3/action/package_search?fq=${query}:"${value}"+organization:state-wise-schemes-data`,
-    {
-      headers: {
-        Authorization: process.env.REACT_APP_Authorization,
-      },
-    }
+    `https://openbudgetsindia.org/api/3/action/package_search?fq=${query}:"${value}"+organization:state-wise-schemes-data`
   )
     .then((res) => res.json())
     .then((obj) => {
