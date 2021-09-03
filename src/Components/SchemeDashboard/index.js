@@ -95,11 +95,12 @@ const SchemeDashboard = () => {
         // Fetch news section
         fetchNews('news').then((recentDevelopmentsData) => {
           const recentDevelopmentsArray = [];
-          while (recentDevelopmentsData[currentScheme].length) {
-            recentDevelopmentsArray.push(
-              recentDevelopmentsData[currentScheme].splice(0, 2)
-            );
-          }
+          if (recentDevelopmentsData[currentScheme])
+            while (recentDevelopmentsData[currentScheme].length) {
+              recentDevelopmentsArray.push(
+                recentDevelopmentsData[currentScheme].splice(0, 2)
+              );
+            }
           setRecentDevelopmentsData(recentDevelopmentsArray);
         });
 
