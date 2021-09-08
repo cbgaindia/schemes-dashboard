@@ -192,7 +192,7 @@ export default class Choropleth extends Component {
       statesTopojson,
       statesTopojson.objects.IndiaStates
     );
-    const record = this.props.data.record_figures;
+    // const record = this.props.data.record_figures;
     const { budgetAttr } = this.props;
     let MappedFigures = new Array();
 

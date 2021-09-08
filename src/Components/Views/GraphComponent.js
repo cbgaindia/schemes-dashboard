@@ -56,7 +56,7 @@ class GraphComponent extends React.Component {
     if (
       prevState.value != this.state.value ||
       prevState.budgetAttr != this.props.budgetAttr ||
-      prevProps.data != this.props.data ||
+      // prevProps.data != this.props.data ||
       prevProps.schemeData != this.props.schemeData
     ) {
       if (this.state.value.length != 0) {

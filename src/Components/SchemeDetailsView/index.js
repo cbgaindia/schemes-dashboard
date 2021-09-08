@@ -77,7 +77,7 @@ const SchemesDetailsView = (props) => {
             ) : null}
             {props.showViz && props.activeViz === 'map' ? (
               <Chloropleth
-                data={props.record}
+                // data={props.record}
                 budgetAttr="A"
                 unit={props.schemeData.data[props.activeIndicator].unit}
                 stateCodes={props.stateCodes}
@@ -87,9 +87,9 @@ const SchemesDetailsView = (props) => {
             ) : null}
             {props.showViz && props.activeViz === 'bar' ? (
               <GraphComponent
-                data={props.record}
+                // data={props.record}
                 budgetAttr="A"
-                unit={props.record.unit}
+                // unit={props.record.unit}
                 stateCodes={props.stateCodes}
                 schemeData={
                   props.schemeData.data[props.activeIndicator].fiscal_year

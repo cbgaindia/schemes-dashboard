@@ -20,15 +20,13 @@ import ms from '../Images/schemesLogos/ms.jpg';
 import scs from '../Images/schemesLogos/scs.jpg';
 import sts from '../Images/schemesLogos/sts.jpg';
 
-const DataSchemes = {
+const SchemesData = {
   scheme_jjm: {
     logo: jjm,
     slug: 'jjm',
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=jal-jeevan-mission',
     name: 'National Rural Drinking Water Programme (NRDWP) / Jal Jeevan Mission (JJM)',
-    id: 1,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_icds: {
     logo: icds,
@@ -36,8 +34,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=integrated-child-development-services',
     name: 'Integrated Child Development Services (ICDS)',
-    id: 2,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_sg: {
     logo: sg,
@@ -45,8 +41,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=swadhar-greh-2016-17-to-2019-20',
     name: 'Swadhar Greh (SG)',
-    id: 3,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_pmgsy: {
     logo: pmgsy,
@@ -54,8 +48,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=pradhan-mantri-gram-sadak-yojana-pmgsy',
     name: 'Pradhan Mantri Gram Sadak Yojana (PMGSY)',
-    id: 4,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_mgnrega: {
     logo: mgnrega,
@@ -63,8 +55,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=mahatma-gandhi-national-rural-employment-guarantee-scheme',
     name: 'Mahatma Gandhi National Rural Employment Guarantee Scheme (MGNREGS)',
-    id: 5,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_smsa: {
     logo: smsa,
@@ -72,8 +62,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=samagra-shiksha-abhiyan-smsa-2018-19-to-2019-20',
     name: 'Samagra Shiksha Abhiyan (SmSA)',
-    id: 6,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_bbbp: {
     logo: bbbp,
@@ -81,8 +69,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=beti-bachao-beti-padao',
     name: 'Beti Bachao Beti Padhao (BBBP)',
-    id: 7,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_mdm: {
     logo: mdm,
@@ -90,8 +76,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=mid-day-meal-programme',
     name: 'Mid-Day Meal Programme (MDM)',
-    id: 8,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_pmay: {
     logo: pmay,
@@ -99,8 +83,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=pradhan-mantri-awaas-yojana-grameen',
     name: 'Pradhan Mantri Awaas Yojana - Grameen (PMAY)',
-    id: 9,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_rmsa: {
     logo: rmsa,
@@ -108,8 +90,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=rashtriya-madhyamik-shiksha-abhiyan-rmsa-2015-16-to-2017-18',
     name: 'Rashtriya Madhyamik Shiksha Abhiyan  (RMSA)',
-    id: 10,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_sbmu: {
     logo: sbmu,
@@ -117,8 +97,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=swachh-bharat-abhiyan-urban',
     name: 'Swachh Bharat Abhiyan - Urban (SBM-U) (SBMU)',
-    id: 11,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_sbmg: {
     logo: sbmu,
@@ -126,8 +104,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=swachh-bharat-mission-gramin-sbm-g-2015-16-to-2019-20',
     name: 'Swachh Bharat Mission - Gramin (SBM-G)',
-    id: 12,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_rkvy: {
     logo: rkvy,
@@ -135,8 +111,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=rashtriya-krishi-vikas-yojana-rkvy',
     name: 'Rashtriya Krishi Vikas Yojana (RKVY)',
-    id: 13,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_br: {
     logo: br,
@@ -144,8 +118,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=blue-revolution',
     name: 'Blue Revolution',
-    id: 14,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_osc: {
     logo: osc,
@@ -153,8 +125,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=one-stop-centre-2015-16-to-2019-20',
     name: 'One Stop Centre (OSC)',
-    id: 15,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_nhm: {
     logo: nhm,
@@ -162,8 +132,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=national-health-mission',
     name: 'National Health Mission (NHM)',
-    id: 16,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_ssa: {
     logo: ssa,
@@ -171,16 +139,12 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=sarva-shiksha-abhiyan-ssa-2015-16-to-2017-18',
     name: 'Sarva Shiksha Abhiyan (SSA)',
-    id: 17,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_icps: {
     logo: icps,
     slug: 'icps',
-    dataId: 'https://openbudgetsindia.org/api/3/action/package_show?id=icps',
+    data: 'https://openbudgetsindia.org/api/3/action/package_show?id=icps',
     name: 'Integrated Child Protection Scheme (ICPS)',
-    id: 18,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_pa: {
     logo: pa,
@@ -188,8 +152,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=poshan-abhiyaan-2018-19-to-2019-20',
     name: 'Poshan Abhiyaan (NNM)',
-    id: 19,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_ms: {
     logo: ms,
@@ -197,8 +159,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=scholarship-schemes-for-minorities',
     name: 'Scholarship Schemes for Minorities',
-    id: 20,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_scs: {
     logo: scs,
@@ -206,8 +166,6 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=scholarship-schemes-for-scs',
     name: 'Scholarship Schemes for SCs',
-    id: 21,
-    type: 'Centrally Sponsored Scheme',
   },
   scheme_sts: {
     logo: sts,
@@ -215,9 +173,7 @@ const DataSchemes = {
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=scholarship-schemes-for-sts',
     name: 'Scholarship Schemes for STs',
-    id: 22,
-    type: 'Centrally Sponsored Scheme',
   },
 };
 
-export default DataSchemes;
+export default SchemesData;

@@ -12,7 +12,7 @@ import SchemeDetailsView from '../SchemeDetailsView';
 import NewsCard from '../NewsCard';
 import SchemeCard from '../SchemesCard';
 
-import { receipts_data as data } from '../../Data/receipts_data';
+// import { receipts_data as data } from '../../Data/receipts_data';
 
 import { ReactComponent as LeftArrow } from '../../Images/left-arrow.svg';
 import { ReactComponent as RightArrow } from '../../Images/right-arrow.svg';
@@ -94,14 +94,15 @@ const SchemeDashboard = () => {
 
         // Fetch news section
         fetchNews('news').then((recentDevelopmentsData) => {
-          const recentDevelopmentsArray = [];
-          if (recentDevelopmentsData[currentScheme])
+          if (recentDevelopmentsData[currentScheme]) {
+            const recentDevelopmentsArray = [];
             while (recentDevelopmentsData[currentScheme].length) {
               recentDevelopmentsArray.push(
                 recentDevelopmentsData[currentScheme].splice(0, 2)
               );
             }
-          setRecentDevelopmentsData(recentDevelopmentsArray);
+            setRecentDevelopmentsData(recentDevelopmentsArray);
+          }
         });
 
         // Fetch related Schemes
@@ -219,7 +220,7 @@ const SchemeDashboard = () => {
                 showViz={showViz}
                 activeViz={activeViz}
                 handleToggleShowViz={handleToggleShowViz}
-                record={data[0]}
+                // record={data[0]}
                 schemeData={schemeData}
                 activeIndicator={activeIndicator}
                 activeYear={activeYear}
