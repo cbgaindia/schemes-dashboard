@@ -1,6 +1,8 @@
 $breakpoints: (
   'mt-mobile':  ( min-width:  481px ),
   'lt-mobile':  ( max-width:  480px ),
+  'mt-bg-mobile':  ( min-width:  596px ),
+  'lt-bg-mobile':  ( max-width:  595px ),
   'mt-tablet':  ( min-width:  769px ),
   'lt-tablet':  ( max-width:  768px ),
   'mt-laptop':  ( min-width:  1025px ),

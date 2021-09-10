@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Dropdown = (props) => (
-  <div className="scheme-download-dropdown-container">
+  <div className="download-dropdown">
     <button
-      className="scheme-dropdown-item first"
+      className="download-dropdown__item download-dropdown__button"
       onClick={props.handleDownloadReportImage}
       disabled={!props.showViz}
       type="button"
@@ -12,8 +12,7 @@ const Dropdown = (props) => (
     </button>
     <a
       href="https://openbudgetsindia.org/organization/state-wise-schemes-data"
-      target="_blank"
-      className="scheme-dropdown-item second"
+      className="download-dropdown__item download-dropdown__link"
       rel="noreferrer"
     >
       Go to Dataset
