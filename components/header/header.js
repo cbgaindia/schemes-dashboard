@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { GlobalContext } from 'pages/_app';
+// import { GlobalContext } from 'pages/_app';
 import Image from 'next/image';
 import OBI from 'public/assets/obi_header.png';
 
-console.log(OBI);
 const Header = () => (
   // const { title } = useContext(GlobalContext);
 

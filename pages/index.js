@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-// import { fetchAPI } from 'lib/api';
 import Seo from 'components/seo/seo';
 import Card from 'components/card/card';
-import { sortList } from 'utils/helpers';
-import Header from 'components/header/header';
-// import Highlight from 'components/highlights/highlights';
-// import Carousel from 'components/carousel/carousel';
 import SchemesData from 'lib/schemesData';
 
-export default function Home({ homepage }) {
-  function headerDesc() {
-    return <p className="header__desc">homepage.heading</p>;
-  }
+export default function Home() {
   const [schemes, setSchemes] = useState([]);
-
   useEffect(() => {
     const allSchemes = Object.keys(SchemesData).map((scheme) => ({
       title: SchemesData[scheme].name,
-      link: `/scheme/${SchemesData[scheme].slug}`,
+      link: `/scheme/${SchemesData[scheme].dataId}`,
       icon: SchemesData[scheme].logo,
     }));
     allSchemes.sort((a, b) =>
@@ -37,13 +27,6 @@ export default function Home({ homepage }) {
   return (
     <>
       <Seo seo={seo} />
-
-      <Header desc={headerDesc()} color="#101524" />
-      {/* <section className="home__mobile-search">
-        <Link href="/search">
-          <a>Search</a>
-        </Link>
-      </section> */}
       <div className="skiptarget">
         <span id="maincontent">-</span>
       </div>

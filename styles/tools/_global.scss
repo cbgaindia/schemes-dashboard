@@ -107,6 +107,26 @@ button {
 	border: none;
 }
 
+.button {
+	box-sizing: border-box;
+	border: 2px solid transparent;
+	background: white;
+	outline: none;
+	border-radius: 4px;
+	padding: 8px 16px;
+	font-size: 16px;
+	width: 128px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.primary-button {
+	background: #4b4797;
+	color: white;
+}
+
 #top-of-site-pixel-anchor {
 	position: absolute;
 	width: 1px;

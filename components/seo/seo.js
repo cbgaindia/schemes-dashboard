@@ -1,11 +1,13 @@
 import Head from 'next/head';
-import { useContext } from 'react';
-import { GlobalContext } from 'pages/_app';
-import { getStrapiMedia } from 'lib/media';
-import { useRouter } from 'next/router';
+// import { useContext } from 'react';
+// import { GlobalContext } from 'pages/_app';
+// import { getStrapiMedia } from 'lib/media';
+// import { useRouter } from 'next/router';
 
 const Seo = ({ seo }) => {
-  const title = seo.title || 'Scheme Dashboard | Open Budgets India';
+  const title =
+    `${seo.title} - Scheme Dashboard | Open Budgets India` ||
+    'Scheme Dashboard | Open Budgets India';
   const metaDescription =
     'Find downloadable data, visualisations and other useful information related to a number of schemes run by the Union and State Governments.';
 

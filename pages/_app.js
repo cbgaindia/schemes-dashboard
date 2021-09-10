@@ -10,7 +10,7 @@ import SchemesData from 'lib/schemesData';
 // import * as ga from '../lib/ga';
 
 export const GlobalContext = createContext({});
-function MyApp({ Component }) {
+function MyApp({ Component, pageProps }) {
   if (typeof window !== 'undefined') {
     smoothscroll.polyfill();
   }
@@ -94,7 +94,7 @@ function MyApp({ Component }) {
           options={{ easing: 'ease', speed: 300, showSpinner: false }}
         />
         <GlobalContext.Provider value={global}>
-          <Component {...SchemesData} />
+          <Component {...pageProps} />
         </GlobalContext.Provider>
       </Layout>
     </>
