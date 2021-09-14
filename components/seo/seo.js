@@ -1,7 +1,6 @@
 import Head from 'next/head';
 // import { useContext } from 'react';
 // import { GlobalContext } from 'pages/_app';
-// import { getStrapiMedia } from 'lib/media';
 // import { useRouter } from 'next/router';
 
 const Seo = ({ seo }) => {

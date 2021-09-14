@@ -9,4 +9,6 @@ $breakpoints: (
   'lt-laptop':  ( max-width:  1024px ),
   'mt-desktop':  ( min-width:  1201px ),
   'lt-desktop':  ( max-width:  1200px ),
+  'mt-bg-desktop':  ( min-width:  1201px ),
+  'lt-bg-desktop':  ( max-width:  1200px ),
 ) !default;

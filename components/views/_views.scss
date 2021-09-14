@@ -1,0 +1,94 @@
+.indicator-definitions-view-container {
+  overflow: auto;
+  height: 100%;
+}
+.indicator-definitions-view-container::-webkit-scrollbar {
+  display: none;
+}
+.indicator-definitions-view-container .scheme-introduction-container {
+  background: #ffffff;
+  padding: 8px;
+  display: flex;
+  border-radius: 12px;
+}
+
+.scheme-introduction-container .left-block-decoration {
+  /* border-radius: 8px; */
+  border-left: 4px solid #4b4797;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.scheme-introduction-container img {
+  width: 16px;
+  height: 16px;
+}
+
+.table-wrapper {
+  height: 100%;
+  overflow: scroll;
+  max-width: 85vw;
+
+  table {
+    width: 100%;
+				border-collapse: collapse;
+  }
+
+  td, th {
+    min-width: 100px;
+    width: 100%;
+    padding: 1rem;
+    word-wrap: break-word;
+  }
+}
+
+.table-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.table-container {
+  font-size: 16px ;
+  font-weight: 400 ;
+}
+
+.scheme-table thead {
+  background: #f0f3f5;
+  border-radius: 8px;
+}
+.scheme-table thead th {
+  min-width: 184px;
+  padding: 8px ;
+}
+.scheme-table tbody {
+  // display: block;
+  height: 500px;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+
+.scheme-table tbody tr:nth-child(even) {
+  background: #f0f3f5;
+}
+.scheme-table {
+  tbody tr td {
+    padding: 8px ;
+    text-align: center;
+    // width: 184px;
+  }
+  // thead,
+  // tbody tr {
+  //   display: table;
+  //   width: 100%;
+  //   // table-layout: fixed; /* even columns width , fix width of table too*/
+  //   border-radius: 8px;
+  // }
+  td,
+  th {
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+  }
+}
+
+// .scheme-table {
+//   position: relative;
+// }

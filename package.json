@@ -1,6 +1,6 @@
 {
-	"name": "budget-basic",
-	"version": "0.9.0",
+	"name": "scheme-dashboard",
+	"version": "0.2.0",
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
@@ -13,18 +13,24 @@
 		"debug": "^2.6.9",
 		"dom-to-image": "^2.6.0",
 		"i": "^0.3.6",
+		"leaflet": "^1.7.1",
 		"next": "^11.1.0",
 		"nextjs-progressbar": "0.0.11",
 		"npm": "^7.22.0",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
+		"react-leaflet": "^3.0.5",
+		"react-select": "^4.3.1",
+		"react-vis": "^1.11.7",
 		"sass": "^1.37.5",
 		"sharp": "^0.28.3",
 		"smoothscroll-polyfill": "^0.4.4",
+		"topojson-client": "^3.1.0",
 		"xlsx": "^0.17.1"
 	},
 	"devDependencies": {
 		"@ijsto/eslint-config": "^4.1.6",
+		"@types/leaflet": "^1.7.5",
 		"eslint": "^7.29.0"
 	}
 }
