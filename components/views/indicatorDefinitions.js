@@ -12,7 +12,7 @@ const IndicatorDefinitionView = (props) => {
       </div>
       {indicators.map((indicator) => (
         <div className="mt-3 pb-2 notes__section" key={indicator}>
-          <h2 className="page-introduction-text mb-1">
+          <h2 className="page-introduction-text">
             <span className="notes__indicator">
               {props.indicatorData[indicator].name}
             </span>{' '}

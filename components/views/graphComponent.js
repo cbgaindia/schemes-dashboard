@@ -11,10 +11,12 @@ import {
   XYPlot,
   VerticalBarSeries,
   YAxis,
+  makeWidthFlexible,
 } from 'react-vis';
 
 import 'node_modules/react-vis/dist/style.css';
 
+const FlexibleXYPlot = makeWidthFlexible(XYPlot);
 class GraphComponent extends React.Component {
   constructor() {
     super();
@@ -140,109 +142,94 @@ class GraphComponent extends React.Component {
         color: color[index],
       }));
     return (
-      <div className="vis-wrapper">
-        <div className="">
-          <div className="">
-            <Select
-              isMulti
-              simpleValue
-              value={this.state.value}
-              placeholder="Select States"
-              noOptionsMessage={this.handleNoOptionsMessage}
-              options={
-                this.state.value.length < 15
-                  ? this.state.stateOptions
-                  : this.state.value
-              }
-              onChange={this.handleSelectChange}
-            />
-          </div>
+      <div className="scheme-compare">
+        <Select
+          isMulti
+          simpleValue
+          value={this.state.value}
+          placeholder="Select States"
+          noOptionsMessage={this.handleNoOptionsMessage}
+          options={
+            this.state.value.length < 15
+              ? this.state.stateOptions
+              : this.state.value
+          }
+          onChange={this.handleSelectChange}
+        />
 
+        {this.state.value[0] != null && this.state.selectedFigures != null ? (
+          <div className="compare__wrapper">
+            {items.map((legend, index) => (
+              <div className="compare__state" key={index}>
+                <div
+                  className="compare__square"
+                  style={{ backgroundColor: legend.color }}
+                />
+                <p className="page-introduction-text compare__text">
+                  {legend.title}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : null}
+        <div className="compare__viz">
           {this.state.value[0] != null && this.state.selectedFigures != null ? (
-            <div className="hide-scrollbar d-flex flex-nowrap overflow-auto pl-3 mt-4">
-              {items.map((legend, index) => (
-                <div className="d-flex mr-4" key={index}>
-                  <div
-                    className="legend-square"
-                    style={{ backgroundColor: legend.color }}
+            <div id="chart" style={{ backgroundColor: 'white' }}>
+              <FlexibleXYPlot
+                height={350}
+                xType="ordinal"
+                margin={{ top: 20, left: 70, right: 10, bottom: 40 }}
+              >
+                <HorizontalGridLines />
+
+                <VerticalGridLines />
+                {this.state.selectedFigures.map((state, index) => (
+                  <VerticalBarSeries
+                    color={color[index]}
+                    onValueMouseOver={accessthis.onBarHover}
+                    onValueMouseOut={accessthis.outBarHover}
+                    data={state.figures}
+                    key={state.name}
                   />
-                  <p className="page-introduction-text text-black text-nowrap ml-2">
-                    {legend.title}
-                  </p>
-                </div>
-              ))}
-            </div>
-          ) : null}
-          <div className="mt-2">
-            {this.state.value[0] != null &&
-            this.state.selectedFigures != null ? (
-              <div id="chart" style={{ backgroundColor: 'white' }}>
-                <XYPlot
-                  width={650}
-                  height={350}
-                  xType="ordinal"
-                  margin={{ top: 20, left: 70, right: 10, bottom: 40 }}
-                >
-                  <HorizontalGridLines />
+                ))}
 
-                  <VerticalGridLines />
-                  {this.state.selectedFigures.map((state, index) => (
-                    <VerticalBarSeries
-                      color={color[index]}
-                      onValueMouseOver={accessthis.onBarHover}
-                      onValueMouseOut={accessthis.outBarHover}
-                      data={state.figures}
-                      key={state.name}
-                    />
-                  ))}
+                <XAxis title="Fiscal Years" />
+                <YAxis title="Indicator" />
 
-                  <XAxis title="Fiscal Years" />
-                  <YAxis title="Indicator" />
-
-                  {this.state.hoverValue ? (
-                    <Hint value={this.state.hoverValue}>
-                      <div className="rv-hint__content">
-                        <div>
-                          <span className="rv-hint__title">
-                            {' '}
-                            {this.state.hoverValue.grpby_name}
-                          </span>
-                          <br />
-                          <span className="rv-hint__title">Fiscal Year : </span>
-                          <span className="rv-hint__value">
-                            {this.state.hoverValue.x}
-                          </span>
-                        </div>
-                        <div>
-                          <span className="rv-hint__title">Figure : </span>
-                          <span className="rv-hint__value">
-                            {this.state.hoverValue.y}
-                          </span>
-                        </div>
+                {this.state.hoverValue ? (
+                  <Hint value={this.state.hoverValue}>
+                    <div className="rv-hint__content">
+                      <div>
+                        <span className="rv-hint__title">
+                          {' '}
+                          {this.state.hoverValue.grpby_name}
+                        </span>
+                        <br />
+                        <span className="rv-hint__title">Fiscal Year : </span>
+                        <span className="rv-hint__value">
+                          {this.state.hoverValue.x}
+                        </span>
                       </div>
-                    </Hint>
-                  ) : null}
-                </XYPlot>
-              </div>
-            ) : (
-              <div className="select-placeholder">
-                <div className="jumbotron">
-                  <h2 className="text-center">
-                    Select states to generate Visualization
-                  </h2>
-                </div>
-              </div>
-            )}
-          </div>
+                      <div>
+                        <span className="rv-hint__title">Figure : </span>
+                        <span className="rv-hint__value">
+                          {this.state.hoverValue.y}
+                        </span>
+                      </div>
+                    </div>
+                  </Hint>
+                ) : null}
+              </FlexibleXYPlot>
+            </div>
+          ) : (
+            <div className="compare__placeholder">
+              <p>Select states to generate Visualization</p>
+            </div>
+          )}
         </div>
       </div>
     );
   }
 }
-
-// GraphComponent.propTypes = {
-//    data: React.PropTypes.object,
-//    budgetAttr:React.PropTypes.string
-// };
 
 export default GraphComponent;

@@ -1014,6 +1014,48 @@ button {
   text-align: center;
 }
 
+.scheme-compare {
+  height: 100%;
+  width: 100%;
+}
+.scheme-compare .compare__wrapper {
+  scrollbar-width: none;
+  padding-left: 1rem;
+  margin-top: 1rem;
+  overflow: auto;
+  flex-wrap: nowrap;
+  display: flex;
+}
+.scheme-compare .compare__viz {
+  margin-top: 0.5rem;
+}
+.scheme-compare .compare__state {
+  display: flex;
+  margin-right: 1.5rem;
+  align-items: center;
+}
+.scheme-compare .compare__square {
+  min-width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+.scheme-compare .compare__text {
+  margin-left: 0.5rem;
+  white-space: nowrap;
+  color: #000000;
+}
+.scheme-compare .compare__placeholder {
+  margin-top: 1.5rem;
+  padding: 4rem 2rem;
+  margin-bottom: 2rem;
+  background-color: #e9ecef;
+  border-radius: 0.3rem;
+}
+.scheme-compare .compare__placeholder p {
+  font-size: 2rem;
+  text-align: center;
+}
+
 .scheme__container {
   display: grid;
   gap: 1.5rem;

@@ -20,7 +20,7 @@
         margin-top: 0.5rem;
       }
 
-      p{
+      p {
         line-height: 150%;
       }
     }
@@ -116,6 +116,58 @@
 
       td {
         padding: 8px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+// Compare
+.scheme-compare {
+  height: 100%;
+  width: 100%;
+
+  .compare {
+    &__wrapper {
+      scrollbar-width: none;
+      padding-left: 1rem;
+      margin-top: 1rem;
+      overflow: auto;
+      flex-wrap: nowrap;
+      display: flex;
+    }
+
+    &__viz {
+      margin-top: .5rem;
+    }
+
+    &__state {
+      display: flex;
+      margin-right: 1.5rem;
+      align-items: center;
+    }
+
+    &__square {
+      min-width: 24px;
+      height: 24px;
+      border-radius: 4px;
+    }
+
+    &__text {
+      margin-left: 0.5rem;
+      white-space: nowrap;
+      color: #000000;
+    }
+
+    &__placeholder {
+      margin-top: 1.5rem;
+      padding: 4rem 2rem;
+      margin-bottom: 2rem;
+      background-color: #e9ecef;
+      border-radius: 0.3rem;
+
+      p {
+        font-size: 2rem;
         text-align: center;
       }
     }
