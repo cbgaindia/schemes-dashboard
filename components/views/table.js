@@ -8,8 +8,7 @@ const Table = (props) => {
       <table className="scheme-table">
         <thead>
           <tr>
-            <th className="column-freeze">State/UT</th>
-            {/* <th></th> */}
+            <th>State/UT</th>
             {financialYears.map((year) => (
               <th key={year}>
                 {indicatorName} {year}
@@ -20,7 +19,7 @@ const Table = (props) => {
         <tbody>
           {Object.keys(props.stateCodes).map((state, index) => (
             <tr key={index}>
-              <td className="column-freeze">{props.stateCodes[state]}</td>
+              <td>{props.stateCodes[state]}</td>
               {financialYears.map((year) => (
                 <td
                   key={year}
