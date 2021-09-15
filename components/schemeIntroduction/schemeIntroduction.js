@@ -35,7 +35,7 @@ export default function SchemeIntroduction(props) {
   };
 
   return (
-    <div className="intro wrapper">
+    <div className="scheme__intro">
       <p className="scheme__bread">
         <a href="/" className="scheme__home-link">
           <u>Schemes Dashboard</u>

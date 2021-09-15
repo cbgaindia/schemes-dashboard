@@ -24,34 +24,30 @@ const SchemesDetailsView = (props) => {
     props.schemeData.data[props.activeIndicator].unit;
   const dataSource = props.schemeData.metadata.source;
   return (
-    <div className="schemes-details-view-wrapper">
+    <div className="schemes__details">
       <div id={props.showViz ? 'report-container' : ''}>
-        <div className="introduction-container">
+        <div className="details__header">
           {!props.showViz ? (
             <>
-              <div className="d-flex flex-column">
-                <h2 className="m-0">Editorial Notes</h2>
-              </div>
-              <div className="d-flex flex-column align-items-end">
-                <button
-                  onClick={() => props.handleToggleShowViz(true)}
-                  type="button"
-                >
-                  Back to Visualisation
-                </button>
-              </div>
+              <p className="details__title">Editorial Notes</p>
+              <button
+                onClick={() => props.handleToggleShowViz(true)}
+                type="button"
+              >
+                Back to Visualisation
+              </button>
             </>
           ) : (
             <>
-              <div className="d-flex flex-column">
-                <h2 className="m-0">{indicatorName}</h2>
-                <p className="m-0 mt-1">
+              <div className="details__header--viz-show">
+                <h3>{indicatorName}</h3>
+                <p>
                   {props.activeViz === 'map'
                     ? `${activeYear} | ${schemeName}`
                     : schemeName}
                 </p>
               </div>
-              <div className="d-flex flex-column align-items-end">
+              <div className="details__header--viz-show text-end">
                 <button
                   onClick={() => props.handleToggleShowViz(false)}
                   id="hide-this-button"
@@ -59,7 +55,7 @@ const SchemesDetailsView = (props) => {
                 >
                   View Editorial Notes
                 </button>
-                <p className="m-0 mt-1">Unit : {unit}</p>
+                <p>Unit : {unit}</p>
               </div>
             </>
           )}
@@ -69,8 +65,8 @@ const SchemesDetailsView = (props) => {
             id="vis-container"
             className={
               props.showViz
-                ? 'visualisation-container visualization-container'
-                : 'visualisation-container additional-details'
+                ? 'details__visualisation'
+                : 'details__visualisation additional-details'
             }
           >
             {!props.showViz ? (
@@ -105,7 +101,7 @@ const SchemesDetailsView = (props) => {
             ) : null}
           </div>
         </div>
-        <div className="data-source-info">
+        <div className="details__info">
           <p className="m-0">
             Data Source: <span className="text-dark">{dataSource}</span>
           </p>

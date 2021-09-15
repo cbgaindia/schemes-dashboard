@@ -1,60 +1,83 @@
 @use '../../styles/tools' as *;
 
-.schemes-details-view-wrapper {
+.schemes__details {
   width: 100%;
   background: #ffffff;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
   border-radius: 12px;
+
+  .details {
+    &__header {
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+      h3 {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      button {
+        padding: 0;
+        background: none;
+        border: none;
+        outline: none;
+        text-align: right;
+        text-decoration: underline;
+        font-size: 16px;
+        color: #4b4797;
+      }
+
+      &--viz-show {
+        p {
+          font-size: 0.8rem;
+          color: rgba(0, 0, 0, 0.7);
+          margin-top: 0.25rem;
+        }
+
+        &.text-end{
+          text-align: end;
+        }
+      }
+    }
+
+    &__visualisation {
+      background: #f7fafc;
+      padding: 16px;
+      height: 500px;
+    }
+
+    &__info {
+      padding: 8px 16px;
+
+      p {
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.7);
+      }
+
+      .text-dark {
+        color: #000000;
+      }
+    }
+    &__title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #000000;
+    }
+  }
 }
 
-#report-container{
+#report-container {
   background: #ffffff;
 }
-.schemes-details-view-wrapper .introduction-container{
-  padding: 8px 16px 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
 
-.schemes-details-view-wrapper .introduction-container h2{
-  font-size: 16px;
-  font-weight: 700;
-}
-.schemes-details-view-wrapper .introduction-container p{
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.64);
-}
-.schemes-details-view-wrapper .introduction-container button{
-  padding: 0;
-  background: none;
-  border: none;
-  outline: none;
-  text-align: right;
-  text-decoration: underline;
-  font-size: 16px;
-  color: #4B4797;
-}
-.schemes-details-view-wrapper .visualisation-container{
-  background: #F7FAFC;
-  padding: 16px;
-  height: 500px;
-}
-.schemes-details-view-wrapper .data-source-info{
-  padding: 8px 16px;
-}
-.schemes-details-view-wrapper .data-source-info p{
-  font-size: 16px;
-  color: rgba(0, 0, 0, 0.64);
-}
 #vis-container {
   min-height: 430px;
-  /* border-bottom: 1px solid rgba(0, 0, 0, .3); */
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
-}
+  scrollbar-width: none;
 
-#vis-container::-webkit-scrollbar { 
-  display: none;  /* Safari and Chrome */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

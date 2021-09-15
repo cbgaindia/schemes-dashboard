@@ -7,98 +7,114 @@
 	margin: 0 16px;
 }
 
-.intro {
-	padding: 1.6rem 0.5rem;
+.scheme {
+	&__intro{
+		padding: 1.6rem 0.5rem;
 
-	.scheme {
-		&__bread {
-			margin-bottom: 1.2rem;
-			color: rgba(0, 0, 0, 0.7);
-		}
-
-		&__home-link {
-			line-height: 135%;
-			font-size: 0.8rem;
-		}
-
-		&__heading {
-			display: flex;
-			justify-content: space-between;
-		}
-
-		&__title {
-			line-height: 130%;
-			letter-spacing: 0.02em;
-			font-weight: normal;
-			font-size: 2rem;
-		}
-
-		&__download {
-			position: relative;
-		}
-
-		&__download-button {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 8rem;
-			height: 2.5rem;
-			color: white;
-			background: #4b4797;
-			border-radius: 4px;
-
-			line-height: 150%;
-			font-size: 1rem;
-
-			svg {
-				margin-left: 5px;
-				margin-top: 5px;
-				width: 0.8rem;
-				height: 0.8rem;
-			}
-		}
-
-		&__desc {
-			color: rgba(0, 0, 0, 0.7);
-			margin: 1rem 0;
-			line-height: 150%;
-		}
-
-		&__meta {
-			display: flex;
-			flex-wrap: wrap;
-			color: rgba(0, 0, 0, 0.7);
-
-			> p {
-				justify-self: start;
-				margin-bottom: 0.8rem;
-			}
-			&--dark {
-				color: #000000;
-			}
-
-			@include respond-to('lt-laptop') {
-				.social {
-					width: 100%;
-				}
-
-				.seperator:nth-child(4) {
-					display: none;
-				}
-			}
-
-			@include respond-to('lt-bg-mobile') {
-				.seperator:nth-child(2) {
-					display: none;
-				}
-
-				.scheme__type {
-					width: 100%;
+		.social {
+			display: inline-flex;
+			&__link {
+				svg {
+					display: inline-block;
+					width: 1.5rem;
+					height: 1.5rem;
+					fill: grey;
+					margin-left: 10px;
 				}
 			}
 		}
 	}
 
+	&__bread {
+		margin-bottom: 1.2rem;
+		color: rgba(0, 0, 0, 0.7);
+	}
+
+	&__home-link {
+		line-height: 135%;
+		font-size: 0.8rem;
+	}
+
+	&__heading {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__title {
+		line-height: 130%;
+		letter-spacing: 0.02em;
+		font-weight: normal;
+		font-size: 2rem;
+	}
+
+	&__download {
+		position: relative;
+	}
+
+	&__download-button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 8rem;
+		height: 2.5rem;
+		color: white;
+		background: #4b4797;
+		border-radius: 4px;
+
+		line-height: 150%;
+		font-size: 1rem;
+
+		svg {
+			margin-left: 5px;
+			margin-top: 5px;
+			width: 0.8rem;
+			height: 0.8rem;
+		}
+	}
+
+	&__desc {
+		color: rgba(0, 0, 0, 0.7);
+		margin: 1rem 0;
+		line-height: 150%;
+	}
+
+	&__meta {
+		display: flex;
+		flex-wrap: wrap;
+		color: rgba(0, 0, 0, 0.7);
+
+		> p {
+			justify-self: start;
+			margin-bottom: 0.8rem;
+		}
+		&--dark {
+			color: #000000;
+		}
+
+		@include respond-to('lt-laptop') {
+			.social {
+				width: 100%;
+			}
+
+			.seperator:nth-child(4) {
+				display: none;
+			}
+		}
+
+		@include respond-to('lt-bg-mobile') {
+			.seperator:nth-child(2) {
+				display: none;
+			}
+
+			.scheme__type {
+				width: 100%;
+			}
+		}
+	}
+
+}
+
+.scheme__intro {
 	.social {
 		display: inline-flex;
 		&__link {

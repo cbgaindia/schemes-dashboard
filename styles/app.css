@@ -539,31 +539,41 @@ button {
   margin: 0 16px;
 }
 
-.intro {
+.scheme__intro {
   padding: 1.6rem 0.5rem;
 }
-.intro .scheme__bread {
+.scheme__intro .social {
+  display: inline-flex;
+}
+.scheme__intro .social__link svg {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: grey;
+  margin-left: 10px;
+}
+.scheme__bread {
   margin-bottom: 1.2rem;
   color: rgba(0, 0, 0, 0.7);
 }
-.intro .scheme__home-link {
+.scheme__home-link {
   line-height: 135%;
   font-size: 0.8rem;
 }
-.intro .scheme__heading {
+.scheme__heading {
   display: flex;
   justify-content: space-between;
 }
-.intro .scheme__title {
+.scheme__title {
   line-height: 130%;
   letter-spacing: 0.02em;
   font-weight: normal;
   font-size: 2rem;
 }
-.intro .scheme__download {
+.scheme__download {
   position: relative;
 }
-.intro .scheme__download-button {
+.scheme__download-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -575,49 +585,50 @@ button {
   line-height: 150%;
   font-size: 1rem;
 }
-.intro .scheme__download-button svg {
+.scheme__download-button svg {
   margin-left: 5px;
   margin-top: 5px;
   width: 0.8rem;
   height: 0.8rem;
 }
-.intro .scheme__desc {
+.scheme__desc {
   color: rgba(0, 0, 0, 0.7);
   margin: 1rem 0;
   line-height: 150%;
 }
-.intro .scheme__meta {
+.scheme__meta {
   display: flex;
   flex-wrap: wrap;
   color: rgba(0, 0, 0, 0.7);
 }
-.intro .scheme__meta > p {
+.scheme__meta > p {
   justify-self: start;
   margin-bottom: 0.8rem;
 }
-.intro .scheme__meta--dark {
+.scheme__meta--dark {
   color: #000000;
 }
 @media (max-width: 1024px) {
-  .intro .scheme__meta .social {
+  .scheme__meta .social {
     width: 100%;
   }
-  .intro .scheme__meta .seperator:nth-child(4) {
+  .scheme__meta .seperator:nth-child(4) {
     display: none;
   }
 }
 @media (max-width: 595px) {
-  .intro .scheme__meta .seperator:nth-child(2) {
+  .scheme__meta .seperator:nth-child(2) {
     display: none;
   }
-  .intro .scheme__meta .scheme__type {
+  .scheme__meta .scheme__type {
     width: 100%;
   }
 }
-.intro .social {
+
+.scheme__intro .social {
   display: inline-flex;
 }
-.intro .social__link svg {
+.scheme__intro .social__link svg {
   display: inline-block;
   width: 1.5rem;
   height: 1.5rem;
@@ -744,36 +755,24 @@ button {
   }
 }
 
-.schemes-details-view-wrapper {
+.schemes__details {
   width: 100%;
   background: #ffffff;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
   border-radius: 12px;
 }
-
-#report-container {
-  background: #ffffff;
-}
-
-.schemes-details-view-wrapper .introduction-container {
-  padding: 8px 16px 12px;
+.schemes__details .details__header {
+  padding: 0.5rem 0.75rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
-
-.schemes-details-view-wrapper .introduction-container h2 {
+.schemes__details .details__header h3 {
   font-size: 16px;
   font-weight: 700;
 }
-
-.schemes-details-view-wrapper .introduction-container p {
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.64);
-}
-
-.schemes-details-view-wrapper .introduction-container button {
+.schemes__details .details__header button {
   padding: 0;
   background: none;
   border: none;
@@ -781,36 +780,47 @@ button {
   text-align: right;
   text-decoration: underline;
   font-size: 16px;
-  color: #4B4797;
+  color: #4b4797;
 }
-
-.schemes-details-view-wrapper .visualisation-container {
-  background: #F7FAFC;
+.schemes__details .details__header--viz-show p {
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.7);
+  margin-top: 0.25rem;
+}
+.schemes__details .details__header--viz-show.text-end {
+  text-align: end;
+}
+.schemes__details .details__visualisation {
+  background: #f7fafc;
   padding: 16px;
   height: 500px;
 }
-
-.schemes-details-view-wrapper .data-source-info {
+.schemes__details .details__info {
   padding: 8px 16px;
 }
-
-.schemes-details-view-wrapper .data-source-info p {
+.schemes__details .details__info p {
   font-size: 16px;
-  color: rgba(0, 0, 0, 0.64);
+  color: rgba(0, 0, 0, 0.7);
+}
+.schemes__details .details__info .text-dark {
+  color: #000000;
+}
+.schemes__details .details__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000000;
+}
+
+#report-container {
+  background: #ffffff;
 }
 
 #vis-container {
   min-height: 430px;
-  /* border-bottom: 1px solid rgba(0, 0, 0, .3); */
-  -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
   scrollbar-width: none;
-  /* Firefox */
 }
-
 #vis-container::-webkit-scrollbar {
   display: none;
-  /* Safari and Chrome */
 }
 
 .indicator-search-container {

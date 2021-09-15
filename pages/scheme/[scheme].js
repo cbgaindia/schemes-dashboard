@@ -113,7 +113,7 @@ const Scheme = ({ scheme }) => {
   return (
     <>
       {!loading && (
-        <main className="wrapper">
+        <main className="wrapper scheme">
           <Seo seo={seo} />
           <SchemeIntroduction
             data={scheme.metadata}
