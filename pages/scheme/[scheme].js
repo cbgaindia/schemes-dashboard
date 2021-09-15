@@ -7,6 +7,7 @@ import domtoimage from 'dom-to-image';
 import DatavizViewControls from 'components/datavizViewControls/datavizViewControls';
 import IndicatorSelector from 'components/indicatorSelector/indicatorSelector';
 import SchemeDetailsView from 'components/schemeDetailsView/schemeDetailsView';
+import RelatedSchemes from 'components/relatedSchemes/relatedSchemes';
 
 const stateCodes = {
   1: 'Andhra Pradesh',
@@ -144,6 +145,8 @@ const Scheme = ({ scheme }) => {
               setYearChange={setYearChange}
             />
           </div>
+
+          <RelatedSchemes scheme={scheme} />
         </main>
       )}
     </>

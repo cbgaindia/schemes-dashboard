@@ -24,15 +24,6 @@ a {
   padding: 0;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-}
-
 :root {
   font-size: 12px;
 }
@@ -540,7 +531,7 @@ button {
 }
 
 .scheme__intro {
-  padding: 1.6rem 0.5rem;
+  padding: 1.6rem 1rem;
 }
 .scheme__intro .social {
   display: inline-flex;
@@ -873,7 +864,7 @@ button {
   cursor: pointer;
   line-height: 150%;
   display: inline-block;
-  color: rgba(0, 0, 0, 0.64);
+  color: rgba(0, 0, 0, 0.7);
 }
 .indicator__radio:checked + label:before, .indicator__radio:not(:checked) + label:before {
   content: "";
@@ -919,8 +910,8 @@ button {
 .indicator__text {
   font-size: 0.8rem;
   line-height: 165%;
-  color: rgba(0, 0, 0, 0.64);
-  margin: 0;
+  color: rgba(0, 0, 0, 0.7);
+  margin-top: 1rem;
 }
 
 .scheme__notes {
@@ -948,6 +939,7 @@ button {
   border-left: 4px solid #4b4797;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+  margin-right: 1rem;
 }
 .scheme__notes .notes__section {
   padding-bottom: 0.5rem;
@@ -1064,6 +1056,36 @@ button {
 .scheme-compare .compare__placeholder p {
   font-size: 2rem;
   text-align: center;
+}
+
+.scheme__related {
+  margin-top: 3rem;
+}
+.scheme__related .related__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+.scheme__related .related__header h3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.scheme__related .related__header a {
+  color: #007bff;
+}
+.scheme__related .related__cards {
+  padding-left: 0;
+  position: relative;
+  display: flex;
+  overflow-x: scroll;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.scheme__related .related__cards .card {
+  margin-right: 2rem;
+  min-width: 270px;
 }
 
 .scheme__container {

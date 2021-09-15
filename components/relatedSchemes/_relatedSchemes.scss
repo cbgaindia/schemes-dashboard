@@ -1,0 +1,33 @@
+.scheme__related {
+  margin-top: 3rem;
+
+  .related {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem;
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+
+      a {
+        color: #007bff;
+      }
+    }
+
+    &__cards {
+      padding-left: 0;
+      position: relative;
+      display: flex;
+      overflow-x: scroll;
+      user-select: none;
+
+      .card {
+        margin-right: 2rem;
+        min-width: 270px;
+      }
+    }
+  }
+}
