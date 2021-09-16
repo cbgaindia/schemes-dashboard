@@ -102,7 +102,7 @@ const SchemesDetailsView = (props) => {
           </div>
         </div>
         <div className="details__info">
-          <p className="m-0">
+          <p>
             Data Source: <span className="text-dark">{dataSource}</span>
           </p>
         </div>

@@ -1,5 +1,5 @@
 .scheme__related {
-  margin-top: 3rem;
+  margin-bottom: 3rem;
 
   .related {
     &__header {
@@ -13,7 +13,7 @@
       }
 
       a {
-        color: #007bff;
+        color: #004fa4;
       }
     }
 
@@ -23,6 +23,7 @@
       display: flex;
       overflow-x: scroll;
       user-select: none;
+      scrollbar-width: none;
 
       .card {
         margin-right: 2rem;

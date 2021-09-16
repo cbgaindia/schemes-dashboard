@@ -8,6 +8,7 @@ import DatavizViewControls from 'components/datavizViewControls/datavizViewContr
 import IndicatorSelector from 'components/indicatorSelector/indicatorSelector';
 import SchemeDetailsView from 'components/schemeDetailsView/schemeDetailsView';
 import RelatedSchemes from 'components/relatedSchemes/relatedSchemes';
+import SchemeNews from 'components/schemeNews/schemeNews';
 
 const stateCodes = {
   1: 'Andhra Pradesh',
@@ -145,6 +146,8 @@ const Scheme = ({ scheme }) => {
               setYearChange={setYearChange}
             />
           </div>
+
+          <SchemeNews />
 
           <RelatedSchemes scheme={scheme} />
         </main>

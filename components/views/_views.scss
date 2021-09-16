@@ -134,7 +134,8 @@
       padding-left: 1rem;
       margin-top: 1rem;
       overflow: auto;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
+      gap: 1rem;
       display: flex;
     }
 
