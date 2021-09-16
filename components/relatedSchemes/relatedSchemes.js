@@ -15,7 +15,10 @@ const RelatedSchemes = ({ scheme }) => {
         setRelatedSchemes(res);
       }
     );
-  }, []);
+    return () => {
+      setRelatedSchemes([]);
+    };
+  }, [scheme]);
   return (
     <div className="scheme__related">
       <div className="related__header">

@@ -13,7 +13,7 @@ const IndicatorSelector = (props) => {
       return name.includes(searchTerm);
     });
     setSearchedData(filteredData);
-  }, [searchTerm]);
+  }, [searchTerm, props.schemeData]);
 
   const handleChangeSearchTerm = (e) => {
     setSearchTerm(e.target.value.toLowerCase());
@@ -23,15 +23,19 @@ const IndicatorSelector = (props) => {
     <div className="indicator">
       <SearchBar handleChangeSearchTerm={handleChangeSearchTerm} />
       <div className="indicator__wrapper">
-        {searchedData.map((indicator, index) => (
-          <IndicatorRadioButton
-            checked={indicator === props.activeIndicator}
-            key={index}
-            indicatorName={indicator}
-            schemeSlug={props.currentSlug}
-            indicatorData={props.schemeData.data}
-          />
-        ))}
+        {searchedData.map((indicator, index) => {
+          if (props.schemeData.data[indicator])
+            return (
+              <IndicatorRadioButton
+                checked={indicator === props.activeIndicator}
+                key={index}
+                indicatorName={indicator}
+                schemeSlug={props.currentSlug}
+                indicatorData={props.schemeData.data}
+              />
+            );
+          return null;
+        })}
       </div>
     </div>
   );

@@ -1,34 +1,33 @@
 .scheme__related {
-  margin-bottom: 3rem;
+	margin-bottom: 3rem;
 
-  .related {
-    &__header {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 1rem;
+	.related {
+		&__header {
+			display: flex;
+			justify-content: space-between;
+			padding: 0 1rem;
 
-      h3 {
-        font-size: 1.5rem;
-        font-weight: 400;
-      }
+			h3 {
+				font-size: 1.5rem;
+				font-weight: 400;
+			}
 
-      a {
-        color: #004fa4;
-      }
-    }
+			a {
+				color: #004fa4;
+			}
+		}
 
-    &__cards {
-      padding-left: 0;
-      position: relative;
-      display: flex;
-      overflow-x: scroll;
-      user-select: none;
-      scrollbar-width: none;
+		&__cards {
+			position: relative;
+			display: flex;
+			overflow-x: scroll;
+			user-select: none;
+			padding: 1rem 0;
 
-      .card {
-        margin-right: 2rem;
-        min-width: 270px;
-      }
-    }
-  }
+			.card {
+				margin-right: 2rem;
+				min-width: 270px;
+			}
+		}
+	}
 }

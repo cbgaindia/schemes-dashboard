@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 
 const SchemeNews = () => {
   const [recentDevelopments, setRecentDevelopments] = useState([]);
-  const [currentSlide, setCurrentSlide] = useState([0, 1]);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const router = useRouter();
 
   useEffect(() => {
@@ -15,21 +15,26 @@ const SchemeNews = () => {
       const currentScheme = Object.keys(SchemesData).find(
         (eachScheme) => SchemesData[eachScheme].dataId == router.query.scheme
       );
-      setRecentDevelopments(res[currentScheme]);
+      if (res[currentScheme]) {
+        const recentDevelopmentsArray = [];
+        while (res[currentScheme].length) {
+          recentDevelopmentsArray.push(res[currentScheme].splice(0, 2));
+        }
+        setRecentDevelopments(recentDevelopmentsArray);
+      }
     });
-  }, []);
+    return () => {
+      setRecentDevelopments([]);
+    };
+  }, [router.query.scheme]);
 
   function updateSchemes(pos) {
     const len = recentDevelopments.length - 1;
-    if (pos == -1 && currentSlide[0] == 0) {
-      setCurrentSlide([len - 1, len]);
-    } else if (pos == 1 && currentSlide[1] == len) {
-      setCurrentSlide([0, 1]);
-    } else
-      setCurrentSlide((prevState) => [
-        prevState[0] + pos * 2,
-        prevState[1] + pos * 2,
-      ]);
+    if (pos == -1 && currentSlide == 0) {
+      setCurrentSlide(len);
+    } else if (pos == 1 && currentSlide == len) {
+      setCurrentSlide(0);
+    } else setCurrentSlide((prevState) => prevState + pos);
   }
 
   return (
@@ -75,22 +80,13 @@ const SchemeNews = () => {
       </div>
       <ul className="news__container">
         {recentDevelopments.length > 0 ? (
-          currentSlide.map((slideNum, index) => (
-            <li className="news__card">
-              <a
-                key={`news-${index}`}
-                href={recentDevelopments[slideNum].link}
-                rel="noreferrer"
-                className="news__link"
-              >
-                <h4 className="news__title">
-                  {recentDevelopments[slideNum].title}
-                </h4>
-                <p className="news__text">
-                  {recentDevelopments[slideNum].text}
-                </p>
+          recentDevelopments[currentSlide].map((news, index) => (
+            <li className="news__card" key={`news-${index}`}>
+              <a href={news.link} rel="noreferrer" className="news__link">
+                <h4 className="news__title">{news.title}</h4>
+                <p className="news__text">{news.text}</p>
                 <p className="news__accessed">
-                  Accessed On: {recentDevelopments[slideNum].accessed_on}
+                  Accessed On: {news.accessed_on}
                 </p>
               </a>
             </li>

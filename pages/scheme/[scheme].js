@@ -129,22 +129,26 @@ const Scheme = ({ scheme }) => {
               view={activeViz}
               handleChangeViz={handleChangeViz}
             />
+            {activeIndicator && (
+              <>
+                <IndicatorSelector
+                  schemeData={scheme}
+                  activeIndicator={activeIndicator}
+                  currentSlug={router.query.scheme}
+                />
 
-            <IndicatorSelector
-              schemeData={scheme}
-              activeIndicator={activeIndicator}
-              currentSlug={router.query.scheme}
-            />
-            <SchemeDetailsView
-              showViz={showViz}
-              activeViz={activeViz}
-              handleToggleShowViz={handleToggleShowViz}
-              schemeData={scheme}
-              activeIndicator={activeIndicator}
-              activeYear={activeYear}
-              stateCodes={stateCodes}
-              setYearChange={setYearChange}
-            />
+                <SchemeDetailsView
+                  showViz={showViz}
+                  activeViz={activeViz}
+                  handleToggleShowViz={handleToggleShowViz}
+                  schemeData={scheme}
+                  activeIndicator={activeIndicator}
+                  activeYear={activeYear}
+                  stateCodes={stateCodes}
+                  setYearChange={setYearChange}
+                />
+              </>
+            )}
           </div>
 
           <SchemeNews />

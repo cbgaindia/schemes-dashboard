@@ -1075,7 +1075,6 @@ button {
   color: #004fa4;
 }
 .scheme__related .related__cards {
-  padding-left: 0;
   position: relative;
   display: flex;
   overflow-x: scroll;
@@ -1083,7 +1082,7 @@ button {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  scrollbar-width: none;
+  padding: 1rem 0;
 }
 .scheme__related .related__cards .card {
   margin-right: 2rem;
@@ -1106,26 +1105,27 @@ button {
   color: #004fa4;
 }
 .news__container {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
   gap: 2rem;
   padding-left: 0;
+  justify-content: flex-start;
 }
 .news__card {
   background: #ffffff;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
   border-radius: 12px;
-  height: 220px;
-  height: clamp(300px, 100%, 400px);
   padding: 1rem 0.75rem;
-  max-width: 47%;
   border: 2px solid #ffffff;
+  max-width: 640px;
 }
 .news__card:hover {
   border-color: #4b4797;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.14);
   border-radius: 12px;
   cursor: pointer;
+}
+.news__card:last-of-type {
+  grid-column: 2/3;
 }
 .news__link {
   display: grid;
@@ -1158,10 +1158,10 @@ button {
   font-size: 0.8rem;
 }
 .news__controls button {
-  background: #4B4797;
+  background: #4b4797;
   border-radius: 5px;
   border: none;
-  padding: 0.25rem 0.75rem;
+  padding: 0 0.75rem;
   color: white;
   font-size: 1.5rem;
 }

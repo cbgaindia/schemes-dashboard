@@ -1,18 +1,18 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import IndicatorDefinition from 'components/views/indicatorDefinitions';
 import GraphComponent from 'components/views/graphComponent';
 import Table from 'components/views/table';
 
 const SchemesDetailsView = (props) => {
-  const Choropleth = React.useMemo(
-    () =>
-      dynamic(() => import('components/views/choropleth'), {
-        loading: () => <p>A map is loading</p>,
-        ssr: false,
-      }),
-    []
-  );
+  // const Choropleth = React.useMemo(
+  //   () =>
+  //     dynamic(() => import('components/views/choropleth'), {
+  //       loading: () => <p>A map is loading</p>,
+  //       ssr: false,
+  //     }),
+  //   []
+  // );
 
   const indicatorName =
     props.schemeData.data[props.activeIndicator] &&

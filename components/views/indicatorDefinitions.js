@@ -1,5 +1,4 @@
 import React from 'react';
-import InfoIcon from 'public/Images/info-icon.svg';
 
 const IndicatorDefinitionView = (props) => {
   const indicators = Object.keys(props.indicatorData);
@@ -7,7 +6,6 @@ const IndicatorDefinitionView = (props) => {
     <div className="scheme__notes">
       <div className="notes__notice">
         <div className="notes__decoration" />
-        {/* <InfoIcon /> */}
         <p className="page-introduction-text">{props.schemeData.description}</p>
       </div>
       {indicators.map((indicator) => (
