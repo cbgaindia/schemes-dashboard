@@ -1,8 +1,11 @@
 import { read, utils as xlsxUtil } from 'xlsx';
 
 export function generateSlug(slug) {
-  const temp = slug.toLowerCase().replace(/\W/g, '-'); // lower case and replace space & special chars witn '-'
-  return temp.replace(/-+/g, '-').replace(/-$/, ''); // remove multiple '-' and remove '-' from end of string
+  if (slug) {
+    const temp = slug.toLowerCase().replace(/\W/g, '-'); // lower case and replace space & special chars witn '-'
+    return temp.replace(/-+/g, '-').replace(/-$/, ''); // remove multiple '-' and remove '-' from end of string
+  }
+  return null;
 }
 
 async function fetchQuery(query, value) {
@@ -74,12 +77,12 @@ export async function dataTransform(id) {
     });
 
     obj.metadata = {
-      description: metaObj['scheme-description'],
-      name,
-      frequency: metaObj.frequency,
-      source: metaObj['data-source'],
-      type,
-      note: metaObj['note:'],
+      description: metaObj['scheme-description'] || '',
+      name: name || '',
+      frequency: metaObj.frequency || '',
+      source: metaObj['data-source'] || '',
+      type: type || '',
+      note: metaObj['note:'] || '',
     };
 
     // Tabular Data
@@ -100,11 +103,11 @@ export async function dataTransform(id) {
         ...obj.data,
         [`indicator_0${i - 2}`]: {
           fiscal_year,
-          name: metaObj[`indicator-${i - 2}-name`],
-          description: metaObj[`indicator-${i - 2}-description`],
-          note: metaObj[`indicator-${i - 2}-note`],
-          slug: generateSlug(metaObj[`indicator-${i - 2}-name`]),
-          unit: metaObj[`indicator-${i - 2}-unit`],
+          name: metaObj[`indicator-${i - 2}-name`] || '',
+          description: metaObj[`indicator-${i - 2}-description`] || '',
+          note: metaObj[`indicator-${i - 2}-note`] || '',
+          slug: generateSlug(metaObj[`indicator-${i - 2}-name`]) || '',
+          unit: metaObj[`indicator-${i - 2}-unit`] || '',
         },
       };
     }
@@ -125,12 +128,12 @@ export async function fetchNews() {
     allNews.forEach((news, index) => {
       if (!index == 0) {
         const resultArr = {
-          title: news[2],
-          text: news[3],
+          title: news[2] || '',
+          text: news[3] || '',
           img: news[4] || '',
-          accessed_on: news[5],
+          accessed_on: news[5] || '',
           class: news[6] || '',
-          link: news[7],
+          link: news[7] || '',
         };
 
         if (result[news[0]]) {
