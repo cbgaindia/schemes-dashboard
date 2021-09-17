@@ -96,7 +96,7 @@ const SchemesData = {
     slug: 'sbmu',
     dataId:
       'https://openbudgetsindia.org/api/3/action/package_show?id=swachh-bharat-abhiyan-urban',
-    name: 'Swachh Bharat Abhiyan - Urban (SBM-U) (SBMU)',
+    name: 'Swachh Bharat Abhiyan - Urban (SBM-U)',
   },
   scheme_sbmg: {
     logo: sbmu,
