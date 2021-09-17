@@ -4,6 +4,7 @@ import * as topojson from 'topojson-client';
 import { MapContainer, TileLayer, FeatureGroup, GeoJSON } from 'react-leaflet';
 import { TopojsonData } from 'Data/StatesTopojson';
 import { statesTopojson } from 'Data/IndiaStates';
+import 'leaflet/dist/leaflet.css';
 
 const config = {};
 
@@ -326,7 +327,8 @@ export default class Choropleth extends Component {
           zoom={config.params.zoom}
           zoomControl={config.params.zoomControl}
           dragging={config.params.dragging}
-          whenCreated={e => e.invalidateSize}
+          whenCreated={e => e.invalidateSize()}
+          whenReady={e => e.target.invalidateSize()}
           id={config.params.id}
         >
           <TileLayer
