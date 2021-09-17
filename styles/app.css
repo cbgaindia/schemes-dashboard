@@ -739,6 +739,9 @@ button {
     height: 89%;
   }
 }
+.indicator__wrapper label {
+  margin: 1rem 0.25rem 0.25rem;
+}
 @media (min-width: 1025px) {
   .indicator {
     width: clamp(250px, 100%, 300px);
@@ -851,10 +854,6 @@ button {
   top: 16px;
 }
 
-.indicator__option {
-  margin: 1rem 0.25rem 0.25rem;
-}
-
 .indicator__radio:checked, .indicator__radio:not(:checked) {
   position: absolute;
   left: -9999px;
@@ -912,7 +911,6 @@ button {
   font-size: 0.8rem;
   line-height: 165%;
   color: rgba(0, 0, 0, 0.7);
-  margin-top: 1rem;
 }
 
 .scheme__notes {

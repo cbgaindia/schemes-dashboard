@@ -1,83 +1,79 @@
-.indicator__option {
-  margin: 1rem 0.25rem 0.25rem;
-}
-
 .indicator__radio {
-  &:checked,
-  &:not(:checked) {
-    position: absolute;
-    left: -9999px;
+	&:checked,
+	&:not(:checked) {
+		position: absolute;
+		left: -9999px;
 
-    & + label {
-      position: relative;
-      padding-left: 28px;
-      cursor: pointer;
-      line-height: 150%;
-      display: inline-block;
-      color: rgba(0, 0, 0, 0.7);
+		& + label {
+			position: relative;
+			padding-left: 28px;
+			cursor: pointer;
+			line-height: 150%;
+			display: inline-block;
+			color: rgba(0, 0, 0, 0.7);
 
-      &:before {
-        content: "";
-        position: absolute;
-        left: -1px;
-        top: 3px;
-        width: 16px;
-        height: 16px;
-        background: #ffffff;
-        border: 1px solid rgba(0, 0, 0, 0.4);
-        border-radius: 100%;
-        box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.24);
-      }
+			&:before {
+				content: '';
+				position: absolute;
+				left: -1px;
+				top: 3px;
+				width: 16px;
+				height: 16px;
+				background: #ffffff;
+				border: 1px solid rgba(0, 0, 0, 0.4);
+				border-radius: 100%;
+				box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.24);
+			}
 
-      &:after {
-        content: "";
-        width: 8px;
-        height: 8px;
-        background: #ffffff;
-        position: absolute;
-        top: 8px;
-        left: 4px;
-        border-radius: 100%;
-        -webkit-transition: all 0.2s ease;
-        transition: all 0.2s ease;
-      }
-    }
+			&:after {
+				content: '';
+				width: 8px;
+				height: 8px;
+				background: #ffffff;
+				position: absolute;
+				top: 8px;
+				left: 4px;
+				border-radius: 100%;
+				-webkit-transition: all 0.2s ease;
+				transition: all 0.2s ease;
+			}
+		}
 
-    &:checked {
-      & + label {
-        color: #4b4797;
+		&:checked {
+			& + label {
+				color: #4b4797;
 
-        &:before {
-          background: #4b4797;
-        }
+				&:before {
+					background: #4b4797;
+				}
 
-        &:after {
-          opacity: 1;
-          -webkit-transform: scale(1);
-          transform: scale(1);
-        }
-      }
-    }
+				&:after {
+					opacity: 1;
+					-webkit-transform: scale(1);
+					transform: scale(1);
+				}
+			}
+		}
 
-    &:not(:checked) {
-      & + label {
-        &:before {
-          background: #ffffff;
-        }
+		&:not(:checked) {
+			& + label {
+				&:before {
+					background: #ffffff;
+				}
 
-        &:after {
-          opacity: 0;
-          -webkit-transform: scale(0);
-          transform: scale(0);
-        }
-      }
-    }
-  }
+				&:after {
+					opacity: 0;
+					-webkit-transform: scale(0);
+					transform: scale(0);
+				}
+			}
+		}
+	}
 }
 
 .indicator__text {
-  font-size: 0.8rem;
-  line-height: 165%;
-  color: rgba(0, 0, 0, 0.7);
-  margin-top: 1rem;
+	font-size: 0.8rem;
+	line-height: 165%;
+	color: rgba(0, 0, 0, 0.7);
+	// margin-top: 1rem;
 }

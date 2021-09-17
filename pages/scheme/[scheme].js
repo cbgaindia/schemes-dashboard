@@ -51,7 +51,6 @@ const stateCodes = {
 };
 
 const Scheme = ({ scheme }) => {
-  console.log(scheme);
   const [showViz, setShowViz] = useState(true);
   const [activeViz, setActiveViz] = useState('map');
   const [activeIndicator, setActiveIndicator] = useState('');

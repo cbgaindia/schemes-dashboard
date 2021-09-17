@@ -3,10 +3,7 @@ import { useRouter } from 'next/router';
 
 const IndicatorRadioButton = (props) => {
   const router = useRouter();
-  console.log(props.checked);
-
   const handleClick = (e) => {
-    e.preventDefault();
     router.push(
       {
         pathname: `/scheme/${props.schemeSlug}`,
@@ -28,7 +25,7 @@ const IndicatorRadioButton = (props) => {
     );
   };
   return (
-    <div className="indicator__option" key={`indicator_${props.index}`}>
+    <React.Fragment key={`indicator_${props.index}`}>
       <input
         tabIndex="0"
         type="radio"
@@ -48,7 +45,7 @@ const IndicatorRadioButton = (props) => {
           {props.indicatorData[props.indicatorName].description}
         </p>
       ) : null}
-    </div>
+    </React.Fragment>
   );
 };
 

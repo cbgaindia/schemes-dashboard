@@ -24,6 +24,10 @@
 		@include respond-to('mt-laptop') {
 			height: 89%;
 		}
+
+		label {
+			margin: 1rem 0.25rem 0.25rem;
+		}
 	}
 
 	@include respond-to('mt-laptop') {
