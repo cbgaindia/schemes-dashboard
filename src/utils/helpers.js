@@ -165,8 +165,8 @@ export async function fetchRelated(name, type, data) {
     similar.forEach((scheme) => {
       otherSchemes.push({
         title: scheme.extras[0].value,
-        link: `/scheme/${newObj[scheme.extras[0].value].slug}`,
-        img: newObj[scheme.extras[0].value].logo,
+        link: newObj[scheme.extras[0].value] ? `/scheme/${newObj[scheme.extras[0].value].slug}` : '#',
+        img:  newObj[scheme.extras[0].value] ? newObj[scheme.extras[0].value].logo : 'Brand',
       });
     });
   });
