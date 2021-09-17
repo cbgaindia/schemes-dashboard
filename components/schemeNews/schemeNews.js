@@ -40,7 +40,7 @@ const SchemeNews = () => {
   return (
     <div className="news">
       <div className="news__heading">
-        <h3>Other Schemes</h3>
+        <h3>Recent Developments</h3>
         <div className="news__controls">
           <button
             type="button"

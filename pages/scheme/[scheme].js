@@ -51,6 +51,7 @@ const stateCodes = {
 };
 
 const Scheme = ({ scheme }) => {
+  console.log(scheme);
   const [showViz, setShowViz] = useState(true);
   const [activeViz, setActiveViz] = useState('map');
   const [activeIndicator, setActiveIndicator] = useState('');
@@ -114,8 +115,12 @@ const Scheme = ({ scheme }) => {
 
   return (
     <>
+      <div className="skiptarget">
+        <span id="maincontent">-</span>
+      </div>
+
       {!loading && (
-        <main className="wrapper scheme">
+        <main id="main" className="wrapper scheme">
           <Seo seo={seo} />
           <SchemeIntroduction
             data={scheme.metadata}

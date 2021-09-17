@@ -7,11 +7,15 @@ import Dropdown from 'components/dropdown/dropdown';
 
 const socialMediaLinks = [
   {
+    name: 'facebook',
+    text: 'Facebook Share',
     link: 'https://www.facebook.com/OpenBudgetsIndia',
     image: FacebookIcon,
     share: 'https://www.facebook.com/sharer/sharer.php?u=',
   },
   {
+    name: 'twitter',
+    text: 'Twitter Share',
     link: 'https://twitter.com/OpenBudgetsIn',
     image: TwitterIcon,
     share: 'https://twitter.com/intent/tweet?text=Share on twitter&url=',
@@ -78,7 +82,7 @@ export default function SchemeIntroduction(props) {
           <div className="social__links-container">
             {socialMediaLinks.map((link, index) => (
               <a
-                href="#social"
+                href="#"
                 key={`socialLink-${index}`}
                 className="social__link"
                 onClick={() =>
@@ -87,6 +91,7 @@ export default function SchemeIntroduction(props) {
                   )
                 }
               >
+                <span className="screen-reader-text">{link.text}</span>
                 <link.image />
               </a>
             ))}

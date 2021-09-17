@@ -1,12 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-// import { GlobalContext } from 'pages/_app';
 import Image from 'next/image';
 import OBI from 'public/assets/obi_header.png';
 
 const Header = () => (
-  // const { title } = useContext(GlobalContext);
-
   <header className="header">
     <div className="header__container wrapper">
       <section className="branding">

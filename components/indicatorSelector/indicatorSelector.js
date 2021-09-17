@@ -13,7 +13,7 @@ const IndicatorSelector = (props) => {
       return name.includes(searchTerm);
     });
     setSearchedData(filteredData);
-  }, [searchTerm, props.schemeData]);
+  }, [searchTerm, props]);
 
   const handleChangeSearchTerm = (e) => {
     setSearchTerm(e.target.value.toLowerCase());
@@ -22,7 +22,8 @@ const IndicatorSelector = (props) => {
   return (
     <div className="indicator">
       <SearchBar handleChangeSearchTerm={handleChangeSearchTerm} />
-      <div className="indicator__wrapper">
+      <fieldset className="indicator__wrapper">
+        <legend className="screen-reader-text">Select Indicator</legend>
         {searchedData.map((indicator, index) => {
           if (props.schemeData.data[indicator])
             return (
@@ -36,7 +37,7 @@ const IndicatorSelector = (props) => {
             );
           return null;
         })}
-      </div>
+      </fieldset>
     </div>
   );
 };
