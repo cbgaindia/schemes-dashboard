@@ -143,7 +143,7 @@ const SchemesData = {
   scheme_icps: {
     logo: icps,
     slug: 'icps',
-    data: 'https://openbudgetsindia.org/api/3/action/package_show?id=icps',
+    dataId: 'https://openbudgetsindia.org/api/3/action/package_show?id=icps',
     name: 'Integrated Child Protection Scheme (ICPS)',
   },
   scheme_pa: {
