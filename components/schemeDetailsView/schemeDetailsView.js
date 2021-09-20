@@ -105,6 +105,14 @@ const SchemesDetailsView = (props) => {
           <p>
             Data Source: <span className="text-dark">{dataSource}</span>
           </p>
+          <button
+            className="download-dropdown__item download-dropdown__button"
+            onClick={props.handleDownloadReportImage}
+            disabled={!props.showViz}
+            type="button"
+          >
+            Download Visualisation
+          </button>
         </div>
       </div>
     </div>

@@ -1,23 +1,20 @@
 import React from 'react';
 
 const Dropdown = (props) => (
-  <div className="download-dropdown">
-    <button
-      className="download-dropdown__item download-dropdown__button"
-      onClick={props.handleDownloadReportImage}
-      disabled={!props.showViz}
-      type="button"
+  <>
+    <label className="screen-reader-text" htmlFor="custom_select">
+      {props.heading}
+    </label>
+    <select
+      id="custom_select"
+      className="select-comp"
+      onChange={props.handleDropdownChange}
     >
-      Download Visualisation
-    </button>
-    <a
-      href="https://openbudgetsindia.org/organization/state-wise-schemes-data"
-      className="download-dropdown__item download-dropdown__link"
-      rel="noreferrer"
-    >
-      Go to Dataset
-    </a>
-  </div>
+      {props.options.map((option, index) => (
+        <option key={`dropdown-${index}`}>{option}</option>
+      ))}
+    </select>
+  </>
 );
 
 export default Dropdown;

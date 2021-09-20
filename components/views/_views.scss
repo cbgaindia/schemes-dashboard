@@ -1,3 +1,5 @@
+@use '../../styles/tools' as *;
+
 // Choropleth
 .select-panel {
 	overflow: hidden;
@@ -17,8 +19,8 @@
 
 .tcontainer {
 	position: absolute;
-	top: 25px;
-	right: 25px;
+	top: 1rem;
+	right: 0.5rem;
 	height: 10em;
 	z-index: 1600;
 	color: black;
@@ -42,11 +44,11 @@
 
 /* Legend */
 
-.legend-scale ul {
-	margin: 0;
-	padding: 0;
-	float: left;
-	list-style: none;
+.legend-scale {
+	background: linear-gradient(180deg, #441e75 0%, #d3d1ff 100%);
+	border-radius: 2px;
+	width: 1rem;
+	height: 8rem;
 }
 
 .legend-scale ul li {
@@ -78,15 +80,17 @@
 .legendcontainer {
 	position: absolute;
 	padding: 5px;
-	background: white;
-	border: 1px solid #cccccc;
 	bottom: 2em;
-	border-radius: 4px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
-	left: 2em;
-	font-weight: 700;
-	display: block;
-	z-index: 180000;
+	left: 1rem;
+	z-index: 999;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	span {
+		font-weight: 700;
+	}
 }
 
 .legend {
@@ -114,19 +118,24 @@
 
 .statetooltip {
 	position: absolute;
-	bottom: 2em;
-	right: 2em;
+	top: 1rem;
+	left: 0.5rem;
 	z-index: 10006;
 	color: black;
 	padding: 0.5em 0.75em;
 	font-size: 1em;
 	display: block;
-	width: 230px;
+	width: 12rem;
+	width: clamp(150px, 12rem, 235px);
 	height: 75px;
 	background-color: rgba(233, 234, 229, 0.9);
 	text-align: center;
 	line-height: 30px;
 	display: block;
+
+	@include respond-to('lt-mobile') {
+		display: none;
+	}
 }
 
 // Notes

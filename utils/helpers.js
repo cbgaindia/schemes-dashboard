@@ -1,17 +1,11 @@
 // Sort the chapters/sections based on their No.
 export function sortList(list) {
   list.sort((a, b) => {
-    let first;
-    let second;
-    if (a.Chapter_No) {
-      first = Number(a.Chapter_No);
-      second = Number(b.Chapter_No);
-    } else {
-      first = Number(a.Section_No);
-      second = Number(b.Section_No);
-    }
-    if (first < second) return -1;
-    if (first > second) return 1;
+    const first = Number(a.split('-')[0]);
+    const second = Number(b.split('-')[0]);
+
+    if (first > second) return -1;
+    if (first < second) return 1;
     return 0;
   });
   return list;

@@ -5,20 +5,23 @@ import { MapContainer, TileLayer, FeatureGroup, GeoJSON } from 'react-leaflet';
 import { TopojsonData } from 'Data/StatesTopojson';
 import { statesTopojson } from 'Data/IndiaStates';
 import 'leaflet/dist/leaflet.css';
+import CaretDown from 'public/Images/arrow/arrow_down.svg';
+import Dropdown from 'components/dropdown/dropdown';
+import {sortList} from 'utils/helpers';
 
 const config = {};
 
 config.params = {
   center: [23.59, 81.96],
-  zoomControl: true,
+  zoomControl: false,
   zoom: 4,
-  maxZoom: 5,
+  maxZoom: 7,
   minZoom: 4,
   scrollwheel: false,
   legends: true,
   infoControl: true,
   attributionControl: true,
-  dragging: false,
+  dragging: true,
   id: 'schemeMap',
 };
 
@@ -48,6 +51,7 @@ export default class Choropleth extends Component {
       hoverstate: null,
       hoverFigure: null,
       bandFigures: null,
+      minMax: null,
     };
 
     this.computeBands = this.computeBands.bind(this);
@@ -114,7 +118,10 @@ export default class Choropleth extends Component {
 
   computeBands(tempData, year) {
     const data = tempData;
+
     const currentState = this.state;
+
+
     let max = Math.max.apply(
       null,
       data.features.map((state, index) => {
@@ -127,7 +134,6 @@ export default class Choropleth extends Component {
         return null;
       })
     );
-    max += max * 0.1;
 
     let min = Math.min.apply(
       null,
@@ -141,7 +147,6 @@ export default class Choropleth extends Component {
         return null;
       })
     );
-    min -= Math.abs(min * 0.1);
 
     max = isNaN(parseFloat(max)) ? 0 : max;
     min = isNaN(parseFloat(min)) ? 0 : min;
@@ -180,7 +185,13 @@ export default class Choropleth extends Component {
         ],
       };
     }
+
+    console.log(retvalue);
+    console.log(min, max);
+    console.log(data.features);
+
     this.setState({ bandFigures: retvalue });
+    this.setState({ minMax: [max, min] });
   }
 
   mungeData() {
@@ -206,7 +217,7 @@ export default class Choropleth extends Component {
       );
       if (stateCode !== null) {
         const fiscalYears = Object.keys(this.props.schemeData.fiscal_year);
-        fiscalYears.map((year) => {
+        fiscalYears.forEach((year) => {
           let valueToSet = this.props.schemeData.fiscal_year[year][stateCode];
           valueToSet =
             valueToSet === 'NA' || valueToSet === undefined ? null : valueToSet;
@@ -367,45 +378,15 @@ export default class Choropleth extends Component {
           </FeatureGroup>
 
           <div className="legendcontainer">
-            <div className="legend-scale">
-              {this.state.bandFigures ? (
-                <ul className="legend-labels">
-                  <LegendStep
-                    bgColor="#D3D1FF"
-                    band="20%"
-                    range={this.state.bandFigures['20%']}
-                  />
-                  <LegendStep
-                    bgColor="#CEA8FF"
-                    band="40%"
-                    range={this.state.bandFigures['40%']}
-                  />
-                  <LegendStep
-                    bgColor="#AB71F5"
-                    band="60%"
-                    range={this.state.bandFigures['60%']}
-                  />
-                  <LegendStep
-                    bgColor="#7C46C2"
-                    band="80%"
-                    range={this.state.bandFigures['80%']}
-                  />
-                  <LegendStep
-                    bgColor="#441E75"
-                    band="100%"
-                    range={this.state.bandFigures['100%']}
-                  />
-                  <li>
-                    <span
-                      className="legendspanside"
-                      style={{ background: '#858585' }}
-                    >
-                      Data Unavailable
-                    </span>
-                  </li>
-                </ul>
-              ) : null}
-            </div>
+            {
+              this.state.minMax && 
+              <>
+                <span> {this.state.minMax[0]}</span>
+                <div className="legend-scale" />
+                <span> {this.state.minMax[1]}</span>
+            </>
+            }
+            
           </div>
           <div className="license-text">
             License -{' '}
@@ -434,24 +415,14 @@ export default class Choropleth extends Component {
 class YearSelector extends Component {
   render() {
     const { props } = this;
+    const fiscalList = sortList(props.fiscalYears)
+    
     return (
-      <div className="btn-group " role="group" aria-label="...">
-        {this.props.fiscalYears.map((item, index) => (
-          <button
-            type="button"
-            key={item}
-            value={item}
-            className={
-              props.selectedYear === item
-                ? 'btn btn-light focus shadow-none'
-                : 'btn btn-light shadow-none'
-            }
-            onClick={props.handleYearChange}
-          >
-            {item}
-          </button>
-        ))}
-      </div>
+      <Dropdown 
+      options={fiscalList} 
+      heading='Select Year' 
+      handleDropdownChange={props.handleYearChange} 
+      />
     );
   }
 }
@@ -461,7 +432,7 @@ class StateToolTip extends React.Component {
     if (this.props.statetooltip == null) {
       return (
         <div className="statetoolPanelHeading">
-          Please select a state from the map
+          Select a state
         </div>
       );
     }
@@ -497,21 +468,6 @@ class AllocationDetails extends React.Component {
         {this.props.allocations}{' '}
         {this.props.unit == 'Percentage' ? '%' : this.props.unit}
       </span>
-    );
-  }
-}
-
-class LegendStep extends React.Component {
-  render() {
-    return (
-      <li>
-        <span
-          className="legendspanside"
-          style={{ background: this.props.bgColor }}
-        >
-          {this.props.range[0].toFixed(2)} - {this.props.range[1].toFixed(2)}
-        </span>
-      </li>
     );
   }
 }

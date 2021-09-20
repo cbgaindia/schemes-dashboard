@@ -121,11 +121,7 @@ const Scheme = ({ scheme }) => {
       {!loading && (
         <main id="main" className="wrapper scheme">
           <Seo seo={seo} />
-          <SchemeIntroduction
-            data={scheme.metadata}
-            handleDownloadReportImage={handleDownloadReportImage}
-            showViz={showViz}
-          />
+          <SchemeIntroduction data={scheme.metadata} />
           <span className="horizontal-seperator" />
 
           <div className="scheme__container">
@@ -142,6 +138,7 @@ const Scheme = ({ scheme }) => {
                 />
 
                 <SchemeDetailsView
+                  handleDownloadReportImage={handleDownloadReportImage}
                   showViz={showViz}
                   activeViz={activeViz}
                   handleToggleShowViz={handleToggleShowViz}

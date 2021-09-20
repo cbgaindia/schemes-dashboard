@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import CaretDown from 'public/Images/arrow/arrow_down.svg';
-
+import React, { useEffect } from 'react';
 import FacebookIcon from 'public/Images/facebook-icon.svg';
 import TwitterIcon from 'public/Images/twitter-icon.svg';
-import Dropdown from 'components/dropdown/dropdown';
 
 const socialMediaLinks = [
   {
@@ -23,8 +20,6 @@ const socialMediaLinks = [
 ];
 
 export default function SchemeIntroduction(props) {
-  const [dropdownActive, setDropdownActive] = useState(false);
-
   useEffect(() => {
     const links = document.querySelectorAll('a[href="#social"');
     links.forEach((link) => {
@@ -33,10 +28,6 @@ export default function SchemeIntroduction(props) {
       });
     });
   }, []);
-
-  const handleToggleDropdown = (val) => {
-    setDropdownActive(val);
-  };
 
   return (
     <div className="scheme__intro">
@@ -49,20 +40,13 @@ export default function SchemeIntroduction(props) {
       <div className="scheme__heading">
         <h2 className="scheme__title">{props.data && props.data.name}</h2>
         <div className="scheme__download">
-          <button
-            type="button"
-            className="scheme__download-button"
-            onClick={() => handleToggleDropdown(!dropdownActive)}
+          <a
+            href="https://openbudgetsindia.org/organization/state-wise-schemes-data"
+            className="download-dropdown__item download-dropdown__link"
+            rel="noreferrer"
           >
-            <span>Download</span>
-            <CaretDown />
-          </button>
-          {dropdownActive ? (
-            <Dropdown
-              handleDownloadReportImage={props.handleDownloadReportImage}
-              showViz={props.showViz}
-            />
-          ) : null}
+            Go to Dataset
+          </a>
         </div>
       </div>
       <p className="scheme__desc">{props.data.description}</p>

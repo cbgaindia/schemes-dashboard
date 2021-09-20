@@ -80,6 +80,7 @@
 	}
 
 	&__controls {
+		display: flex;
 		@include control-button;
 	}
 
