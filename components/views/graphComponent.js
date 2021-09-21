@@ -143,11 +143,13 @@ class GraphComponent extends React.Component {
       }));
     return (
       <div className="scheme-compare">
+        <label htmlFor="selectInput">Select States</label>
         <Select
+          inputId="selectInput"
           isMulti
           simpleValue
           value={this.state.value}
-          placeholder="Select States"
+          placeholder=""
           noOptionsMessage={this.handleNoOptionsMessage}
           options={
             this.state.value.length < 15

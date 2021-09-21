@@ -27,7 +27,6 @@ const IndicatorRadioButton = (props) => {
   return (
     <React.Fragment key={`indicator_${props.index}`}>
       <input
-        tabIndex="0"
         type="radio"
         id={props.indicatorName}
         name="indicator-group"

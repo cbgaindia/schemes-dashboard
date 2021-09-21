@@ -114,16 +114,19 @@ const radioButtons = [
 ];
 
 const DatavizViewControls = (props) => (
-  <div className="scheme__controls">
+  <fieldset className="scheme__controls">
+    <legend className="screen-reader-text">Select Viz type: </legend>
     {radioButtons.map((radio, index) => (
       <React.Fragment key={`dataviz-${index}`}>
         <input
+          className="screen-reader-text"
           type="radio"
           id={radio.val}
-          name="radios"
+          name="viz-types"
           value={radio.val}
           onChange={(e) => props.handleChangeViz(e.target.value)}
           checked={radio.val === props.view}
+          readOnly="true"
         />
         <label className={radio.class} htmlFor={radio.val}>
           {radio.val === props.view ? radio.checkImage : radio.uncheckImage}
@@ -131,6 +134,6 @@ const DatavizViewControls = (props) => (
         </label>
       </React.Fragment>
     ))}
-  </div>
+  </fieldset>
 );
 export default DatavizViewControls;

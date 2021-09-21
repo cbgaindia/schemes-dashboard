@@ -186,24 +186,15 @@ export default class Choropleth extends Component {
       };
     }
 
-    console.log(retvalue);
-    console.log(min, max);
-    console.log(data.features);
-
     this.setState({ bandFigures: retvalue });
     this.setState({ minMax: [max, min] });
   }
 
   mungeData() {
-    const GeoJSONData = new topojson.feature(
-      TopojsonData,
-      TopojsonData.objects.india_state_boundaries
-    );
     const newGeoJsonData = new topojson.feature(
       statesTopojson,
       statesTopojson.objects.IndiaStates
     );
-    const { budgetAttr } = this.props;
     let MappedFigures = new Array();
 
     MappedFigures = newGeoJsonData.features.map((state, index) => {
