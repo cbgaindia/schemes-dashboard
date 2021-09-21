@@ -8,7 +8,7 @@ const SchemesDetailsView = (props) => {
   const Choropleth = React.useMemo(
     () =>
       dynamic(() => import('components/views/choropleth'), {
-        loading: () => <p>A map is loading</p>,
+        loading: () => <p>Map is loading</p>,
         ssr: false,
       }),
     []

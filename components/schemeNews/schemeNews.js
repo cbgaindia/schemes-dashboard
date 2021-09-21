@@ -1,35 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { fetchNews } from 'lib/api';
+import React, { useState } from 'react';
 import ReactPlaceholder from 'react-placeholder';
 import 'react-placeholder/lib/reactPlaceholder.css';
-import SchemesData from 'lib/schemesData';
-import { useRouter } from 'next/router';
 
-const SchemeNews = () => {
-  const [recentDevelopments, setRecentDevelopments] = useState([]);
+const SchemeNews = ({ newsData }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const router = useRouter();
-
-  useEffect(() => {
-    fetchNews().then((res) => {
-      const currentScheme = Object.keys(SchemesData).find(
-        (eachScheme) => SchemesData[eachScheme].dataId == router.query.scheme
-      );
-      if (res[currentScheme]) {
-        const recentDevelopmentsArray = [];
-        while (res[currentScheme].length) {
-          recentDevelopmentsArray.push(res[currentScheme].splice(0, 2));
-        }
-        setRecentDevelopments(recentDevelopmentsArray);
-      }
-    });
-    return () => {
-      setRecentDevelopments([]);
-    };
-  }, [router.query.scheme]);
 
   function updateSchemes(pos) {
-    const len = recentDevelopments.length - 1;
+    const len = newsData.length - 1;
     if (pos == -1 && currentSlide == 0) {
       setCurrentSlide(len);
     } else if (pos == 1 && currentSlide == len) {
@@ -79,8 +56,8 @@ const SchemeNews = () => {
         </div>{' '}
       </div>
       <ul className="news__container">
-        {recentDevelopments.length > 0 ? (
-          recentDevelopments[currentSlide].map((news, index) => (
+        {newsData.length > 0 ? (
+          newsData[currentSlide].map((news, index) => (
             <li className="news__card" key={`news-${index}`}>
               <a href={news.link} rel="noreferrer" className="news__link">
                 <h4 className="news__title">{news.title}</h4>
@@ -95,7 +72,7 @@ const SchemeNews = () => {
           <ReactPlaceholder
             type="text"
             rows={6}
-            ready={recentDevelopments.length > 0}
+            ready={newsData.length > 0}
             delay={1000}
             style={{ width: '360px' }}
           />

@@ -30,6 +30,7 @@
 	}
 
 	&__cards {
+		min-height: 90vh;
 		margin: 2rem auto;
 		display: grid;
 		grid-template-rows: max-content;

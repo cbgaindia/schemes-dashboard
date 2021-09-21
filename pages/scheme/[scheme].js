@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Seo from 'components/seo/seo';
-import { dataTransform } from 'lib/api';
+import { dataTransform, fetchRelated, fetchNews } from 'lib/api';
 import SchemeIntroduction from 'components/schemeIntroduction/schemeIntroduction';
 import domtoimage from 'dom-to-image';
 import DatavizViewControls from 'components/datavizViewControls/datavizViewControls';
@@ -50,7 +50,7 @@ const stateCodes = {
   37: 'Puducherry',
 };
 
-const Scheme = ({ scheme }) => {
+const Scheme = ({ scheme, related, news }) => {
   const [showViz, setShowViz] = useState(true);
   const [activeViz, setActiveViz] = useState('map');
   const [activeIndicator, setActiveIndicator] = useState('');
@@ -152,9 +152,9 @@ const Scheme = ({ scheme }) => {
             )}
           </div>
 
-          <SchemeNews />
+          <SchemeNews newsData={news} />
 
-          <RelatedSchemes scheme={scheme} />
+          <RelatedSchemes related={related} />
         </main>
       )}
     </>
@@ -178,9 +178,14 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const scheme = await dataTransform(params.scheme);
+  const related = await fetchRelated(
+    scheme.metadata.name,
+    scheme.metadata.type
+  );
+  const news = await fetchNews(params.scheme);
 
   return {
-    props: { scheme },
+    props: { scheme, related, news },
     revalidate: 1,
   };
 }

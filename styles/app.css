@@ -38,8 +38,7 @@ a {
   }
 }
 
-:focus-visible,
-a:focus {
+:focus-visible {
   outline-width: 3px;
   outline-color: #78aeda;
   outline-style: solid;
@@ -499,6 +498,7 @@ button {
   }
 }
 .home__cards {
+  min-height: 90vh;
   margin: 2rem auto;
   display: grid;
   grid-template-rows: -webkit-max-content;
@@ -597,7 +597,7 @@ button {
   color: rgba(0, 0, 0, 0.7);
 }
 .scheme__meta > p {
-  justify-self: start;
+  justify-self: flex-start;
   margin-bottom: 0.8rem;
 }
 .scheme__meta--dark {
@@ -713,11 +713,6 @@ button {
   width: max-content;
   justify-self: end;
 }
-.scheme__controls:focus-visible {
-  outline-width: 3px;
-  outline-color: #78aeda;
-  outline-style: solid;
-}
 @media (max-width: 1024px) {
   .scheme__controls {
     grid-column: 1/2;
@@ -728,8 +723,8 @@ button {
   align-items: center;
   background-color: #ffffff;
   border-radius: 4px;
-  padding: 8px 12px;
-  font-size: 12px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.8rem;
   color: #4b4797;
   cursor: pointer;
   margin: 0;
@@ -782,6 +777,9 @@ button {
 .indicator__wrapper label {
   margin: 1rem 0.25rem 0.25rem;
   width: 100%;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
 }
 @media (min-width: 1025px) {
   .indicator {
@@ -933,18 +931,16 @@ button {
 }
 .indicator__radio:checked + label, .indicator__radio:not(:checked) + label {
   position: relative;
-  padding-left: 1.7rem;
   padding-right: 1rem;
   cursor: pointer;
   line-height: 150%;
-  display: inline-block;
   color: rgba(0, 0, 0, 0.7);
 }
 .indicator__radio:checked + label:before, .indicator__radio:not(:checked) + label:before {
+  margin-top: 0.3rem;
   content: "";
-  position: absolute;
-  left: -1px;
-  top: 7px;
+  min-width: 16px;
+  min-height: 16px;
   width: 16px;
   height: 16px;
   background: #ffffff;
@@ -954,13 +950,13 @@ button {
 }
 .indicator__radio:checked + label:after, .indicator__radio:not(:checked) + label:after {
   content: "";
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   background: #ffffff;
   position: absolute;
-  top: 12px;
+  top: 0.5rem;
   left: 4px;
-  border-radius: 100%;
+  border-radius: 50%;
   transition: all 0.2s ease;
 }
 .indicator__radio:checked:checked + label, .indicator__radio:not(:checked):checked + label {
@@ -1383,6 +1379,9 @@ button {
   margin-right: 0.5rem;
 }
 
+.scheme {
+  min-height: 90vh;
+}
 .scheme__container {
   display: grid;
   gap: 1.5rem;

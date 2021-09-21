@@ -11,24 +11,25 @@
 @use '../../components/schemeNews/schemeNews';
 
 .scheme {
-  &__container {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: 300px minmax(0, 1fr);
+	min-height: 90vh;
 
-    @include respond-to('lt-laptop') {
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(3, max-content)
-    }
-  }
+	&__container {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 300px minmax(0, 1fr);
 
-  &__viz {
-    display: flex;
-    gap: 1.5rem;
+		@include respond-to('lt-laptop') {
+			grid-template-columns: 1fr;
+			grid-template-rows: repeat(3, max-content);
+		}
+	}
 
-    @include respond-to('lt-laptop') {
-      flex-wrap: wrap;
+	&__viz {
+		display: flex;
+		gap: 1.5rem;
 
-    }
-  }
+		@include respond-to('lt-laptop') {
+			flex-wrap: wrap;
+		}
+	}
 }

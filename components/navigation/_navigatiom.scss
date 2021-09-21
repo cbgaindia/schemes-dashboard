@@ -15,8 +15,8 @@
 	}
 	&__section {
 		width: 100%;
-		
-		&:last-of-type{
+
+		&:last-of-type {
 			width: fit-content;
 			justify-self: end;
 		}
@@ -46,7 +46,7 @@
 		}
 
 		&--back {
-			justify-self: start;
+			justify-self: flex-start;
 			span {
 				padding-left: 1rem;
 			}
