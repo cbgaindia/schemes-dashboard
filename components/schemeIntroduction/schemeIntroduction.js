@@ -39,15 +39,22 @@ export default function SchemeIntroduction(props) {
       </p>
       <div className="scheme__heading">
         <h2 className="scheme__title">{props.data && props.data.name}</h2>
-        <div className="scheme__download">
-          <a
-            href="https://openbudgetsindia.org/organization/state-wise-schemes-data"
-            className="download-dropdown__item download-dropdown__link"
-            rel="noreferrer"
-          >
-            Go to Dataset
-          </a>
-        </div>
+        <a
+          href="https://openbudgetsindia.org/organization/state-wise-schemes-data"
+          className="scheme__dataset"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Dataset
+          <span className="screen-reader-text"> :opens in new window</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125">
+            <g fill="white" fillRule="evenodd">
+              <g fill="white">
+                <path d="M76 18 47 47a4 4 0 0 0 6 6l29-29v10a4 4 0 0 0 8 0V14a4 4 0 0 0-4-4H66a4 4 0 0 0 0 8h10Zm14 40V39v41c0 6-4 10-9 10H19c-5 0-9-4-9-10V20c0-6 4-10 9-10h43-20a4 4 0 1 1 0 8H20c-1 0-2 1-2 3v58c0 2 1 3 2 3h60c1 0 2-1 2-3V58a4 4 0 1 1 8 0Z" />
+              </g>
+            </g>
+          </svg>
+        </a>
       </div>
       <p className="scheme__desc">{props.data.description}</p>
       <div className="scheme__meta">
