@@ -26,7 +26,7 @@ const SchemeIntroduction = (props) => {
   const [dropdownActive, setDropdownActive] = useState(false);
 
   useEffect(() => {
-    const links = document.querySelectorAll('a[href="#social"');
+    const links = document.querySelectorAll('a[href="#social"]');
     links.forEach((link) => {
       link.addEventListener('click', (event) => {
         event.preventDefault();
