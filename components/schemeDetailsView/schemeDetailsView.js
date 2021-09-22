@@ -5,6 +5,8 @@ import GraphComponent from 'components/views/graphComponent';
 import Table from 'components/views/table';
 
 const SchemesDetailsView = (props) => {
+  console.log(props);
+
   const Choropleth = React.useMemo(
     () =>
       dynamic(() => import('components/views/choropleth'), {

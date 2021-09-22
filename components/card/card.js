@@ -5,7 +5,7 @@ export default function Card({ scheme }) {
   return (
     <li className="card">
       <Link href={`${scheme.link}`}>
-        <a className="card__link">
+        <a href={`${scheme.link}`} className="card__link">
           <h2 className="card__text">{scheme.title}</h2>
 
           <div className="card__image">

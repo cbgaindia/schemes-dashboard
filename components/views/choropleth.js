@@ -24,7 +24,7 @@ config.params = {
 	legends: true,
 	infoControl: true,
 	attributionControl: true,
-	dragging: true,
+	dragging: false,
 	id: 'schemeMap',
 }
 
@@ -128,6 +128,7 @@ export default class Choropleth extends Component {
 		const data = tempData
 
 		const currentState = this.state
+    console.log(this.props.schemeData.fiscal_year);
 
 		let max = Math.max.apply(
 			null,

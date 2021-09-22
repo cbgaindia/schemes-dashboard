@@ -21,7 +21,7 @@ const socialMediaLinks = [
 
 export default function SchemeIntroduction(props) {
   useEffect(() => {
-    const links = document.querySelectorAll('a[href="#social"');
+    const links = document.querySelectorAll('a[href="#social"]');
     links.forEach((link) => {
       link.addEventListener('click', (event) => {
         event.preventDefault();
