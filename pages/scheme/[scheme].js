@@ -91,6 +91,7 @@ const Scheme = ({ scheme, related, news }) => {
         node.getAttribute('class') !== 'statetooltip' &&
         node.getAttribute('class') !== 'tcontainer' &&
         node.getAttribute('class') !== 'select-container' &&
+        node.getAttribute('class') !== 'details__download' &&
         node.nodeType != 8 &&
         node.getAttribute('class') != 'see-details-text'
       );
@@ -120,44 +121,46 @@ const Scheme = ({ scheme, related, news }) => {
 
       {!loading && (
         <main id="main" className="wrapper scheme">
-          <Seo seo={seo} />
-          <SchemeIntroduction
-            data={scheme.metadata}
-            slug={router.query.scheme}
-          />
-          <span className="horizontal-seperator" />
-
-          <div className="scheme__container">
-            <DatavizViewControls
-              view={activeViz}
-              handleChangeViz={handleChangeViz}
+          <div style={{ minHeight: '90vh' }}>
+            <Seo seo={seo} />
+            <SchemeIntroduction
+              data={scheme.metadata}
+              slug={router.query.scheme}
             />
-            {activeIndicator && (
-              <>
-                <IndicatorSelector
-                  schemeData={scheme}
-                  activeIndicator={activeIndicator}
-                  currentSlug={router.query.scheme}
-                />
+            <span className="horizontal-seperator" />
 
-                <SchemeDetailsView
-                  handleDownloadReportImage={handleDownloadReportImage}
-                  showViz={showViz}
-                  activeViz={activeViz}
-                  handleToggleShowViz={handleToggleShowViz}
-                  schemeData={scheme}
-                  activeIndicator={activeIndicator}
-                  activeYear={activeYear}
-                  stateCodes={stateCodes}
-                  setYearChange={setYearChange}
-                />
-              </>
-            )}
+            <div className="scheme__container">
+              <DatavizViewControls
+                view={activeViz}
+                handleChangeViz={handleChangeViz}
+              />
+              {activeIndicator && (
+                <>
+                  <IndicatorSelector
+                    schemeData={scheme}
+                    activeIndicator={activeIndicator}
+                    currentSlug={router.query.scheme}
+                  />
+
+                  <SchemeDetailsView
+                    handleDownloadReportImage={handleDownloadReportImage}
+                    showViz={showViz}
+                    activeViz={activeViz}
+                    handleToggleShowViz={handleToggleShowViz}
+                    schemeData={scheme}
+                    activeIndicator={activeIndicator}
+                    activeYear={activeYear}
+                    stateCodes={stateCodes}
+                    setYearChange={setYearChange}
+                  />
+                </>
+              )}
+            </div>
+
+            <SchemeNews newsData={news} />
+
+            <RelatedSchemes related={related} />
           </div>
-
-          <SchemeNews newsData={news} />
-
-          <RelatedSchemes related={related} />
         </main>
       )}
     </>

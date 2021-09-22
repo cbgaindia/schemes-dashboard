@@ -121,14 +121,10 @@ export default class Choropleth extends Component {
 
 	handleClick(e) {
 		this.setState({ currentPos2: e.latlng })
-		console.log(e.latlng)
 	}
 
 	computeBands(tempData, year) {
 		const data = tempData
-
-		const currentState = this.state
-    console.log(this.props.schemeData.fiscal_year);
 
 		let max = Math.max.apply(
 			null,
@@ -229,7 +225,7 @@ export default class Choropleth extends Component {
 	}
 
 	getBandNum(figure) {
-		if (figure != null) {
+		if (figure) {
 			const { bandFigures } = this.state
 			const bandKeys = Object.keys(bandFigures)
 			for (const band in bandKeys) {
@@ -339,14 +335,12 @@ export default class Choropleth extends Component {
 					dragging={config.params.dragging}
 					whenCreated={(e) => e.invalidateSize()}
 					id={config.params.id}
-					onClick={(e) => this.handleClick(e)}
 				>
 					<TileLayer
 						url={config.tileLayer.uri}
 						maxZoom={config.params.maxZoom}
 						minZoom={config.params.minZoom}
 						attribution={config.tileLayer.params.attribution}
-						onClick={(e) => this.handleClick(e)}
 					/>
 
 					<div className="tcontainer">
@@ -394,14 +388,6 @@ export default class Choropleth extends Component {
 							rel="noreferrer"
 						>
 							CC-BY 4.0
-						</a>{' '}
-						|{' '}
-						<a
-							href="https://openbudgetsindia.org"
-							target="_blank"
-							rel="noreferrer"
-						>
-							Open Budgets India
 						</a>
 					</div>
 				</MapContainer>
