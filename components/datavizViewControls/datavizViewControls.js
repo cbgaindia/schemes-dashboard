@@ -126,7 +126,7 @@ const DatavizViewControls = (props) => (
           value={radio.val}
           onChange={(e) => props.handleChangeViz(e.target.value)}
           checked={radio.val === props.view}
-          readOnly="true"
+          readOnly
         />
         <label className={radio.class} htmlFor={radio.val}>
           {radio.val === props.view ? radio.checkImage : radio.uncheckImage}

@@ -1,464 +1,466 @@
 /* eslint-disable */
-import React, { Component } from 'react';
-import * as topojson from 'topojson-client';
-import { MapContainer, TileLayer, FeatureGroup, GeoJSON } from 'react-leaflet';
-import { TopojsonData } from 'Data/StatesTopojson';
-import { statesTopojson } from 'Data/IndiaStates';
-import 'leaflet/dist/leaflet.css';
-import CaretDown from 'public/Images/arrow/arrow_down.svg';
-import Dropdown from 'components/dropdown/dropdown';
-import {sortList} from 'utils/helpers';
+import React, { Component } from 'react'
+import * as topojson from 'topojson-client'
+import {
+	MapContainer,
+	TileLayer,
+	FeatureGroup,
+	GeoJSON,
+} from 'react-leaflet'
+import { statesTopojson } from 'Data/IndiaStates'
+import 'leaflet/dist/leaflet.css'
+import Dropdown from 'components/dropdown/dropdown'
+import { sortList } from 'utils/helpers'
 
-const config = {};
+const config = {}
 
 config.params = {
-  center: [23.59, 81.96],
-  zoomControl: false,
-  zoom: 4,
-  maxZoom: 7,
-  minZoom: 4,
-  scrollwheel: false,
-  legends: true,
-  infoControl: true,
-  attributionControl: true,
-  dragging: true,
-  id: 'schemeMap',
-};
+	center: [23.59, 81.96],
+	zoomControl: false,
+	zoom: 4,
+	maxZoom: 7,
+	minZoom: 4,
+	scrollwheel: false,
+	legends: true,
+	infoControl: true,
+	attributionControl: true,
+	dragging: true,
+	id: 'schemeMap',
+}
 
 config.tileLayer = {
-  uri: 'https://api.mapbox.com/styles/v1/suchismitanaik/cj1nivbus001x2sqqlhmct7du/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3VjaGlzbWl0YW5haWsiLCJhIjoiY2lqMmZ5N2N5MDAwZnVna25hcjE2b2Q1eCJ9.IYx8Zoc0yNPcp7Snd7yW2A',
-  params: {
-    minZoom: 4,
-    attribution:
-      '  © <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    accessToken: '',
-  },
-};
+	uri: 'https://api.mapbox.com/styles/v1/suchismitanaik/cj1nivbus001x2sqqlhmct7du/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3VjaGlzbWl0YW5haWsiLCJhIjoiY2lqMmZ5N2N5MDAwZnVna25hcjE2b2Q1eCJ9.IYx8Zoc0yNPcp7Snd7yW2A',
+	params: {
+		minZoom: 4,
+		attribution:
+			'  © <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+		accessToken: '',
+	},
+}
 
 config.geojson = {
-  weight: '1',
-  color: '#183152',
-  fill: true,
-};
+	weight: '1',
+	color: '#183152',
+	fill: true,
+}
 
 export default class Choropleth extends Component {
-  constructor() {
-    super();
-    this.state = {
-      budgetAttr: 'BE',
-      selectedYear: null,
-      selectedFigure: null,
-      hoverstate: null,
-      hoverFigure: null,
-      bandFigures: null,
-      minMax: null,
-    };
+	constructor() {
+		super()
+		this.state = {
+			budgetAttr: 'BE',
+			selectedYear: null,
+			selectedFigure: null,
+			hoverstate: null,
+			hoverFigure: null,
+			bandFigures: null,
+			minMax: null,
+			currentPos: null,
+		}
 
-    this.computeBands = this.computeBands.bind(this);
-    this.mungeData = this.mungeData.bind(this);
-    this.getYearList = this.getYearList.bind(this);
-    this.handleYearChange = this.handleYearChange.bind(this);
-    this.getstyle = this.getstyle.bind(this);
-    this.onEachFeature = this.onEachFeature.bind(this);
-    this.highlightFeature = this.highlightFeature.bind(this);
-    this.resetHighlight = this.resetHighlight.bind(this);
-    this.setToolTipContent = this.setToolTipContent.bind(this);
-    this.getBandNum = this.getBandNum.bind(this);
-    this.fillColor = this.fillColor.bind(this);
+		this.computeBands = this.computeBands.bind(this)
+		this.mungeData = this.mungeData.bind(this)
+		this.getYearList = this.getYearList.bind(this)
+		this.handleYearChange = this.handleYearChange.bind(this)
+		this.getstyle = this.getstyle.bind(this)
+		this.onEachFeature = this.onEachFeature.bind(this)
+		this.highlightFeature = this.highlightFeature.bind(this)
+		this.resetHighlight = this.resetHighlight.bind(this)
+		this.setToolTipContent = this.setToolTipContent.bind(this)
+		this.getBandNum = this.getBandNum.bind(this)
+		this.fillColor = this.fillColor.bind(this)
+		this.handleClick = this.handleClick.bind(this)
 
-    this.geojson = React.createRef(null);
-  }
+		this.geojson = React.createRef(null)
+	}
 
-  componentDidMount() {
-    const MappedFigures = this.mungeData();
-    this.setState({ selectedFigure: MappedFigures });
-    const defaultYear = this.getYearList(this.props.schemeData)[
-      this.getYearList(this.props.schemeData).length - 1
-    ];
-    this.props.setYearChange(defaultYear);
-    this.setState({
-      budgetAttr: this.props.budgetAttr,
-      selectedYear: defaultYear,
-    });
-    this.computeBands(MappedFigures, defaultYear);
+	componentDidMount() {
+		const MappedFigures = this.mungeData()
+		this.setState({ selectedFigure: MappedFigures })
+		const defaultYear = this.getYearList(this.props.schemeData)[
+			this.getYearList(this.props.schemeData).length - 1
+		]
+		this.props.setYearChange(defaultYear)
+		this.setState({
+			budgetAttr: this.props.budgetAttr,
+			selectedYear: defaultYear,
+		})
+		this.computeBands(MappedFigures, defaultYear)
+	}
 
-  
-  }
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.schemeData != this.props.schemeData) {
+			const MappedFigures = this.mungeData()
+			const yearList = this.getYearList(this.props.schemeData)
+			let flag = 0
+			for (const year in yearList) {
+				if (this.state.selectedYear == yearList[year]) {
+					flag = 1
+					break
+				}
+			}
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.schemeData != this.props.schemeData) {
-      const MappedFigures = this.mungeData();
-      const yearList = this.getYearList(this.props.schemeData);
-      let flag = 0;
-      for (const year in yearList) {
-        if (this.state.selectedYear == yearList[year]) {
-          flag = 1;
-          break;
-        }
-      }
+			if (flag == 0) {
+				this.computeBands(MappedFigures, yearList[yearList.length - 1])
+				this.setState({ selectedYear: yearList[yearList.length - 1] })
+				this.props.setYearChange(yearList[yearList.length - 1])
+			} else {
+				this.computeBands(MappedFigures, this.state.selectedYear)
+			}
+			this.setState({ selectedFigure: MappedFigures })
+		}
+		if (
+			prevState.selectedFigure != this.state.selectedFigure ||
+			prevState.selectedYear != this.state.selectedYear
+		) {
+			if (this.geojson.current) {
+				this.geojson.current.clearLayers().addData(this.state.selectedFigure)
+			}
+		}
+	}
 
-      if (flag == 0) {
-        this.computeBands(MappedFigures, yearList[yearList.length - 1]);
-        this.setState({ selectedYear: yearList[yearList.length - 1] });
-        this.props.setYearChange(yearList[yearList.length - 1]);
-      } else {
-        this.computeBands(MappedFigures, this.state.selectedYear);
-      }
-      this.setState({ selectedFigure: MappedFigures });
-    }
-    if (
-      prevState.selectedFigure != this.state.selectedFigure ||
-      prevState.selectedYear != this.state.selectedYear
-    ) {
-      if (this.geojson.current) {
-        this.geojson.current.clearLayers().addData(this.state.selectedFigure);
-      }
-    }    
-  }
+	handleClick(e) {
+		this.setState({ currentPos2: e.latlng })
+		console.log(e.latlng)
+	}
 
-  computeBands(tempData, year) {
-    const data = tempData;
+	computeBands(tempData, year) {
+		const data = tempData
 
-    const currentState = this.state;
+		const currentState = this.state
 
+		let max = Math.max.apply(
+			null,
+			data.features.map((state, index) => {
+				if (
+					state.properties[year] != null &&
+					!isNaN(parseFloat(state.properties[year]))
+				) {
+					return parseFloat(state.properties[year])
+				}
+				return null
+			})
+		)
 
-    let max = Math.max.apply(
-      null,
-      data.features.map((state, index) => {
-        if (
-          state.properties[year] != null &&
-          !isNaN(parseFloat(state.properties[year]))
-        ) {
-          return parseFloat(state.properties[year]);
-        }
-        return null;
-      })
-    );
+		let min = Math.min.apply(
+			null,
+			data.features.map((state, index) => {
+				if (
+					state.properties[year] != null &&
+					!isNaN(parseFloat(state.properties[year]))
+				) {
+					return parseFloat(state.properties[year])
+				}
+				return null
+			})
+		)
 
-    let min = Math.min.apply(
-      null,
-      data.features.map((state, index) => {
-        if (
-          state.properties[year] != null &&
-          !isNaN(parseFloat(state.properties[year]))
-        ) {
-          return parseFloat(state.properties[year]);
-        }
-        return null;
-      })
-    );
+		max = isNaN(parseFloat(max)) ? 0 : max
+		min = isNaN(parseFloat(min)) ? 0 : min
 
-    max = isNaN(parseFloat(max)) ? 0 : max;
-    min = isNaN(parseFloat(min)) ? 0 : min;
+		let retvalue = {}
+		if (min + (max - min) === 0) {
+			retvalue = {
+				'20%': [0, 0, 1],
+				'40%': [0, 0, 2],
+				'60%': [0, 0, 3],
+				'80%': [0, 0, 4],
+				'100%': [0, 0, 5],
+			}
+		} else {
+			retvalue = {
+				'20%': [min, min + (20 * (max - min)) / 100, 1],
+				'40%': [
+					min + (20 * (max - min)) / 100,
+					min + (40 * (max - min)) / 100,
+					2,
+				],
+				'60%': [
+					min + (40 * (max - min)) / 100,
+					min + (60 * (max - min)) / 100,
+					3,
+				],
+				'80%': [
+					min + (60 * (max - min)) / 100,
+					min + (80 * (max - min)) / 100,
+					4,
+				],
+				'100%': [
+					min + (80 * (max - min)) / 100,
+					min + (100 * (max - min)) / 100,
+					5,
+				],
+			}
+		}
 
-    let retvalue = {};
-    if (min + (max - min) === 0) {
-      retvalue = {
-        '20%': [0, 0, 1],
-        '40%': [0, 0, 2],
-        '60%': [0, 0, 3],
-        '80%': [0, 0, 4],
-        '100%': [0, 0, 5],
-      };
-    } else {
-      retvalue = {
-        '20%': [min, min + (20 * (max - min)) / 100, 1],
-        '40%': [
-          min + (20 * (max - min)) / 100,
-          min + (40 * (max - min)) / 100,
-          2,
-        ],
-        '60%': [
-          min + (40 * (max - min)) / 100,
-          min + (60 * (max - min)) / 100,
-          3,
-        ],
-        '80%': [
-          min + (60 * (max - min)) / 100,
-          min + (80 * (max - min)) / 100,
-          4,
-        ],
-        '100%': [
-          min + (80 * (max - min)) / 100,
-          min + (100 * (max - min)) / 100,
-          5,
-        ],
-      };
-    }
+		this.setState({ bandFigures: retvalue })
+		this.setState({ minMax: [max, min] })
+	}
 
-    this.setState({ bandFigures: retvalue });
-    this.setState({ minMax: [max, min] });
-  }
+	mungeData() {
+		const newGeoJsonData = new topojson.feature(
+			statesTopojson,
+			statesTopojson.objects.IndiaStates
+		)
+		let MappedFigures = new Array()
 
-  mungeData() {
-    const newGeoJsonData = new topojson.feature(
-      statesTopojson,
-      statesTopojson.objects.IndiaStates
-    );
-    let MappedFigures = new Array();
+		MappedFigures = newGeoJsonData.features.map((state, index) => {
+			for (const variable in state.properties) {
+				if (variable !== 'ST_NM') {
+					delete state.properties[variable]
+				}
+			}
+			const stateCode = Object.keys(this.props.stateCodes).find(
+				(code) => this.props.stateCodes[code] === state.properties.ST_NM
+			)
+			if (stateCode !== null) {
+				const fiscalYears = Object.keys(this.props.schemeData.fiscal_year)
+				fiscalYears.forEach((year) => {
+					let valueToSet = this.props.schemeData.fiscal_year[year][stateCode]
+					valueToSet =
+						valueToSet === 'NA' || valueToSet === undefined ? null : valueToSet
+					state.properties[year] = valueToSet
+				})
+			}
+			return state
+		})
+		return { type: 'FeatureCollection', features: MappedFigures }
+	}
 
-    MappedFigures = newGeoJsonData.features.map((state, index) => {
-      for (const variable in state.properties) {
-        if (variable !== 'ST_NM') {
-          delete state.properties[variable];
-        }
-      }
-      const stateCode = Object.keys(this.props.stateCodes).find(
-        (code) => this.props.stateCodes[code] === state.properties.ST_NM
-      );
-      if (stateCode !== null) {
-        const fiscalYears = Object.keys(this.props.schemeData.fiscal_year);
-        fiscalYears.forEach((year) => {
-          let valueToSet = this.props.schemeData.fiscal_year[year][stateCode];
-          valueToSet =
-            valueToSet === 'NA' || valueToSet === undefined ? null : valueToSet;
-          state.properties[year] = valueToSet;
-        });
-      }
-      return state;
-    });
-    return { type: 'FeatureCollection', features: MappedFigures };
-  }
+	getBandNum(figure) {
+		if (figure != null) {
+			const { bandFigures } = this.state
+			const bandKeys = Object.keys(bandFigures)
+			for (const band in bandKeys) {
+				if (
+					figure >= bandFigures[bandKeys[band]][0] &&
+					figure <= bandFigures[bandKeys[band]][1]
+				) {
+					return bandFigures[bandKeys[band]][2]
+				}
+			}
+		} else {
+			return 0
+		}
+	}
 
-  getBandNum(figure) {
-    if (figure != null) {
-      const { bandFigures } = this.state;
-      const bandKeys = Object.keys(bandFigures);
-      for (const band in bandKeys) {
-        if (
-          figure >= bandFigures[bandKeys[band]][0] &&
-          figure <= bandFigures[bandKeys[band]][1]
-        ) {
-          return bandFigures[bandKeys[band]][2];
-        }
-      }
-    } else {
-      return 0;
-    }
-  }
+	fillColor(band) {
+		if (band === 0 || band == null) {
+			return '#858585'
+		}
+		if (band === 1) {
+			return '#D3D1FF'
+		}
+		if (band === 2) {
+			return '#CEA8FF'
+		}
+		if (band === 3) {
+			return '#AB71F5'
+		}
+		if (band === 4) {
+			return '#7C46C2'
+		}
+		if (band === 5) {
+			return '#441E75'
+		}
+	}
 
-  fillColor(band) {
-    if (band === 0 || band == null) {
-      return '#858585';
-    }
-    if (band === 1) {
-      return '#D3D1FF';
-    }
-    if (band === 2) {
-      return '#CEA8FF';
-    }
-    if (band === 3) {
-      return '#AB71F5';
-    }
-    if (band === 4) {
-      return '#7C46C2';
-    }
-    if (band === 5) {
-      return '#441E75';
-    }
-  }
+	getstyle(feature) {
+		const { selectedYear } = this.state
+		return {
+			fillColor: this.fillColor(
+				this.getBandNum(feature.properties[selectedYear])
+			),
+			weight: 1.3,
+			opacity: 1,
+			color: 'grey',
+			dashArray: 0,
+			fillOpacity: 0.8,
+		}
+	}
 
-  getstyle(feature) {
-    const { selectedYear } = this.state;
-    return {
-      fillColor: this.fillColor(
-        this.getBandNum(feature.properties[selectedYear])
-      ),
-      weight: 1.3,
-      opacity: 1,
-      color: 'grey',
-      dashArray: 0,
-      fillOpacity: 0.8,
-    };
-  }
+	handleYearChange(e) {
+		this.computeBands(this.state.selectedFigure, e.target.value)
+		this.setState({ selectedYear: e.target.value })
+		this.props.setYearChange(e.target.value)
+	}
 
-  handleYearChange(e) {
-    this.computeBands(this.state.selectedFigure, e.target.value);
-    this.setState({ selectedYear: e.target.value });
-    this.props.setYearChange(e.target.value);
-  }
+	getYearList(data) {
+		let yearList = []
+		yearList = Object.keys(data.fiscal_year)
+		return yearList
+	}
 
-  getYearList(data) {
-    let yearList = [];
-    yearList = Object.keys(data.fiscal_year);
-    return yearList;
-  }
+	highlightFeature(e) {
+		const layer = e.target
+		this.setToolTipContent(e.target)
+		layer.setStyle({
+			weight: 2,
+			color: '#000',
+			fillOpacity: 0.9,
+		})
+	}
 
-  highlightFeature(e) {
-    const layer = e.target;
-    this.setToolTipContent(e.target);
-    layer.setStyle({
-      weight: 2,
-      color: '#000',
-      fillOpacity: 0.9,
-    });
-  }
+	resetHighlight(e) {
+		this.geojson.current.resetStyle(e.target)
+		this.resetTooltipContent()
+	}
 
-  resetHighlight(e) {
-    this.geojson.current.resetStyle(e.target);
-    this.resetTooltipContent();
-  }
+	onEachFeature(component, feature, layer) {
+		layer.on({
+			mouseover: this.highlightFeature,
+			mouseout: this.resetHighlight,
+		})
+	}
 
-  onEachFeature(component, feature, layer) {
-    layer.on({
-      mouseover: this.highlightFeature,
-      mouseout: this.resetHighlight,
-    });
-  }
+	setToolTipContent(values) {
+		this.setState({
+			hoverstate: values.feature.properties.ST_NM,
+			hoverFigure: values.feature.properties[this.state.selectedYear],
+		})
+	}
 
-  setToolTipContent(values) {
-    this.setState({
-      hoverstate: values.feature.properties.ST_NM,
-      hoverFigure: values.feature.properties[this.state.selectedYear],
-    });
-  }
+	resetTooltipContent() {
+		this.setState({ hoverstate: null, hoverFigure: null })
+	}
 
-  resetTooltipContent() {
-    this.setState({ hoverstate: null, hoverFigure: null });
-  }
+	showConcordanceData() {
+		this.setState({ vizActive: !this.state.vizActive })
+	}
 
-  showConcordanceData() {
-    this.setState({ vizActive: !this.state.vizActive });
-  }
+	render() {
+		return (
+			<div className="vis-wrapper">
+				<MapContainer
+					center={config.params.center}
+					zoom={config.params.zoom}
+					zoomControl={config.params.zoomControl}
+					dragging={config.params.dragging}
+					whenCreated={(e) => e.invalidateSize()}
+					id={config.params.id}
+					onClick={(e) => this.handleClick(e)}
+				>
+					<TileLayer
+						url={config.tileLayer.uri}
+						maxZoom={config.params.maxZoom}
+						minZoom={config.params.minZoom}
+						attribution={config.tileLayer.params.attribution}
+						onClick={(e) => this.handleClick(e)}
+					/>
 
-  render() {
-    return (
-      <div className="vis-wrapper">
-        <MapContainer
-          center={config.params.center}
-          zoom={config.params.zoom}
-          zoomControl={config.params.zoomControl}
-          dragging={config.params.dragging}
-          whenCreated={e => e.invalidateSize()}
-          whenReady={e => e.target.invalidateSize()}
-          id={config.params.id}
-        >
-          <TileLayer
-            url={config.tileLayer.uri}
-            maxZoom={config.params.maxZoom}
-            minZoom={config.params.minZoom}
-            attribution={config.tileLayer.params.attribution}
-          />
+					<div className="tcontainer">
+						<YearSelector
+							handleYearChange={this.handleYearChange}
+							fiscalYears={this.getYearList(this.props.schemeData)}
+							selectedYear={this.state.selectedYear}
+						/>
+					</div>
 
-          <div className="tcontainer">
-            <YearSelector
-              handleYearChange={this.handleYearChange}
-              fiscalYears={this.getYearList(this.props.schemeData)}
-              selectedYear={this.state.selectedYear}
-            />
-          </div>
+					<div className="statetooltip">
+						<StateToolTip
+							statetooltip={this.state.hoverstate}
+							allocations={this.state.hoverFigure}
+							unit={this.props.unit}
+						/>
+					</div>
+					<FeatureGroup>
+						{this.state.selectedFigure && (
+							<GeoJSON
+								data={this.state.selectedFigure}
+								weight={config.geojson.weight}
+								style={(feature) => this.getstyle(feature)}
+								valueProperty={(feature) => feature.properties.ST_NM}
+								onEachFeature={this.onEachFeature.bind(null, this)}
+								ref={this.geojson}
+							/>
+						)}
+					</FeatureGroup>
 
-          <div className="statetooltip">
-            <StateToolTip
-              statetooltip={this.state.hoverstate}
-              allocations={this.state.hoverFigure}
-              unit={this.props.unit}
-            />
-          </div>
-          <FeatureGroup>
-            {this.state.selectedFigure && (
-              <GeoJSON
-                data={this.state.selectedFigure}
-                weight={config.geojson.weight}
-                style={(feature) => this.getstyle(feature)}
-                valueProperty={(feature) => feature.properties.ST_NM}
-                onEachFeature={this.onEachFeature.bind(null, this)}
-                ref={this.geojson}
-              />
-            )}
-          </FeatureGroup>
-
-          <div className="legendcontainer">
-            {
-              this.state.minMax && 
-              <>
-                <span> {this.state.minMax[0]}</span>
-                <div className="legend-scale" />
-                <span> {this.state.minMax[1]}</span>
-            </>
-            }
-            
-          </div>
-          <div className="license-text">
-            License -{' '}
-            <a
-              href="https://creativecommons.org/licenses/by/4.0/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              CC-BY 4.0
-            </a>{' '}
-            |{' '}
-            <a
-              href="https://openbudgetsindia.org"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open Budgets India
-            </a>
-          </div>
-        </MapContainer>
-      </div>
-    );
-  }
+					<div className="legendcontainer">
+						{this.state.minMax && (
+							<>
+								<span> {this.state.minMax[0]}</span>
+								<div className="legend-scale" />
+								<span> {this.state.minMax[1]}</span>
+							</>
+						)}
+					</div>
+					<div className="license-text">
+						License -{' '}
+						<a
+							href="https://creativecommons.org/licenses/by/4.0/"
+							target="_blank"
+							rel="noreferrer"
+						>
+							CC-BY 4.0
+						</a>{' '}
+						|{' '}
+						<a
+							href="https://openbudgetsindia.org"
+							target="_blank"
+							rel="noreferrer"
+						>
+							Open Budgets India
+						</a>
+					</div>
+				</MapContainer>
+			</div>
+		)
+	}
 }
 
 class YearSelector extends Component {
-  render() {
-    const { props } = this;
-    const fiscalList = sortList(props.fiscalYears)
-    
-    return (
-      <Dropdown 
-      options={fiscalList} 
-      heading='Select Year' 
-      handleDropdownChange={props.handleYearChange} 
-      />
-    );
-  }
+	render() {
+		const { props } = this
+		const fiscalList = sortList(props.fiscalYears)
+
+		return (
+			<Dropdown
+				options={fiscalList}
+				heading="Select Year"
+				handleDropdownChange={props.handleYearChange}
+			/>
+		)
+	}
 }
 
 class StateToolTip extends React.Component {
-  render() {
-    if (this.props.statetooltip == null) {
-      return (
-        <div className="statetoolPanelHeading">
-          Select a state
-        </div>
-      );
-    }
-    return (
-      <div>
-        <div className="statetoolPanelHeading">
-          <span className="glyphicon glyphicon-map-marker" />
-          &nbsp;
-          {this.props.statetooltip}
-        </div>
-        <div>
-          <AllocationDetails
-            allocations={this.props.allocations}
-            unit={this.props.unit}
-          />
-        </div>
-      </div>
-    );
-  }
+	render() {
+		if (this.props.statetooltip == null) {
+			return <div className="statetoolPanelHeading">Select a state</div>
+		}
+		return (
+			<div>
+				<div className="statetoolPanelHeading">
+					<span className="glyphicon glyphicon-map-marker" />
+					&nbsp;
+					{this.props.statetooltip}
+				</div>
+				<div>
+					<AllocationDetails
+						allocations={this.props.allocations}
+						unit={this.props.unit}
+					/>
+				</div>
+			</div>
+		)
+	}
 }
 
 class AllocationDetails extends React.Component {
-  render() {
-    if (
-      this.props.allocations == null ||
-      Number.isNaN(parseFloat(this.props.allocations))
-    ) {
-      return <span>Data unavailable</span>;
-    }
-    return (
-      <span>
-        {' '}
-        {this.props.allocations}{' '}
-        {this.props.unit == 'Percentage' ? '%' : this.props.unit}
-      </span>
-    );
-  }
+	render() {
+		if (
+			this.props.allocations == null ||
+			Number.isNaN(parseFloat(this.props.allocations))
+		) {
+			return <span>Data unavailable</span>
+		}
+		return (
+			<span>
+				{' '}
+				{this.props.allocations}{' '}
+				{this.props.unit == 'Percentage' ? '%' : this.props.unit}
+			</span>
+		)
+	}
 }

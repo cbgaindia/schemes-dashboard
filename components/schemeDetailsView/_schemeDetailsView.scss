@@ -47,6 +47,12 @@
 			background: #f7fafc;
 			padding: 16px;
 			height: 500px;
+
+			@include respond-to('lt-tablet') {
+				max-width: 1312px;
+				width: 90vw;
+				margin: 0 auto;
+			}
 		}
 
 		&__info {

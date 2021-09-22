@@ -121,7 +121,10 @@ const Scheme = ({ scheme, related, news }) => {
       {!loading && (
         <main id="main" className="wrapper scheme">
           <Seo seo={seo} />
-          <SchemeIntroduction data={scheme.metadata} />
+          <SchemeIntroduction
+            data={scheme.metadata}
+            slug={router.query.scheme}
+          />
           <span className="horizontal-seperator" />
 
           <div className="scheme__container">

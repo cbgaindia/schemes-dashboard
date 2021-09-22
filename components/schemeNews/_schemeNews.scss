@@ -19,7 +19,7 @@
 	}
 
 	&__container {
-		display: grid;
+		display: flex;
 		gap: 2rem;
 		padding-left: 0;
 		justify-content: flex-start;
@@ -31,7 +31,7 @@
 		border-radius: 12px;
 		padding: 1rem 0.75rem;
 		border: 2px solid #ffffff;
-		max-width: 640px;
+		width: 48%;
 
 		&:hover {
 			border-color: #4b4797;

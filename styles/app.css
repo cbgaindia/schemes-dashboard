@@ -829,6 +829,13 @@ button {
   padding: 16px;
   height: 500px;
 }
+@media (max-width: 768px) {
+  .schemes__details .details__visualisation {
+    max-width: 1312px;
+    width: 90vw;
+    margin: 0 auto;
+  }
+}
 .schemes__details .details__info {
   padding: 1rem 1.5rem;
   display: grid;
@@ -1178,7 +1185,6 @@ button {
 .table-wrapper {
   height: 100%;
   overflow: scroll;
-  max-width: 85vw;
 }
 .table-wrapper::-webkit-scrollbar {
   display: none;
@@ -1311,7 +1317,7 @@ button {
   color: #004fa4;
 }
 .news__container {
-  display: grid;
+  display: flex;
   gap: 2rem;
   padding-left: 0;
   justify-content: flex-start;
@@ -1322,7 +1328,7 @@ button {
   border-radius: 12px;
   padding: 1rem 0.75rem;
   border: 2px solid #ffffff;
-  max-width: 640px;
+  width: 48%;
 }
 .news__card:hover {
   border-color: #4b4797;
