@@ -22,7 +22,7 @@ const socialMediaLinks = [
 
 export default function SchemeIntroduction(props) {
   useEffect(() => {
-    const links = document.querySelectorAll('a[href="#social"');
+    const links = document.querySelectorAll('a[href="#social"]');
     links.forEach((link) => {
       link.addEventListener('click', (event) => {
         event.preventDefault();
@@ -43,7 +43,7 @@ export default function SchemeIntroduction(props) {
       <div className="scheme__heading">
         <h2 className="scheme__title">{props.data && props.data.name}</h2>
         <a
-          href="https://openbudgetsindia.org/organization/state-wise-schemes-data"
+          href={`https://openbudgetsindia.org/dataset/${props.slug}`}
           className="scheme__dataset"
           rel="noreferrer"
           target="_blank"
