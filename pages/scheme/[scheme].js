@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Seo from 'components/seo/seo';
-import { dataTransform, fetchRelated, fetchNews } from 'lib/api';
+import { dataTransform, fetchRelated, fetchNews, fetchQuery } from 'utils/api';
 import SchemeIntroduction from 'components/schemeIntroduction/schemeIntroduction';
 import domtoimage from 'dom-to-image';
 import DatavizViewControls from 'components/datavizViewControls/datavizViewControls';
@@ -170,12 +170,9 @@ const Scheme = ({ scheme, related, news }) => {
 };
 
 export async function getStaticPaths() {
-  const data = await fetch(
-    'https://openbudgetsindia.org/api/3/action/package_search?fq=schemeType:"Centrally Sponsored Scheme"+organization:state-wise-schemes-data&rows=50'
-  );
-  const schemes = await data.json();
+  const data = await fetchQuery('schemeType', 'Centrally Sponsored Scheme');
   return {
-    paths: schemes.result.results.map((scheme) => ({
+    paths: data.map((scheme) => ({
       params: {
         scheme: scheme.name,
       },

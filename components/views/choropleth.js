@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import * as topojson from 'topojson-client'
 import { MapContainer, TileLayer, FeatureGroup, GeoJSON } from 'react-leaflet'
-import { statesTopojson } from 'Data/IndiaStates'
+import { statesTopojson } from 'public/assets/data/IndiaStates'
 import 'leaflet/dist/leaflet.css'
 import Dropdown from 'components/dropdown/dropdown'
 import { sortList } from 'utils/helpers'

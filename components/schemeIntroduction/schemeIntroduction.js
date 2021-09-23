@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import FacebookIcon from 'public/Images/facebook-icon.svg';
-import TwitterIcon from 'public/Images/twitter-icon.svg';
+import FacebookIcon from 'public/assets/icons/facebook-icon-intro.svg';
+import TwitterIcon from 'public/assets/icons/twitter-icon-intro.svg';
 import Link from 'next/link';
 
 const socialMediaLinks = [

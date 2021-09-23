@@ -1,7 +1,7 @@
 @use '../../styles/tools' as *;
 
 .footer {
-	background-color: #0f1525;
+	background-color: $brand-color;
 
 	a {
 		font-size: 0.8rem;

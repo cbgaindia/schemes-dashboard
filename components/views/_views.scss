@@ -283,7 +283,7 @@
 			padding: 8px;
 			position: sticky;
 			top: 0;
-			background: #f0f3f5;
+			background: $bg-color;
 		}
 	}
 
@@ -294,7 +294,7 @@
 
 		tr {
 			&:nth-child(even) {
-				background: #f0f3f5;
+				background: $bg-color;
 			}
 
 			td {

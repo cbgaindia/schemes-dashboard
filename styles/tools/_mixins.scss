@@ -55,34 +55,6 @@
 	margin-left: 1rem;
 }
 
-@mixin search_button {
-	width: 130px;
-	height: 38px;
-	box-sizing: border-box;
-	background: #4b4797;
-	border-radius: 4px;
-	border: 2px solid transparent;
-	font-weight: 400;
-	font-size: 1rem;
-	color: #ffffff;
-	padding-left: 1rem;
-	display: flex;
-	align-items: center;
-	justify-self: flex-end;
-	margin-top: 1rem;
-
-	transition: background-color $d $e, border $d $e;
-	background-image: url(public/assets/icons/search.svg);
-	background-repeat: no-repeat;
-	background-position: right 10px center;
-
-	&:hover,
-	&:focus {
-		background-color: #273051;
-		border: 2px solid #4b4797;
-	}
-}
-
 @mixin link-underline {
 	background-image: linear-gradient(
 		to right,

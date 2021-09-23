@@ -1,5 +1,5 @@
 import { read, utils as xlsxUtil } from 'xlsx';
-import SchemesData from 'lib/schemesData';
+import SchemesData from 'utils/schemesData';
 
 export async function fetchAPI(path) {
   const response = await fetch(
@@ -17,9 +17,9 @@ export function generateSlug(slug) {
   return null;
 }
 
-async function fetchQuery(query, value) {
+export async function fetchQuery(query, value) {
   const queryRes = await fetch(
-    `https://openbudgetsindia.org/api/3/action/package_search?fq=${query}:"${value}"+organization:state-wise-schemes-data`
+    `https://openbudgetsindia.org/api/3/action/package_search?fq=${query}:"${value}"+organization:state-wise-schemes-data&rows=50`
   ).then((res) => res.json());
 
   return queryRes.result.results;

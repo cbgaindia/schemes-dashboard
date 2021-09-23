@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import OBI from 'public/assets/obi_header.png';
+import OBI from 'public/assets/icons/obi_header.png';
 
 const Header = () => (
   <header className="header">

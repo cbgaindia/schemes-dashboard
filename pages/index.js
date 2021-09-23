@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Seo from 'components/seo/seo';
 import Card from 'components/card/card';
-import SchemesData from 'lib/schemesData';
+import SchemesData from 'utils/schemesData';
+import { fetchQuery } from 'utils/api';
 
 export default function Home({ cardsData }) {
   const [schemes, setSchemes] = useState([]);
@@ -45,13 +46,10 @@ export default function Home({ cardsData }) {
 }
 
 export async function getStaticProps() {
-  const data = await fetch(
-    'https://openbudgetsindia.org/api/3/action/package_search?fq=schemeType:"Centrally Sponsored Scheme"+organization:state-wise-schemes-data&rows=50'
-  );
-  const schemes = await data.json();
+  const data = await fetchQuery('schemeType', 'Centrally Sponsored Scheme');
   return {
     props: {
-      cardsData: schemes.result.results.map((scheme) => ({
+      cardsData: data.map((scheme) => ({
         slug: scheme.name,
         name: scheme.extras[0].value,
       })),

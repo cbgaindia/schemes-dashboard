@@ -1,7 +1,4 @@
 import Head from 'next/head';
-// import { useContext } from 'react';
-// import { GlobalContext } from 'pages/_app';
-// import { useRouter } from 'next/router';
 
 const Seo = ({ seo }) => {
   const title =
@@ -26,14 +23,6 @@ const Seo = ({ seo }) => {
           <meta name="twitter:description" content={metaDescription} />
         </>
       )}
-      {/* {fullSeo.shareImage && (
-        <>
-          <meta property="og:image" content={fullSeo.shareImage} />
-          <meta name="twitter:image" content={fullSeo.shareImage} />
-          <meta name="image" content={fullSeo.shareImage} />
-        </>
-      )} */}
-      {/* {fullSeo.article && <meta property="og:type" content="article" />} */}
       <meta name="twitter:card" content="summary_large_image" />
     </Head>
   );

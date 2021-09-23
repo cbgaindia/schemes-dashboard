@@ -1,14 +1,12 @@
 import 'styles/app.css';
 import App from 'next/app';
 import Head from 'next/head';
-import React, { createContext } from 'react';
+import React from 'react';
 import Layout from 'components/layout/layout';
 import NextNprogress from 'nextjs-progressbar';
-import SchemesData from 'lib/schemesData';
 import Router from 'next/router';
-import * as ga from '../lib/ga';
+import * as ga from 'utils/ga';
 
-export const GlobalContext = createContext({});
 function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
     const handleRouteChange = (url) => {
@@ -25,7 +23,6 @@ function MyApp({ Component, pageProps }) {
     };
   });
 
-  const { global } = SchemesData;
   return (
     <>
       <Head>
@@ -72,9 +69,7 @@ function MyApp({ Component, pageProps }) {
           height={3}
           options={{ easing: 'ease', speed: 300, showSpinner: false }}
         />
-        <GlobalContext.Provider value={global}>
-          <Component {...pageProps} />
-        </GlobalContext.Provider>
+        <Component {...pageProps} />
       </Layout>
     </>
   );

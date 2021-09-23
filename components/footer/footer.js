@@ -10,7 +10,7 @@ const Footer = () => (
         href="https://openbudgetsindia.org/en/"
       >
         <Image
-          src="/assets/obi_footer_square_logo.svg"
+          src="/assets/icons/obi_footer_square_logo.svg"
           alt="Open budgets India Footer"
           layout="intrinsic"
           width={234}

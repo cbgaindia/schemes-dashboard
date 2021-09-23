@@ -1,4 +1,3 @@
-// Sort the chapters/sections based on their No.
 export function sortList(list) {
   list.sort((a, b) => {
     const first = Number(a.split('-')[0]);
@@ -9,14 +8,6 @@ export function sortList(list) {
     return 0;
   });
   return list;
-}
-
-// Generate LocaleString
-export function LocaleString(number) {
-  return number.toLocaleString('en-US', {
-    minimumIntegerDigits: 2,
-    useGrouping: false,
-  });
 }
 
 // Truncate String

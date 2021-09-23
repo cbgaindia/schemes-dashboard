@@ -19,36 +19,13 @@ module.exports = {
 };
 
 module.exports = {
-  async redirects() {
-    return [
-      {
-        destination: '/:chapter',
-        permanent: true,
-        source: '/:chapter.html',
-      },
-      {
-        destination: '/introduction_to_budget',
-        permanent: true,
-        source: '/intro.html',
-      },
-    ];
-  },
-};
-
-module.exports = {
-  images: {
-    domains: [process.env.NEXT_PUBLIC_STRAPI_API_URL],
-  },
-};
-
-module.exports = {
   async headers() {
     return [
       {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=9999999999, must-revalidate',
+            value: 'public, max-age=86400, must-revalidate',
           },
         ],
         locale: false,
