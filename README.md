@@ -10,24 +10,20 @@
 </a>
 </p>
 
-Budget Basics aims to demystify concepts and processes of Government budgets in India.
-Built as a documentation platform, it provides the content in easily digestible form.
-This is the front end of the platform built using nextjs.
-We welcome all contributions and pull requests!
+Find downloadable data, visualisations and other useful information related to a number of schemes run by the Union and State Governments.
 
-<p align="center">Visit<a href="https://budgetbasics.openbudgetsindia.org/"> Budget Basics</a></p>
+<br/>
+<p align="center">Visit<a href="schemes.openbudgetsindia.org/"> Schemes Dashboard</a></p>
 
 - [Features](#features)
 - [Getting Started](#getting-started)
-  - [Environment Variables](#environment-variables)
   - [Backend](#backend)
 - [Guide](#guide)
   - [Directory Structure](#directory-structure)
   - [Styling](#styling)
   - [Components](#components)
-  - [GSAP](#gsap)
+  - [Utils](#utils)
 - [Data Fetching](#data-fetching)
-  - [Global Data](#global-data)
   - [Homepage Data](#homepage-data)
   - [Dynamic Routes Data](#dynamic-routes-data)
 - [Run Locally](#run-locally)
@@ -38,140 +34,66 @@ We welcome all contributions and pull requests!
 - 📱 **Responsive:** Use Desktop, Laptop or Mobile devices. It's optimized for all.
 - ♿ **Accessible:** The platform is screen-reader friendly.
 - 🚀 **Performant:** It's fast!
-- 🌐 **JAMStack:** [Next.js](https://github.com/vercel/next.js) with [Strapi](https://github.com/strapi/strapi) headless CMS to make development process fast and efficient.
-- 🔍 **MeiliSearch:** Super fast search by using [Meilisearch](https://github.com/meilisearch/MeiliSearch) as a micro-service.
+- 🌐 **JAMStack:** [Next.js](https://github.com/vercel/next.js) with Headless [Ckan](https://github.com/ckan/ckan) headless CMS to make development process fast and efficient.
 - 💄 **BEM & SASS:** The platform utilizes BEM methodology with SASS to make styling efficient and maintainable.
-- 💎 **Modular:** Easy to add or remove components based on usage -
-  - Highlights to show multiple important content/news on the header
-  - Custom lightweight carousel to show Youtube videos that are lazy-loaded.
-  - Sticky sidebar to list all sections and sub-sections available.
-  - Footer Buttons to navigate to the next or previous chapter.
-  - and more...
 
 ## Getting Started
 
 Make sure to have a recent version of Node. You'll need Node 10.13 or later.
 
-### Environment Variables
-
-To run this project, you will need to create a new .env file on the root directory add the following environment variables.
-
-`NEXT_PUBLIC_STRAPI_API_URL` - required to fetch content. Setup the [strapi instance](https://github.com/cbgaindia/budget-basic-strapi)
-
-`NEXT_PUBLIC_MEILISEARCH_URL` - required to enable search functionality
-
-`NEXT_PUBLIC_MEILISEARCH_API` - required to enable search functionality
-
-eg: `NEXT_PUBLIC_STRAPI_API_URL = "https://strapi-api-server.com/"`
-
 ### Backend
 
-Follow the steps at [budget-basic-strapi](https://github.com/cbgaindia/budget-basic-strapi) first to set up the backend instance
-before booting up the frontend. This should set up Postgresql database, Strapi CMS and Meilisearch Instance.
+The platform uses Ckan DMS as the backend to fetch data from. It utlizes [Ckan API](https://docs.ckan.org/en/2.9/api/) to achieve that.
 
 ## Guide
 
 ### Directory Structure
 
 ```
-budget-basics-next/
+scheme-dashboard/
 ┣ components/
-┣ lib/
+┣ utils/
 ┣ pages/
 ┣ public/
-┃ ┣ assets/
-┃ ┃ ┣ fonts/
-┃ ┃ ┣ icons/
+┃ ┣ Images/
+┃ ┣ tools/
 ┣ style/
 ┃ ┣ pages/
 ┃ ┣ tools/
-┣ utils/
 ```
 
 ### Styling
 
-This project follows BEM Methodology with Sass Preprocessor to make styling more efficient and future maintainable. Have a look around different files to know more about it. You can learn more about styling directory [here](/styles/README.md)
+This project follows BEM Methodology with Sass Preprocessor to make styling more efficient and future maintainable. Have a look around different files to know more about it. You can learn more about styling directory [here](styles/README.md)
 
 ### Components
 
 It is a component-based project which makes it easier to add, edit or remove features in the future.
 
-All the components are available at `/components`. Each component has its folder with its styling file is included. This makes it easier to use that component on some other
-project. Learn more [here](components/README.md)
+All the components are available at `/components`. Each component has its folder with its styling file is included. This makes it easier to use that component on some other project.
 
-### GSAP
+### Utils
 
-To handle styling on scroll for sidebar in desktop and menubar for mobile, [GSAP](https://greensock.com/gsap/) is used. You will find following
-function in `/pages/[chapter].js`:
-
-- `handleSidebarAnimation`
-- `handleSubheadingAnimation`
-
-and the following in `/components/menu.js`:
-
-- `handleMenuAnimation`
-- `handleSubheadingAnimation`
-
-These functions use GSAP [ScrollTrigger](https://greensock.com/scrolltrigger/) to add classes to `Menu` and `Sidebar`.
+All of the functions used to fetch data from Ckan are stored at `/utils/api.js`. Learn more [here](utils/README.md)
 
 ## Data Fetching
 
-All the data is being fetched from a Strapi CMS. You can use any [headless CMS](https://nextjs.org/docs/basic-features/data-fetching).
-
-### Global Data
-
-Fetching Global Settings and data on `_app.js` which then can be passed to other components using `createContext`
-
-```javascript
-import React, { createContext } from 'react'
-
-export const GlobalContext = createContext({})
-
-function MyApp({ Component, pageProps }) {
-	const { global } = pageProps
-	return (
-		<>
-			<Layout>
-				<GlobalContext.Provider value={global}>
-					<Component {...pageProps} />
-				</GlobalContext.Provider>
-			</Layout>
-		</>
-	)
-}
-
-MyApp.getInitialProps = async (ctx) => {
-	const appProps = await App.getInitialProps(ctx)
-	const global = await fetchAPI('/global')
-	return { ...appProps, pageProps: { global } }
-}
-```
-
-For example, on `/components/search.js` we can use this global data:
-
-```javascript
-import React, { useContext } from 'react'
-import { GlobalContext } from 'pages/_app'
-
-const Search = ({ Component, pageProps }) => {
-	const { articles } = useContext(GlobalContext)
-
-	// some cool stuff
-}
-```
+All the heavy processing of fetching data especially `xlsx` file, converting them to object is done during build time. This gives the fastest experience for users, although it increases the build time significantly.
 
 ### Homepage Data
 
-Homepage data includes a description for header, content for highlights slider, youtube links for carousel, and some metadata.
-
-We can fetch all of that and all of different chapters (categories) easily:
+Fetching data for different available schemes:
 
 ```javascript
 export async function getStaticProps() {
-	const homepage = await fetchAPI('/homepage')
-	const chapters = await fetchAPI('/chapters')
+	const data = await fetchQuery('schemeType', 'Centrally Sponsored Scheme')
 	return {
-		props: { homepage, chapters },
+		props: {
+			cardsData: data.map((scheme) => ({
+				slug: scheme.name,
+				name: scheme.extras[0].value,
+			})),
+		},
 		revalidate: 1,
 	}
 }
@@ -182,16 +104,15 @@ export async function getStaticProps() {
 
 ### Dynamic Routes Data
 
-In our project, we have one [dynamic route](https://nextjs.org/docs/routing/dynamic-routes), `[chapter].js`. Dynamic routes
-requires `getStaticPaths` to list paths during build time. [Read more](https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation).
+In our project, we have one [dynamic route](https://nextjs.org/docs/routing/dynamic-routes), `/scheme/[scheme].js`. Dynamic routes requires `getStaticPaths` to list paths during build time. [Read more](https://nextjs.org/docs/basic-features/data-fetching#getstaticpaths-static-generation).
 
 ```javascript
 export async function getStaticPaths() {
-	const chapters = await fetchAPI('/chapters')
+	const data = await fetchQuery('schemeType', 'Centrally Sponsored Scheme')
 	return {
-		paths: chapters.map((chapter) => ({
+		paths: data.map((scheme) => ({
 			params: {
-				chapter: chapter.slug,
+				scheme: scheme.name,
 			},
 		})),
 		fallback: false,
@@ -199,10 +120,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-	const chapter = await fetchAPI(`/chapters?slug=${params.chapter}`)
-	const chapters = await fetchAPI(`/chapters`)
+	const scheme = await dataTransform(params.scheme)
+	const related = await fetchRelated(scheme.metadata.name, scheme.metadata.type)
+	const news = await fetchNews(params.scheme)
+
 	return {
-		props: { chapter: chapter[0], chapters },
+		props: { scheme, related, news },
 		revalidate: 1,
 	}
 }
@@ -213,27 +136,19 @@ export async function getStaticProps({ params }) {
 Clone the project
 
 ```bash
-  git clone https://github.com/cbgaindia/budget-basic-next.git
+  git clone https://github.com/cbgaindia/schemes-dashboard.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd budget-basic-next
+  cd schemes-dashboard
 ```
 
 Install dependencies
 
 ```bash
   npm install
-```
-
-Create .env in the root folder and follows keys
-
-```bash
-NEXT_PUBLIC_STRAPI_API_URL
-NEXT_PUBLIC_MEILISEARCH_URL
-NEXT_PUBLIC_MEILISEARCH_API
 ```
 
 Start the server in development
@@ -250,8 +165,8 @@ or build and start production mode
 
 ## Contributing
 
-For any new feature or bug reports, please request it in [issues](https://github.com/cbgaindia/budget-basic-next/issues).
+For any new feature or bug reports, please request it in [issues](https://github.com/cbgaindia/schemes-dashboard/issues).
 
-See [CONTRIBUTING.md](https://github.com/cbgaindia/budget-basic-next/blob/main/CONTRIBUTING.md) for ways to get started.
+See [CONTRIBUTING.md](https://github.com/cbgaindia/schemes-dashboard/blob/main/CONTRIBUTING.md) for ways to get started.
 
-Please adhere to [Code of Conduct](https://github.com/cbgaindia/budget-basic-next/blob/main/CODE_OF_CONDUCT.md).
+Please adhere to [Code of Conduct](https://github.com/cbgaindia/schemes-dashboard/blob/main/CODE_OF_CONDUCT.md).

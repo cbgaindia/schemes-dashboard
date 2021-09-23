@@ -6,7 +6,7 @@ const Seo = ({ seo }) => {
     : 'Schemes Dashboard | Open Budgets India';
   const description = seo.description
     ? seo.description
-    : 'Find downloadable data, visualisations and other useful information related to a number of schemes run by the Union and State Governments.';
+    : 'Find downloadable data, visualisations and other useful information related to a number of schemes run by the Union and State GovernmentsFind downloadable data, visualisations and other useful information related to a number of schemes run by the Union and State Governments.';
 
   const url = seo.url ? seo.url : 'https://schemes.openbudgetsindia.org/';
   return (
