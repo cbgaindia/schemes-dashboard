@@ -20,7 +20,7 @@
 		&__cards {
 			position: relative;
 			display: flex;
-			overflow-x: scroll;
+			overflow-x: auto;
 			user-select: none;
 			padding: 1rem 0;
 

@@ -246,8 +246,8 @@
 
 	tbody {
 		height: 500px;
-		overflow-y: scroll;
-		overflow-x: scroll;
+		overflow-y: auto;
+		overflow-x: auto;
 
 		tr {
 			&:nth-child(even) {
