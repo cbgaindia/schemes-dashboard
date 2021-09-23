@@ -14,7 +14,8 @@ function MyApp({ Component, pageProps }) {
     const handleRouteChange = (url) => {
       if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) ga.pageview(url);
       // change focus to top
-      document.querySelector('#top-of-site-pixel-anchor').focus();
+      if (!url.includes('indicator'))
+        document.querySelector('#top-of-site-pixel-anchor').focus();
     };
 
     Router.events.on('routeChangeComplete', handleRouteChange);
