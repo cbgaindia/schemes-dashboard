@@ -31,12 +31,19 @@
 
 	&__text {
 		margin: 0;
-		font-size: 16px;
+		// font-size: 1rem;
 		font-weight: 400;
 		color: rgba(13, 16, 24, 0.87);
 		text-decoration: underline;
 		text-align: center;
 		order: 1;
+
+		line-height: 150%;
+		overflow: hidden;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
+		-webkit-box-orient: vertical;
+		display: -webkit-box;
 	}
 
 	&__image {
@@ -54,24 +61,3 @@
 		}
 	}
 }
-
-// .scheme-card .image-container img {
-// 	/* width: 88px; */
-// 	height: 88px;
-// }
-
-// .scheme-card .text-container h4 {
-// 	margin: 0;
-// 	font-size: 16px;
-// 	font-weight: 400;
-// 	color: rgba(13, 16, 24, 0.87);
-// 	text-decoration: underline;
-// 	text-align: center;
-// }
-
-// .scheme-card.card-link-container:hover,
-// .scheme-card.card-link-container:focus,
-// .scheme-card.card-link-container:active,
-// .scheme-card.card-link-container:visited {
-// 	text-decoration: none;
-// }

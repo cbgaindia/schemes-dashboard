@@ -95,7 +95,7 @@ button {
   outline: none;
   border-radius: 4px;
   padding: 8px 16px;
-  font-size: 16px;
+  font-size: 1rem;
   width: 128px;
   height: 40px;
   display: flex;
@@ -218,7 +218,7 @@ button {
   padding: 1rem 0;
   align-items: center;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 150%;
   color: rgba(255, 255, 255, 0.9);
   max-width: 700px;
@@ -238,7 +238,7 @@ button {
   border-radius: 4px;
   border: 2px solid transparent;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
   color: #ffffff;
   padding-left: 1rem;
   display: flex;
@@ -299,12 +299,17 @@ button {
 }
 .card__text {
   margin: 0;
-  font-size: 16px;
   font-weight: 400;
   color: rgba(13, 16, 24, 0.87);
   text-decoration: underline;
   text-align: center;
   order: 1;
+  line-height: 150%;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
 }
 .card__image {
   width: 100%;
@@ -354,7 +359,7 @@ button {
   }
 }
 .footer__links-section p {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
 }
 .footer__links-section a {
@@ -444,7 +449,7 @@ button {
     justify-self: center;
   }
   .footer__links-section a {
-    font-size: 14px;
+    font-size: 0.9rem;
   }
   .footer__links-section:nth-child(2), .footer__links-section:nth-child(3) {
     justify-self: center;
@@ -461,7 +466,7 @@ button {
   border-radius: 4px;
   border: 2px solid transparent;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
   color: #ffffff;
   padding-left: 1rem;
   display: flex;
@@ -515,11 +520,6 @@ button {
 @media (max-width: 768px) {
   .home__cards {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 480px) {
-  .home__cards {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -632,7 +632,7 @@ button {
 
 .select-comp {
   display: block;
-  font-size: 16px;
+  font-size: 1rem;
   font-family: sans-serif;
   font-weight: 700;
   color: #444;
@@ -877,7 +877,7 @@ button {
   height: 1.5rem;
 }
 .schemes__details .details__title {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   color: #000000;
 }
@@ -904,7 +904,7 @@ button {
 
 .indicator-search-container .indicator-search-input {
   padding: 8px;
-  font-size: 16px;
+  font-size: 1rem;
   background: #f0f3f5;
   border: 1px solid transparent !important;
   border-radius: 8px;
@@ -1014,7 +1014,7 @@ button {
   height: 10em;
   z-index: 1600;
   color: black;
-  font-size: 0.5em;
+  font-size: 0.5rem;
   display: block;
   height: 67px;
   text-align: center;
@@ -1025,7 +1025,7 @@ button {
   z-index: 1000;
   left: 0px;
   padding: 0px 5px;
-  font-size: 11px;
+  font-size: 0.8rem;
   background: rgba(255, 255, 255, 0.63);
   bottom: 0px;
   background: rgba(255, 255, 255, 0.7);
@@ -1083,7 +1083,7 @@ button {
 .legend {
   display: block;
   width: 100%;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   line-height: inherit;
   color: black;
   border: 0;
@@ -1091,13 +1091,13 @@ button {
 }
 
 .legend-labels {
-  font-size: 0.95em;
+  font-size: 0.95rem;
 }
 
 /* Tooltip  */
 .statetoolPanelHeading {
   height: 30px;
-  font-size: 12px;
+  font-size: 0.8rem;
   font-weight: bold;
   background-color: rgba(204, 204, 204, 0.7);
 }
@@ -1174,7 +1174,7 @@ button {
 }
 
 .page-introduction-text {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.7);
   margin: 0;
@@ -1195,7 +1195,7 @@ button {
 }
 .scheme-table td,
 .scheme-table th {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   color: black;
   min-width: 100px;
@@ -1445,7 +1445,7 @@ button {
   color: #604294;
 }
 .search__chapter {
-  font-size: 12px;
+  font-size: 0.9rem;
   background-color: #e2dff1;
   width: -webkit-max-content;
   width: -moz-max-content;

@@ -24,7 +24,7 @@
 	height: 10em;
 	z-index: 1600;
 	color: black;
-	font-size: 0.5em;
+	font-size: 0.5rem;
 	display: block;
 	height: 67px;
 	text-align: center;
@@ -35,7 +35,7 @@
 	z-index: 1000;
 	left: 0px;
 	padding: 0px 5px;
-	font-size: 11px;
+	font-size: 0.8rem;
 	background: rgba(255, 255, 255, 0.63);
 	bottom: 0px;
 	background: rgba(255, 255, 255, 0.7);
@@ -96,7 +96,7 @@
 .legend {
 	display: block;
 	width: 100%;
-	font-size: 1.5em;
+	font-size: 1.5rem;
 	line-height: inherit;
 	color: black;
 	border: 0;
@@ -104,14 +104,14 @@
 }
 
 .legend-labels {
-	font-size: 0.95em;
+	font-size: 0.95rem;
 }
 
 /* Tooltip  */
 
 .statetoolPanelHeading {
 	height: 30px;
-	font-size: 12px;
+	font-size: 0.8rem;
 	font-weight: bold;
 	background-color: rgba(204, 204, 204, 0.7);
 }
@@ -200,7 +200,7 @@
 }
 
 .page-introduction-text {
-	font-size: 16px;
+	font-size: 1rem;
 	font-weight: 400;
 	color: rgba(0, 0, 0, 0.7);
 	margin: 0;
@@ -223,7 +223,7 @@
 
 	td,
 	th {
-		font-size: 16px;
+		font-size: 1rem;
 		font-weight: 400;
 		color: black;
 		min-width: 100px;
