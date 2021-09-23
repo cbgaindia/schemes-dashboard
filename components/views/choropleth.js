@@ -238,7 +238,7 @@ export default class Choropleth extends Component {
 
 	fillColor(band) {
 		if (band === 0 || band == null) {
-			return '#858585'
+			return '#676767'
 		}
 		if (band === 1) {
 			return '#D3D1FF'
@@ -407,7 +407,7 @@ export default class Choropleth extends Component {
 									<li>
 										<span
 											className="legendspanside"
-											style={{ background: '#858585' }}
+											style={{ background: '#676767' }}
 										>
 											Data Unavailable
 										</span>
