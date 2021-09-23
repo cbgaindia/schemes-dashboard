@@ -72,7 +72,10 @@
 			margin-bottom: 3px;
 			text-align: center;
 			list-style: none;
-			padding: 0 0 0px 0;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
 
 			@for $i from 4 through 6 {
 				&:nth-child(#{$i}) {
@@ -94,7 +97,6 @@
 .legendspanside {
 	display: block;
 	height: 22px;
-	padding-top: 2px;
 	font-weight: 600;
 }
 

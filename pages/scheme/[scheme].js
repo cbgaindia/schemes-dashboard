@@ -82,6 +82,8 @@ const Scheme = ({ scheme, related, news }) => {
   };
   const seo = {
     title: scheme.metadata.name,
+    description: scheme.metadata.description,
+    url: `https://schemes.openbudgetsindia.org/scheme/${router.query.scheme}`,
   };
 
   const filterElements = (node) => {

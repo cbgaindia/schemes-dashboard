@@ -28,7 +28,7 @@ class MyDocument extends Document {
           )}
         </Head>
         <body>
-          <Main className="nextApp" />
+          <Main />
           <NextScript />
         </body>
       </Html>

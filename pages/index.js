@@ -19,7 +19,6 @@ export default function Home({ cardsData }) {
   }, []);
 
   const seo = {
-    title: 'Schemes Dashboard | Open Budgets India',
     url: 'https://schemes.openbudgetsindia.org/',
     description:
       'Find downloadable data, visualisations and other useful information related to a number of schemes run by the Union and State Governments.',

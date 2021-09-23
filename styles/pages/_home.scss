@@ -7,30 +7,6 @@
 .home {
 	min-height: calc(100vh - 80px);
 
-	&__mobile-search {
-		@include search_button;
-		width: 100%;
-		max-height: 55px;
-		height: 55px;
-		box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
-		margin-top: 0;
-		border-radius: 0;
-
-		a {
-			font-size: 1.5rem;
-			display: block;
-			width: inherit;
-			height: inherit;
-			display: flex;
-			align-items: center;
-			padding-left: 1rem;
-		}
-
-		@include respond-to('mt-tablet') {
-			display: none;
-		}
-	}
-
 	&__cards {
 		margin: 2rem auto;
 		display: grid;

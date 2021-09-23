@@ -1,12 +1,14 @@
 import Head from 'next/head';
 
 const Seo = ({ seo }) => {
-  const title =
-    `${seo.title} - Scheme Dashboard | Open Budgets India` ||
-    'Scheme Dashboard | Open Budgets India';
-  const metaDescription =
-    'Find downloadable data, visualisations and other useful information related to a number of schemes run by the Union and State Governments.';
+  const title = seo.title
+    ? `${seo.title} - Schemes Dashboard`
+    : 'Schemes Dashboard | Open Budgets India';
+  const description = seo.description
+    ? seo.description
+    : 'Find downloadable data, visualisations and other useful information related to a number of schemes run by the Union and State Governments.';
 
+  const url = seo.url ? seo.url : 'https://schemes.openbudgetsindia.org/';
   return (
     <Head>
       {title && (
@@ -16,14 +18,15 @@ const Seo = ({ seo }) => {
           <meta name="twitter:title" content={title} />
         </>
       )}
-      {metaDescription && (
+      {description && (
         <>
-          <meta name="description" content={metaDescription} />
-          <meta property="og:description" content={metaDescription} />
-          <meta name="twitter:description" content={metaDescription} />
+          <meta name="description" content={description} />
+          <meta property="og:description" content={description} />
+          <meta name="twitter:description" content={description} />
         </>
       )}
-      <meta name="twitter:card" content="summary_large_image" />
+      {url && <meta property="og:url" content={url} />}
+      <meta name="application-name" content="Schemes Dashboard" />
     </Head>
   );
 };
