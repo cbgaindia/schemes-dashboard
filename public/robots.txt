@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://schemes.openbudgetsindia.org/
+
+# Sitemaps
+Sitemap: https://schemes.openbudgetsindia.org/sitemap.xml
