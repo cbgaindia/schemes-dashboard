@@ -26,18 +26,19 @@ const IndicatorRadioButton = (props) => {
   };
   return (
     <React.Fragment key={`indicator_${props.index}`}>
-      <input
-        type="radio"
-        id={props.indicatorName}
-        name="indicator-group"
-        className="indicator__radio"
-        value={props.indicatorName}
-        checked={props.checked}
-        onClick={handleClick}
-        readOnly
-      />
-      <label htmlFor={props.indicatorName}>
+      <label className="indicator__label" htmlFor={props.indicatorName}>
         {props.indicatorData[props.indicatorName].name}
+        <input
+          type="radio"
+          id={props.indicatorName}
+          name="indicator-group"
+          className="indicator__radio"
+          value={props.indicatorName}
+          checked={props.checked}
+          onClick={handleClick}
+          readOnly
+        />
+        <span className="indicator__span" />
       </label>
       {props.checked ? (
         <p className="indicator__text">
