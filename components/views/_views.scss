@@ -45,21 +45,42 @@
 /* Legend */
 
 .legend-scale {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+}
+
+.legend-scale-mobile {
 	background: linear-gradient(180deg, #441e75 0%, #d3d1ff 100%);
 	border-radius: 2px;
 	width: 1rem;
 	height: 8rem;
 }
 
-.legend-scale ul li {
-	display: block;
-	width: 130px;
-	border-radius: 3px;
-	border: 1px solid rgba(128, 128, 128, 0.66);
-	margin-bottom: 3px;
-	text-align: center;
-	list-style: none;
-	padding: 0 0 0px 0;
+.legend-scale {
+	ul {
+		padding: 0;
+		margin: 0;
+
+		li {
+			font-size: 0.8rem;
+			display: block;
+			width: 130px;
+			border-radius: 3px;
+			border: 1px solid rgba(128, 128, 128, 0.66);
+			margin-bottom: 3px;
+			text-align: center;
+			list-style: none;
+			padding: 0 0 0px 0;
+
+			@for $i from 4 through 6 {
+				&:nth-child(#{$i}) {
+					color: hsl(0, 0%, 95%);
+				}
+			}
+		}
+	}
 }
 
 .legendspan {
@@ -71,25 +92,47 @@
 }
 
 .legendspanside {
-	background-color: white;
 	display: block;
 	height: 22px;
 	padding-top: 2px;
+	font-weight: 600;
 }
 
 .legendcontainer {
+	position: absolute;
+	padding: 5px;
+	background: white;
+	border: 1px solid #cccccc;
+	bottom: 2rem;
+	left: 1rem;
+	border-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+	font-weight: 700;
+	display: block;
+	z-index: 1000;
+
+	@include respond-to('lt-bg-mobile') {
+		display: none;
+	}
+}
+
+.legendcontainer-mobile {
+	display: none;
 	position: absolute;
 	padding: 5px;
 	bottom: 2em;
 	left: 1rem;
 	z-index: 999;
 
-	display: flex;
 	flex-direction: column;
 	align-items: center;
 
 	span {
 		font-weight: 700;
+	}
+
+	@include respond-to('lt-bg-mobile') {
+		display: flex;
 	}
 }
 
@@ -133,7 +176,7 @@
 	line-height: 30px;
 	display: block;
 
-	@include respond-to('lt-mobile') {
+	@include respond-to('lt-bg-mobile') {
 		display: none;
 	}
 }

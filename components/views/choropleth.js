@@ -1,12 +1,7 @@
 /* eslint-disable */
 import React, { Component } from 'react'
 import * as topojson from 'topojson-client'
-import {
-	MapContainer,
-	TileLayer,
-	FeatureGroup,
-	GeoJSON,
-} from 'react-leaflet'
+import { MapContainer, TileLayer, FeatureGroup, GeoJSON } from 'react-leaflet'
 import { statesTopojson } from 'Data/IndiaStates'
 import 'leaflet/dist/leaflet.css'
 import Dropdown from 'components/dropdown/dropdown'
@@ -371,14 +366,55 @@ export default class Choropleth extends Component {
 						)}
 					</FeatureGroup>
 
-					<div className="legendcontainer">
+					<div className="legendcontainer-mobile">
 						{this.state.minMax && (
 							<>
 								<span> {this.state.minMax[0]}</span>
-								<div className="legend-scale" />
+								<div className="legend-scale-mobile" />
 								<span> {this.state.minMax[1]}</span>
 							</>
 						)}
+					</div>
+					<div className="legendcontainer">
+						<div className="legend-scale">
+							{this.state.bandFigures ? (
+								<ul className="legend-labels">
+									<LegendStep
+										bgColor="#D3D1FF"
+										band="20%"
+										range={this.state.bandFigures['20%']}
+									/>
+									<LegendStep
+										bgColor="#CEA8FF"
+										band="40%"
+										range={this.state.bandFigures['40%']}
+									/>
+									<LegendStep
+										bgColor="#AB71F5"
+										band="60%"
+										range={this.state.bandFigures['60%']}
+									/>
+									<LegendStep
+										bgColor="#7C46C2"
+										band="80%"
+										range={this.state.bandFigures['80%']}
+									/>
+									<LegendStep
+										bgColor="#441E75"
+										band="100%"
+										range={this.state.bandFigures['100%']}
+									/>
+									<li>
+										<span
+											className="legendspanside"
+											style={{ background: '#858585' }}
+										>
+											Data Unavailable
+										</span>
+									</li>
+								</ul>
+							) : null}
+						</div>
 					</div>
 					<div className="license-text">
 						License -{' '}
@@ -448,6 +484,20 @@ class AllocationDetails extends React.Component {
 				{this.props.allocations}{' '}
 				{this.props.unit == 'Percentage' ? '%' : this.props.unit}
 			</span>
+		)
+	}
+}
+
+class LegendStep extends React.Component {
+	render() {
+		return (
+			<li style={{ background: this.props.bgColor }}>
+				<span
+					className="legendspanside"
+				>
+					{this.props.range[0].toFixed(2)} - {this.props.range[1].toFixed(2)}
+				</span>
+			</li>
 		)
 	}
 }
