@@ -103,6 +103,10 @@ button {
   justify-content: center;
 }
 
+.hideComp {
+  opacity: 0;
+}
+
 .primary-button {
   background: #4b4797;
   color: white;
@@ -459,6 +463,9 @@ button {
   }
 }
 
+.home {
+  min-height: calc(100vh - 80px);
+}
 .home__mobile-search {
   width: 130px;
   height: 38px;
@@ -504,7 +511,6 @@ button {
   }
 }
 .home__cards {
-  min-height: 90vh;
   margin: 2rem auto;
   display: grid;
   grid-template-rows: -webkit-max-content;
@@ -751,7 +757,7 @@ button {
 
 .indicator {
   width: 100%;
-  height: 400px;
+  max-height: 400px;
   padding: 8px;
   background: #ffffff;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
@@ -783,8 +789,8 @@ button {
 }
 @media (min-width: 1025px) {
   .indicator {
-    width: clamp(250px, 100%, 300px);
-    height: 652px;
+    width: clamp(250px, 100%, 350px);
+    max-height: 700px;
     order: 0;
   }
 }
@@ -1430,7 +1436,7 @@ button {
 }
 
 .scheme {
-  min-height: 90vh;
+  min-height: calc(100vh - 80px);
 }
 .scheme__container {
   display: grid;

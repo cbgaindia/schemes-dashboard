@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import FacebookIcon from 'public/Images/facebook-icon.svg';
 import TwitterIcon from 'public/Images/twitter-icon.svg';
+import Link from 'next/link';
 
 const socialMediaLinks = [
   {
@@ -32,9 +33,11 @@ export default function SchemeIntroduction(props) {
   return (
     <div className="scheme__intro">
       <p className="scheme__bread">
-        <a href="/" className="scheme__home-link">
-          <u>Schemes Dashboard</u>
-        </a>
+        <Link href="/">
+          <a className="scheme__home-link">
+            <u>Schemes Dashboard</u>
+          </a>
+        </Link>
         &nbsp;&nbsp; &gt;
       </p>
       <div className="scheme__heading">

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 const IndicatorRadioButton = (props) => {
   const router = useRouter();
-  const handleClick = (e) => {
+  const handleClick = () => {
     router.push(
       {
         pathname: `/scheme/${props.schemeSlug}`,

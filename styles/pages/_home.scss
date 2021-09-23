@@ -5,6 +5,8 @@
 @use '../../components/footer/footer';
 
 .home {
+	min-height: calc(100vh - 80px);
+
 	&__mobile-search {
 		@include search_button;
 		width: 100%;
@@ -30,7 +32,6 @@
 	}
 
 	&__cards {
-		min-height: 90vh;
 		margin: 2rem auto;
 		display: grid;
 		grid-template-rows: max-content;
@@ -45,9 +46,5 @@
 		@include respond-to('lt-tablet') {
 			grid-template-columns: repeat(2, 1fr);
 		}
-
-		// @include respond-to('lt-mobile') {
-		// 	grid-template-columns: 1fr;
-		// }
 	}
 }

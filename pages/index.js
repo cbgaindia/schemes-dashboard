@@ -30,7 +30,7 @@ export default function Home({ cardsData }) {
       <div className="skiptarget">
         <span id="maincontent">-</span>
       </div>
-      <main id="main" tabIndex="-1" className="wrapper">
+      <main id="main" tabIndex="-1" className="wrapper home">
         <ul className="home__cards">
           {schemes.length > 0 &&
             schemes.map((scheme, index) => (

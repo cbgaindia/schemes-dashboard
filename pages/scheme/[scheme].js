@@ -119,50 +119,52 @@ const Scheme = ({ scheme, related, news }) => {
         <span id="maincontent">-</span>
       </div>
 
-      {!loading && (
-        <main id="main" className="wrapper scheme">
-          <div style={{ minHeight: '90vh' }}>
-            <Seo seo={seo} />
-            <SchemeIntroduction
-              data={scheme.metadata}
-              slug={router.query.scheme}
-            />
-            <span className="horizontal-seperator" />
-
-            <div className="scheme__container">
-              <DatavizViewControls
-                view={activeViz}
-                handleChangeViz={handleChangeViz}
+      <main id="main" className="wrapper scheme" tabIndex="-1">
+        <div>
+          <Seo seo={seo} />
+          {!loading && (
+            <>
+              <SchemeIntroduction
+                data={scheme.metadata}
+                slug={router.query.scheme}
               />
-              {activeIndicator && (
-                <>
-                  <IndicatorSelector
-                    schemeData={scheme}
-                    activeIndicator={activeIndicator}
-                    currentSlug={router.query.scheme}
-                  />
+              <span className="horizontal-seperator" />
 
-                  <SchemeDetailsView
-                    handleDownloadReportImage={handleDownloadReportImage}
-                    showViz={showViz}
-                    activeViz={activeViz}
-                    handleToggleShowViz={handleToggleShowViz}
-                    schemeData={scheme}
-                    activeIndicator={activeIndicator}
-                    activeYear={activeYear}
-                    stateCodes={stateCodes}
-                    setYearChange={setYearChange}
-                  />
-                </>
-              )}
-            </div>
+              <div className="scheme__container">
+                <DatavizViewControls
+                  view={activeViz}
+                  handleChangeViz={handleChangeViz}
+                />
+                {activeIndicator && (
+                  <>
+                    <IndicatorSelector
+                      schemeData={scheme}
+                      activeIndicator={activeIndicator}
+                      currentSlug={router.query.scheme}
+                    />
 
-            <SchemeNews newsData={news} />
+                    <SchemeDetailsView
+                      handleDownloadReportImage={handleDownloadReportImage}
+                      showViz={showViz}
+                      activeViz={activeViz}
+                      handleToggleShowViz={handleToggleShowViz}
+                      schemeData={scheme}
+                      activeIndicator={activeIndicator}
+                      activeYear={activeYear}
+                      stateCodes={stateCodes}
+                      setYearChange={setYearChange}
+                    />
+                  </>
+                )}
+              </div>
 
-            <RelatedSchemes related={related} />
-          </div>
-        </main>
-      )}
+              <SchemeNews newsData={news} />
+
+              <RelatedSchemes related={related} />
+            </>
+          )}
+        </div>
+      </main>
     </>
   );
 };

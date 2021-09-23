@@ -11,7 +11,7 @@
 @use '../../components/schemeNews/schemeNews';
 
 .scheme {
-	min-height: 90vh;
+	min-height: calc(100vh - 80px);
 
 	&__container {
 		display: grid;
