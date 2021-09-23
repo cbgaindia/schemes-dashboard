@@ -333,7 +333,6 @@ button {
 
 .footer {
   background-color: #0f1525;
-  color: #ffffff;
 }
 .footer a {
   font-size: 0.8rem;
@@ -364,10 +363,12 @@ button {
   }
 }
 .footer__links-section p {
+  color: white;
   font-size: 1rem;
   font-weight: 600;
 }
 .footer__links-section a {
+  color: white;
   display: block;
   margin-top: 1rem;
 }
@@ -403,6 +404,7 @@ button {
 }
 .footer .attribute__links a {
   margin-left: 1.5rem;
+  color: white;
 }
 .footer .attribute__links a:first-of-type {
   margin-left: 0;

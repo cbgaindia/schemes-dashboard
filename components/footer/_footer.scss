@@ -2,7 +2,6 @@
 
 .footer {
 	background-color: #0f1525;
-	color: #ffffff;
 
 	a {
 		font-size: 0.8rem;
@@ -39,11 +38,14 @@
 
 	&__links-section {
 		p {
+			color: white;
 			font-size: 1rem;
 			font-weight: 600;
 		}
 
 		a {
+			color: white;
+
 			display: block;
 			margin-top: 1rem;
 		}
@@ -83,6 +85,7 @@
 
 			a {
 				margin-left: 1.5rem;
+				color: white;
 
 				&:first-of-type {
 					margin-left: 0;
