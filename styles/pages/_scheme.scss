@@ -1,0 +1,35 @@
+@use '../tools' as *;
+@use '../../components/schemeIntroduction/schemeIntroduction';
+@use '../../components/dropdown/dropdown';
+@use '../../components/datavizViewControls/datavizViewControls';
+@use '../../components/indicatorSelector/indicatorSelector';
+@use '../../components/schemeDetailsView/schemeDetailsView';
+@use '../../components/searchBar/searchBar';
+@use '../../components/indicatorRadioButton/indicatorRadioButton';
+@use '../../components/views/views';
+@use '../../components/relatedSchemes/relatedSchemes';
+@use '../../components/schemeNews/schemeNews';
+
+.scheme {
+	min-height: calc(100vh - 80px);
+
+	&__container {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 300px minmax(0, 1fr);
+
+		@include respond-to('lt-laptop') {
+			grid-template-columns: 1fr;
+			grid-template-rows: repeat(3, max-content);
+		}
+	}
+
+	&__viz {
+		display: flex;
+		gap: 1.5rem;
+
+		@include respond-to('lt-laptop') {
+			flex-wrap: wrap;
+		}
+	}
+}

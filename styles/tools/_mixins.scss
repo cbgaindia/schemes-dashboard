@@ -1,0 +1,67 @@
+@use 'breakpoints' as *;
+@use 'variables' as *;
+
+@mixin respond-to($breakpoint) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		@media #{inspect(map-get($breakpoints, $breakpoint))} {
+			@content;
+		}
+	} @else {
+		@warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+	}
+}
+
+@mixin control-button {
+	button {
+		background: #4b4797;
+		border-radius: 5px;
+		border: none;
+		padding: 0 0.75rem;
+		color: white;
+		font-size: 1.5rem;
+		max-height: 33px;
+	}
+}
+
+@mixin link_button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem 1rem;
+	color: #4b4797;
+	border: 2px solid #4b4797;
+	border-radius: 4px;
+	max-height: 50px;
+	line-height: 150%;
+	font-size: 1rem;
+	font-weight: 500;
+	margin-left: 1rem;
+}
+
+@mixin download_button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem 1rem;
+	height: clamp(1.5rem, 100%, 2.5rem);
+	color: white;
+	border-radius: 4px;
+	background-color: #4b4797;
+
+	line-height: 150%;
+	font-size: 1rem;
+	font-weight: 500;
+	margin-left: 1rem;
+}
+
+@mixin link-underline {
+	background-image: linear-gradient(
+		to right,
+		currentColor 0%,
+		currentColor 100%
+	);
+	background-repeat: repeat-x;
+	background-position: bottom 0.01em center;
+	background-size: 100% 0.05em;
+}
