@@ -82,7 +82,7 @@ All the heavy processing of fetching data especially `xlsx` file, converting the
 
 ### Homepage Data
 
-Fetching data for different available schemes:
+Fetching data for different available schemes on Ckan:
 
 ```javascript
 export async function getStaticProps() {
