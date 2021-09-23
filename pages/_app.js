@@ -5,10 +5,25 @@ import React, { createContext } from 'react';
 import Layout from 'components/layout/layout';
 import NextNprogress from 'nextjs-progressbar';
 import SchemesData from 'lib/schemesData';
-// import * as ga from '../lib/ga';
+import Router from 'next/router';
+import * as ga from '../lib/ga';
 
 export const GlobalContext = createContext({});
 function MyApp({ Component, pageProps }) {
+  React.useEffect(() => {
+    const handleRouteChange = (url) => {
+      if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) ga.pageview(url);
+      // change focus to top
+      document.querySelector('#top-of-site-pixel-anchor').focus();
+    };
+
+    Router.events.on('routeChangeComplete', handleRouteChange);
+
+    return () => {
+      Router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  });
+
   const { global } = SchemesData;
   return (
     <>
