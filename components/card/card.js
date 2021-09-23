@@ -9,7 +9,7 @@ export default function Card({ scheme }) {
           <h2 className="card__text">{scheme.title}</h2>
 
           <div className="card__image">
-            <Image src={scheme.icon} alt="" placeholder="blur" />
+            <Image src={scheme.icon} alt="" placeholder="blur" quality={95}/>
           </div>
         </a>
       </Link>
