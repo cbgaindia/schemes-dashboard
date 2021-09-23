@@ -44,8 +44,8 @@ const stateCodes = {
   31: 'Dadra and Nagar Haveli',
   32: 'Daman and Diu',
   33: 'Delhi',
-  34: 'Jammu & Kashmir ',
-  35: 'Ladakh ',
+  34: 'Jammu & Kashmir',
+  35: 'Ladakh',
   36: 'Lakshadweep',
   37: 'Puducherry',
 };
