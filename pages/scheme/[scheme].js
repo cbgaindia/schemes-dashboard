@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Seo from 'components/seo/seo';
 import { dataTransform, fetchRelated, fetchNews, fetchQuery } from 'utils/api';
+import { export_table_to_csv } from 'utils/download-table';
 import SchemeIntroduction from 'components/schemeIntroduction/schemeIntroduction';
 import domtoimage from 'dom-to-image';
 import DatavizViewControls from 'components/datavizViewControls/datavizViewControls';
@@ -103,16 +104,18 @@ const Scheme = ({ scheme, related, news }) => {
   };
 
   const handleDownloadReportImage = () => {
-    domtoimage
-      .toPng(document.getElementById('report-container'), {
-        filter: filterElements,
-      })
-      .then((dataURL) => {
-        const link = document.createElement('a');
-        link.download = 'Visualization Report.png';
-        link.href = dataURL;
-        link.click();
-      });
+    if (activeViz === 'table') export_table_to_csv('table.csv');
+    else
+      domtoimage
+        .toPng(document.getElementById('report-container'), {
+          filter: filterElements,
+        })
+        .then((dataURL) => {
+          const link = document.createElement('a');
+          link.download = 'Visualization Report.png';
+          link.href = dataURL;
+          link.click();
+        });
   };
 
   return (

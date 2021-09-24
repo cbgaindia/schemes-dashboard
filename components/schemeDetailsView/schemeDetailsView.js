@@ -109,24 +109,26 @@ const SchemesDetailsView = (props) => {
             </p>
           )}
 
-          <button
-            className="details__download"
-            onClick={props.handleDownloadReportImage}
-            disabled={!props.showViz}
-            type="button"
-          >
-            Download Visualisation
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
+          {props.showViz && (
+            <button
+              className="details__download"
+              onClick={props.handleDownloadReportImage}
+              disabled={!props.showViz}
+              type="button"
             >
-              <path
-                fill="#fff"
-                d="M16.59 9H15V4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5H7.41a1 1 0 0 0-.71 1.71l4.59 4.59a1 1 0 0 0 1.41 0l4.59-4.59a1 1 0 0 0-.7-1.71ZM5 19a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1 1 1 0 0 0-1-1H6a1 1 0 0 0-1 1Z"
-              />
-            </svg>
-          </button>
+              Download {props.activeViz == 'table' ? 'CSV' : 'Visualisation'}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#fff"
+                  d="M16.59 9H15V4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5H7.41a1 1 0 0 0-.71 1.71l4.59 4.59a1 1 0 0 0 1.41 0l4.59-4.59a1 1 0 0 0-.7-1.71ZM5 19a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1 1 1 0 0 0-1-1H6a1 1 0 0 0-1 1Z"
+                />
+              </svg>
+            </button>
+          )}
         </div>
       </div>
     </div>
