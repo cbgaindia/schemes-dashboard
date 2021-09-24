@@ -57,12 +57,20 @@
 
 		&__info {
 			padding: 1rem 1.5rem;
-			display: grid;
+			display: flex;
+			flex-direction: column;
 			gap: 1.5rem;
+			align-items: center;
 
 			p {
 				font-size: 1rem;
 				color: rgba(0, 0, 0, 0.7);
+			}
+
+			span {
+				overflow: hidden;
+				white-space: wrap;
+				text-overflow: ellipsis;
 			}
 
 			.text-dark {

@@ -150,6 +150,17 @@ button {
   display: block;
 }
 
+.dont-break-out {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
 .skiptarget {
   width: 1px;
   height: 1px;
@@ -774,12 +785,19 @@ button {
 }
 .schemes__details .details__info {
   padding: 1rem 1.5rem;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
+  align-items: center;
 }
 .schemes__details .details__info p {
   font-size: 1rem;
   color: rgba(0, 0, 0, 0.7);
+}
+.schemes__details .details__info span {
+  overflow: hidden;
+  white-space: wrap;
+  text-overflow: ellipsis;
 }
 .schemes__details .details__info .text-dark {
   color: #000000;

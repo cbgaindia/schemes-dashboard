@@ -102,9 +102,13 @@ const SchemesDetailsView = (props) => {
           </div>
         </div>
         <div className="details__info">
-          <p>
-            Data Source: <span className="text-dark">{dataSource}</span>
-          </p>
+          {dataSource && (
+            <p>
+              Data Source:{' '}
+              <span className="text-dark dont-break-out">{dataSource}</span>
+            </p>
+          )}
+
           <button
             className="details__download"
             onClick={props.handleDownloadReportImage}
