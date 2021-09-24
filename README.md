@@ -1,11 +1,11 @@
-<h1 align="center">Budget Basics</h1>
+<h1 align="center">Schemes Dashboard</h1>
 <h3 align="center">Part of the <a href="https://openbudgetsindia.org/">Open Budgets India</a> Project</h3>
 <br/>
 <p align="center">
-<img alt="Budget Basics Logo" src="https://budgetbasics.openbudgetsindia.org/api/uploads/Scheme_Dashboard_bc140eb7e1.jpg"/>
+<img alt="Schemed Dashboard Logo" src="https://budgetbasics.openbudgetsindia.org/api/uploads/Scheme_Dashboard_bc140eb7e1.jpg"/>
 <br/>
 <br/>
-<a href="https://github.com/cbgaindia/budget-basic-next/blob/main/LICENSE">
+<a href="https://github.com/cbgaindia/schemes-dashboard/blob/main/LICENSE">
 <img alt="MIT License" src="https://img.shields.io/apm/l/atomic-design-ui.svg?"/>
 </a>
 </p>
