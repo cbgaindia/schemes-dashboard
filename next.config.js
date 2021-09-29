@@ -53,15 +53,3 @@ module.exports = {
     return config;
   },
 };
-
-// module.exports = {
-//   async redirects() {
-//     return [
-//       {
-//         destination: '/scheme/bbbp?indicator=funds-utilised',
-//         permanent: false,
-//         source: '/scheme/bbbp/funds-utilised',
-//       },
-//     ];
-//   },
-// };

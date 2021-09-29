@@ -88,6 +88,7 @@ export async function dataTransform(id) {
       type: type || '',
       note: metaObj['note:'] || '',
       slug,
+      indicators: [],
     };
 
     // Tabular Data
@@ -104,6 +105,11 @@ export async function dataTransform(id) {
         }
       }
 
+      const indicatorSlug =
+        generateSlug(metaObj[`indicator-${i - 2}-name`]) || '';
+
+      obj.metadata.indicators.push(indicatorSlug);
+
       obj.data = {
         ...obj.data,
         [`indicator_0${i - 2}`]: {
@@ -111,7 +117,7 @@ export async function dataTransform(id) {
           name: metaObj[`indicator-${i - 2}-name`] || '',
           description: metaObj[`indicator-${i - 2}-description`] || '',
           note: metaObj[`indicator-${i - 2}-note`] || '',
-          slug: generateSlug(metaObj[`indicator-${i - 2}-name`]) || '',
+          slug: indicatorSlug,
           unit: metaObj[`indicator-${i - 2}-unit`] || '',
         },
       };

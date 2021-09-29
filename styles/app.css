@@ -928,7 +928,7 @@ button {
   content: "";
   position: absolute;
   display: none;
-  top: 0.47rem;
+  top: 0.46rem;
   left: 0.46rem;
 }
 .indicator__text {
