@@ -117,7 +117,6 @@ const Scheme = ({ scheme, related, news }) => {
           link.click();
         });
   };
-
   return (
     <>
       <div className="skiptarget">
@@ -129,10 +128,7 @@ const Scheme = ({ scheme, related, news }) => {
           <Seo seo={seo} />
           {!loading && (
             <>
-              <SchemeIntroduction
-                data={scheme.metadata}
-                slug={router.query.scheme}
-              />
+              <SchemeIntroduction data={scheme.metadata} />
               <span className="horizontal-seperator" />
 
               <div className="scheme__container">
@@ -179,7 +175,7 @@ export async function getStaticPaths() {
   return {
     paths: data.map((scheme) => ({
       params: {
-        scheme: scheme.name,
+        scheme: scheme.extras[2].value,
       },
     })),
     fallback: false,

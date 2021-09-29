@@ -43,7 +43,7 @@ export default function SchemeIntroduction(props) {
       <div className="scheme__heading">
         <h2 className="scheme__title">{props.data && props.data.name}</h2>
         <a
-          href={`https://openbudgetsindia.org/dataset/${props.slug}`}
+          href={`https://openbudgetsindia.org/dataset/${props.data.slug}`}
           className="scheme__dataset"
           rel="noreferrer"
           target="_blank"
@@ -75,19 +75,19 @@ export default function SchemeIntroduction(props) {
         <div className="social">
           <p className="social__title">Share on social media:</p>
           <div className="social__links-container">
-            {socialMediaLinks.map((link, index) => (
+            {socialMediaLinks.map((socialLink, index) => (
               <a
                 href="#"
                 key={`socialLink-${index}`}
                 className="social__link"
                 onClick={() =>
                   window.open(
-                    link.share + encodeURIComponent(window.location.href)
+                    socialLink.share + encodeURIComponent(window.location.href)
                   )
                 }
               >
-                <span className="screen-reader-text">{link.text}</span>
-                <link.image />
+                <span className="screen-reader-text">{socialLink.text}</span>
+                <socialLink.image />
               </a>
             ))}
           </div>

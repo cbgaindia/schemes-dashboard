@@ -294,8 +294,8 @@ button {
   order: 1;
   line-height: 150%;
   overflow: hidden;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   display: -webkit-box;
 }
@@ -731,7 +731,7 @@ button {
 @media (min-width: 1025px) {
   .indicator {
     width: clamp(250px, 100%, 350px);
-    max-height: 700px;
+    max-height: 100%;
     order: 0;
   }
 }

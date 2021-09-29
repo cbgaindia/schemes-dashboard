@@ -53,17 +53,17 @@ export async function dataTransform(id) {
   const obj = {};
   let name;
   let type;
+  let slug;
   let url;
-  await fetch(`https://openbudgetsindia.org/api/3/action/package_show?id=${id}`)
-    .then((res) => res.json())
-    .then((data) => {
-      data.result.resources.forEach((file) => {
-        if (file.url.includes('.xlsx')) url = file.url;
-      });
-
-      name = data.result.extras[0].value;
-      type = data.result.extras[1].value;
+  await fetchQuery('slug', id).then((data) => {
+    data[0].resources.forEach((file) => {
+      if (file.url.includes('.xlsx')) url = file.url;
     });
+
+    name = data[0].extras[0].value;
+    type = data[0].extras[1].value;
+    slug = data[0].name || '';
+  });
 
   await fetchSheets(url).then((res) => {
     const dataParse = res[0];
@@ -87,6 +87,7 @@ export async function dataTransform(id) {
       source: metaObj['data-source'] || '',
       type: type || '',
       note: metaObj['note:'] || '',
+      slug,
     };
 
     // Tabular Data
@@ -167,9 +168,9 @@ export async function fetchRelated(name, type) {
 
     similar.forEach((scheme) => {
       otherSchemes.push({
-        title: scheme.extras[0].value,
-        link: `/scheme/${scheme.name}`,
-        icon: SchemesData[scheme.name].logo,
+        title: scheme.extras[0].value || 'Scheme Name not defined',
+        link: `/scheme/${scheme.extras[2].value || '#'}`,
+        icon: SchemesData[scheme.extras[2].value].logo || '',
       });
     });
   });

@@ -21,70 +21,70 @@ import scs from 'public/Images/schemesLogos/scs.jpg';
 import sts from 'public/Images/schemesLogos/sts.jpg';
 
 const SchemesData = {
-  'jal-jeevan-mission': {
+  jjm: {
     logo: jjm,
   },
-  'integrated-child-development-services': {
+  icds: {
     logo: icds,
   },
-  'swadhar-greh-2016-17-to-2019-20': {
+  sg: {
     logo: sg,
   },
-  'pradhan-mantri-gram-sadak-yojana-pmgsy': {
+  pmgsy: {
     logo: pmgsy,
   },
-  'mahatma-gandhi-national-rural-employment-guarantee-scheme': {
+  mgnrega: {
     logo: mgnrega,
   },
-  'samagra-shiksha-abhiyan-smsa-2018-19-to-2019-20': {
+  smsa: {
     logo: smsa,
   },
-  'beti-bachao-beti-padao': {
+  bbbp: {
     logo: bbbp,
   },
-  'mid-day-meal-programme': {
+  mdm: {
     logo: mdm,
   },
-  'pradhan-mantri-awaas-yojana-grameen': {
+  pmay: {
     logo: pmay,
   },
-  'rashtriya-madhyamik-shiksha-abhiyan-rmsa-2015-16-to-2017-18': {
+  rmsa: {
     logo: rmsa,
   },
-  'swachh-bharat-abhiyan-urban': {
+  sbmu: {
     logo: sbmu,
   },
-  'swachh-bharat-mission-gramin-sbm-g-2015-16-to-2019-20': {
+  sbmg: {
     logo: sbmu,
   },
-  'rashtriya-krishi-vikas-yojana-rkvy': {
+  rkvy: {
     logo: rkvy,
   },
-  'blue-revolution': {
+  br: {
     logo: br,
   },
-  'one-stop-centre-2015-16-to-2019-20': {
+  osc: {
     logo: osc,
   },
-  'national-health-mission': {
+  nhm: {
     logo: nhm,
   },
-  'sarva-shiksha-abhiyan-ssa-2015-16-to-2017-18': {
+  ssa: {
     logo: ssa,
   },
   icps: {
     logo: icps,
   },
-  'poshan-abhiyaan-2018-19-to-2019-20': {
+  pa: {
     logo: pa,
   },
-  'scholarship-schemes-for-minorities': {
+  ms: {
     logo: ms,
   },
-  'scholarship-schemes-for-scs': {
+  scs: {
     logo: scs,
   },
-  'scholarship-schemes-for-sts': {
+  sts: {
     logo: sts,
   },
 };

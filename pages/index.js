@@ -49,7 +49,7 @@ export async function getStaticProps() {
   return {
     props: {
       cardsData: data.map((scheme) => ({
-        slug: scheme.name,
+        slug: scheme.extras[2].value,
         name: scheme.extras[0].value,
       })),
     },
