@@ -157,6 +157,10 @@ export async function fetchNews(query) {
 
   const recentDevelopmentsArray = [];
 
+  result[query].sort(
+    (a, b) => new Date(b.accessed_on) - new Date(a.accessed_on)
+  );
+
   if (result[query]) {
     while (result[query].length) {
       recentDevelopmentsArray.push(result[query].splice(0, 2));
