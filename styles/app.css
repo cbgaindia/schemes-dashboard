@@ -731,7 +731,7 @@ button {
 @media (min-width: 1025px) {
   .indicator {
     width: clamp(250px, 100%, 350px);
-    max-height: 100%;
+    max-height: 40rem;
     order: 0;
   }
 }
