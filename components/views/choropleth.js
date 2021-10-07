@@ -120,73 +120,105 @@ export default class Choropleth extends Component {
 
 	computeBands(tempData, year) {
 		const data = tempData
+		const stateData = []
 
-		let max = Math.max.apply(
-			null,
-			data.features.map((state, index) => {
-				if (
-					state.properties[year] != null &&
-					!isNaN(parseFloat(state.properties[year]))
-				) {
-					return parseFloat(state.properties[year])
-				}
-				return null
-			})
-		)
-
-		let min = Math.min.apply(
-			null,
-			data.features.map((state, index) => {
-				if (
-					state.properties[year] != null &&
-					!isNaN(parseFloat(state.properties[year]))
-				) {
-					return parseFloat(state.properties[year])
-				}
-				return null
-			})
-		)
-
-		max = isNaN(parseFloat(max)) ? 0 : max
-		min = isNaN(parseFloat(min)) ? 0 : min
-
-		let retvalue = {}
-		if (min + (max - min) === 0) {
-			retvalue = {
-				'20%': [0, 0, 1],
-				'40%': [0, 0, 2],
-				'60%': [0, 0, 3],
-				'80%': [0, 0, 4],
-				'100%': [0, 0, 5],
+		data.features.forEach((state, index) => {
+			if (
+				state.properties[year] != null &&
+				!isNaN(parseFloat(state.properties[year]))
+			) {
+				stateData.push(parseFloat(state.properties[year]))
 			}
-		} else {
-			retvalue = {
-				'20%': [min, min + (20 * (max - min)) / 100, 1],
-				'40%': [
-					min + (20 * (max - min)) / 100,
-					min + (40 * (max - min)) / 100,
-					2,
-				],
-				'60%': [
-					min + (40 * (max - min)) / 100,
-					min + (60 * (max - min)) / 100,
-					3,
-				],
-				'80%': [
-					min + (60 * (max - min)) / 100,
-					min + (80 * (max - min)) / 100,
-					4,
-				],
-				'100%': [
-					min + (80 * (max - min)) / 100,
-					min + (100 * (max - min)) / 100,
-					5,
-				],
-			}
+			return null
+		})
+		stateData.sort(function(a,b) { return a - b;});
+		const uniq = [...new Set(stateData)];
+		const binLength = Math.floor(uniq.length / 5);
+
+		const retvalue = {
+			'20%': [uniq[0], uniq[0+binLength], 1],
+			'40%': [
+				uniq[binLength+1], uniq[binLength*2],
+				2,
+			],
+			'60%': [
+				uniq[2*binLength+1], uniq[binLength*3],
+				3,
+			],
+			'80%': [
+				uniq[3*binLength+1], uniq[binLength*4],
+				4,
+			],
+			'100%': [
+				uniq[4*binLength+1], uniq[uniq.length-1],
+				5,
+			],
 		}
 
+		// let max = Math.max.apply(
+		// 	null,
+		// 	data.features.map((state, index) => {
+		// 		if (
+		// 			state.properties[year] != null &&
+		// 			!isNaN(parseFloat(state.properties[year]))
+		// 		) {
+		// 			return parseFloat(state.properties[year])
+		// 		}
+		// 		return null
+		// 	})
+		// )
+
+		// let min = Math.min.apply(
+		// 	null,
+		// 	data.features.map((state, index) => {
+		// 		if (
+		// 			state.properties[year] != null &&
+		// 			!isNaN(parseFloat(state.properties[year]))
+		// 		) {
+		// 			return parseFloat(state.properties[year])
+		// 		}
+		// 		return null
+		// 	})
+		// )
+
+		// let retvalue = {}
+		// if (min + (max - min) === 0) {
+		// 	retvalue = {
+		// 		'20%': [0, 0, 1],
+		// 		'40%': [0, 0, 2],
+		// 		'60%': [0, 0, 3],
+		// 		'80%': [0, 0, 4],
+		// 		'100%': [0, 0, 5],
+		// 	}
+		// } else {
+		// 	retvalue = {
+		// 		'20%': [min, min + (20 * (max - min)) / 100, 1],
+		// 		'40%': [
+		// 			min + (20 * (max - min)) / 100,
+		// 			min + (40 * (max - min)) / 100,
+		// 			2,
+		// 		],
+		// 		'60%': [
+		// 			min + (40 * (max - min)) / 100,
+		// 			min + (60 * (max - min)) / 100,
+		// 			3,
+		// 		],
+		// 		'80%': [
+		// 			min + (60 * (max - min)) / 100,
+		// 			min + (80 * (max - min)) / 100,
+		// 			4,
+		// 		],
+		// 		'100%': [
+		// 			min + (80 * (max - min)) / 100,
+		// 			min + (100 * (max - min)) / 100,
+		// 			5,
+		// 		],
+		// 	}
+		// 	console.log(retvalue);
+		// }
+
 		this.setState({ bandFigures: retvalue })
-		this.setState({ minMax: [max, min] })
+		this.setState({ minMax: [uniq[uniq.length-1], uniq[0]] })
 	}
 
 	mungeData() {
@@ -495,7 +527,7 @@ class LegendStep extends React.Component {
 				<span
 					className="legendspanside"
 				>
-					{this.props.range[0].toFixed(2)} - {this.props.range[1].toFixed(2)}
+					{this.props.range[0]} - {this.props.range[1]}
 				</span>
 			</li>
 		)
