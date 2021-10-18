@@ -25,6 +25,7 @@ const IndicatorRadioButton = (props) => (
             value={props.indicatorName}
             checked={props.checked}
             readOnly
+            tabIndex="-1"
           />
           <span className="indicator__span" />
         </label>
