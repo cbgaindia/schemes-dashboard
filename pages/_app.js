@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
     const handleRouteChange = (url) => {
       if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) ga.pageview(url);
+      if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_NEW) ga.pageviewNew(url);
       // change focus to top
       if (!url.includes('indicator'))
         document.querySelector('#top-of-site-pixel-anchor').focus();
