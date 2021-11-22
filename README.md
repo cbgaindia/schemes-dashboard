@@ -34,7 +34,7 @@ Find downloadable data, visualisations and other useful information related to a
 - 📱 **Responsive:** Use Desktop, Laptop or Mobile devices. It's optimized for all.
 - ♿ **Accessible:** The platform is screen-reader friendly.
 - 🚀 **Performant:** It's fast!
-- 🌐 **JAMStack:** [Next.js](https://github.com/vercel/next.js) with Headless [Ckan](https://github.com/ckan/ckan) headless CMS to make development process fast and efficient.
+- 🌐 **JAMStack:** [Next.js](https://github.com/vercel/next.js) with [Ckan](https://github.com/ckan/ckan) as headless DMS to make development process fast and efficient.
 - 💄 **BEM & SASS:** The platform utilizes BEM methodology with SASS to make styling efficient and maintainable.
 
 ## Getting Started
