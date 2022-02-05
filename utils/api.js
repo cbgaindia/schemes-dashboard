@@ -70,58 +70,85 @@ export async function dataTransform(id) {
     const metaParse = res[1];
     let metaObj = {};
 
-    // Meta Data
-    metaParse.forEach((val) => {
-      if (val[0]) {
-        metaObj = {
-          ...metaObj,
-          [generateSlug(val[0])]: val[1],
-        };
+    if (type == "Centrally Sponsored Scheme") {
+
+	    // Meta Data
+	    metaParse.forEach((val) => {
+	      if (val[0]) {
+		metaObj = {
+		  ...metaObj,
+		  [generateSlug(val[0])]: val[1],
+		};
+	      }
+	    });
+
+	    obj.metadata = {
+	      description: metaObj['scheme-description'] || '',
+	      name: name || '',
+	      frequency: metaObj.frequency || '',
+	      source: metaObj['data-source'] || '',
+	      type: type || '',
+	      note: metaObj['note:'] || '',
+	      slug,
+	      indicators: [],
+	    };  
+
+	    // Tabular Data
+	    for (let i = 3; i < dataParse[0].length; i += 1) {
+	      const fiscal_year = {};
+
+	      for (let j = 1; j < dataParse.length; j += 1) {
+		if (dataParse[j][2]) {
+		  fiscal_year[dataParse[j][2].trim()] = {
+		    ...fiscal_year[dataParse[j][2].trim()],
+		    [dataParse[j][1]]:
+		      Math.round((dataParse[j][i] + Number.EPSILON) * 100) / 100 || '',
+		  };
+		}
+	      }
+
+	      const indicatorSlug =
+		generateSlug(metaObj[`indicator-${i - 2}-name`]) || '';
+
+	      obj.metadata.indicators.push(indicatorSlug);
+
+	      obj.data = {
+		...obj.data,
+		[`indicator_0${i - 2}`]: {
+		  fiscal_year,
+		  name: metaObj[`indicator-${i - 2}-name`] || '',
+		  description: metaObj[`indicator-${i - 2}-description`] || '',
+		  note: metaObj[`indicator-${i - 2}-note`] || '',
+		  slug: indicatorSlug,
+		  unit: metaObj[`indicator-${i - 2}-unit`] || '',
+		},
+	      };
+	    }
       }
-    });
+      else {
 
-    obj.metadata = {
-      description: metaObj['scheme-description'] || '',
-      name: name || '',
-      frequency: metaObj.frequency || '',
-      source: metaObj['data-source'] || '',
-      type: type || '',
-      note: metaObj['note:'] || '',
-      slug,
-      indicators: [],
-    };
+	    obj.metadata = {
+	      name: name || '',
+	      type: type || '',
+	      slug,
+	    }; 
 
-    // Tabular Data
-    for (let i = 3; i < dataParse[0].length; i += 1) {
-      const fiscal_year = {};
+            const state_data = []
+	    for (let j = 1; j < dataParse.length; j += 1) {
+		if (dataParse[j][0]) {
+                           let temp_data = {}
+		           temp_data[dataParse[0][0].trim()] = dataParse[j][0].trim() ;
+			   temp_data[dataParse[0][1].trim()] = dataParse[j][1].trim() ;
+			   temp_data[dataParse[0][2].trim()] = dataParse[j][2].trim() ;
+			   temp_data[dataParse[0][3].trim()] = dataParse[j][3].trim() ;
+			   temp_data[dataParse[0][4].trim()] =  Math.round((dataParse[j][4] + Number.EPSILON) * 100) / 100 || '';
+                           state_data.push(temp_data);
+	         }
+            }
+            console.log(state_data);
+            obj.data = state_data;
+     }
 
-      for (let j = 1; j < dataParse.length; j += 1) {
-        if (dataParse[j][2]) {
-          fiscal_year[dataParse[j][2].trim()] = {
-            ...fiscal_year[dataParse[j][2].trim()],
-            [dataParse[j][1]]:
-              Math.round((dataParse[j][i] + Number.EPSILON) * 100) / 100 || '',
-          };
-        }
-      }
-
-      const indicatorSlug =
-        generateSlug(metaObj[`indicator-${i - 2}-name`]) || '';
-
-      obj.metadata.indicators.push(indicatorSlug);
-
-      obj.data = {
-        ...obj.data,
-        [`indicator_0${i - 2}`]: {
-          fiscal_year,
-          name: metaObj[`indicator-${i - 2}-name`] || '',
-          description: metaObj[`indicator-${i - 2}-description`] || '',
-          note: metaObj[`indicator-${i - 2}-note`] || '',
-          slug: indicatorSlug,
-          unit: metaObj[`indicator-${i - 2}-unit`] || '',
-        },
-      };
-    }
   });
   return obj;
 }

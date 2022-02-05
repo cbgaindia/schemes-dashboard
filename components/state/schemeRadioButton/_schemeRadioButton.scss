@@ -1,0 +1,58 @@
+.indicator {
+	&__label {
+		display: block;
+		position: relative;
+		padding-left: 2.2rem;
+		margin-bottom: 0.8rem;
+		cursor: pointer;
+		font-size: 1rem;
+		user-select: none;
+
+		input {
+			position: absolute;
+			opacity: 0;
+			cursor: pointer;
+			padding: 0;
+			overflow: visible;
+			margin: 0;
+
+			&:checked ~ .indicator__span {
+				background-color: #4b4797;
+
+				&::after {
+					display: block;
+				}
+			}
+		}
+	}
+
+	&__span {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 1.4rem;
+		width: 1.4rem;
+		background-color: #eee;
+		border-radius: 50%;
+
+		&::after {
+			width: 0.5rem;
+			height: 0.5rem;
+			border-radius: 50%;
+			background: white;
+			content: '';
+			position: absolute;
+			display: none;
+			top: 0.46rem;
+			left: 0.46rem;
+		}
+	}
+	&__text {
+		font-size: 0.9rem;
+		line-height: 150%;
+		color: rgba(0, 0, 0, 0.7);
+		padding-left: 2.2rem;
+		padding-right: 0.6rem;
+		margin: 0 0.25rem;
+	}
+}
