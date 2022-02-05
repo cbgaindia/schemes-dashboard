@@ -70,7 +70,7 @@ const Scheme = ({ scheme, related, news }) => {
 
     // Setting current indicator
     let currentIndicator = indicators.find(
-      (indicator) => generateSlug(indicator) === router.query.indicator
+      (indicator) => generateSlug(indicator) === router.query.scheme
     );
     if (currentIndicator === undefined) currentIndicator = indicators[0];
     setActiveIndicator(currentIndicator);

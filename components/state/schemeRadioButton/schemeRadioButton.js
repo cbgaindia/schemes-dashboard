@@ -8,7 +8,7 @@ const IndicatorRadioButton = (props) => (
       href={{
         pathname: `/state/${props.stateSlug}`,
         query: {
-          indicator: props.indicatorName
+          scheme: props.indicatorName
             ? generateSlug(props.indicatorName)
             : '',
         },
