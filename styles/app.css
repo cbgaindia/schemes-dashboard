@@ -1405,6 +1405,17 @@ button {
   }
 }
 
+.btn-switch-container {
+  text-align: right;
+}
+.btn-switch {
+  border-radius: 8px;
+  padding: .5rem .8rem;
+  font-size: .8rem;
+  margin-right: 8px;
+  margin-top: 20px;
+}
+
 .page-404 {
   display: grid;
   place-content: center;
