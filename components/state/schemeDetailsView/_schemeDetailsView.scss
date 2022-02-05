@@ -1,0 +1,117 @@
+@use '../../styles/tools' as *;
+
+.schemes__details {
+	width: 100%;
+	background: #ffffff;
+	box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
+	border-radius: 12px;
+
+	.details {
+		&__header {
+			padding: 0.5rem 0.75rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+			h3 {
+				font-size: 1rem;
+				font-weight: 700;
+			}
+
+			button {
+				padding: 0;
+				background: none;
+				border: none;
+				outline: none;
+				text-align: right;
+				text-decoration: underline;
+				font-size: 1rem;
+				color: #4b4797;
+			}
+
+			&--viz-show {
+				p {
+					font-size: 0.8rem;
+					color: rgba(0, 0, 0, 0.7);
+					margin-top: 0.25rem;
+				}
+
+				&.text-end {
+					text-align: end;
+				}
+			}
+		}
+
+		&__visualisation {
+			background: #f7fafc;
+			padding: 16px;
+			height: 500px;
+
+			@include respond-to('lt-tablet') {
+				max-width: 1312px;
+				width: 90vw;
+				margin: 0 auto;
+			}
+		}
+
+		&__info {
+			padding: 1rem 1.5rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
+			p {
+				font-size: 1rem;
+				color: rgba(0, 0, 0, 0.7);
+			}
+
+			span {
+				overflow: hidden;
+				white-space: wrap;
+				text-overflow: ellipsis;
+			}
+
+			.text-dark {
+				color: #000000;
+			}
+		}
+
+		&__download {
+			@include download_button;
+			width: max-content;
+			grid-column: 2/3;
+			margin-top: 1.5rem;
+
+			@include respond-to('lt-tablet') {
+				grid-column: 1/2;
+				justify-self: center;
+			}
+
+			svg {
+				margin-left: 1rem;
+				width: 1.5rem;
+				height: 1.5rem;
+			}
+		}
+
+		&__title {
+			font-size: 1rem;
+			font-weight: 700;
+			color: #000000;
+		}
+	}
+}
+
+#report-container {
+	background: #ffffff;
+}
+
+#vis-container {
+	min-height: 430px;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}

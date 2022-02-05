@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Seo from 'components/seo/seo';
-import { dataTransform, fetchRelated, fetchNews, fetchQuery } from 'utils/api';
+import { dataTransform, fetchRelated, fetchNews, fetchQuery,  generateSlug } from 'utils/api';
 import { export_table_to_csv } from 'utils/download-table';
 import SchemeIntroduction from 'components/schemeIntroduction/schemeIntroduction';
 import domtoimage from 'dom-to-image';
-import DatavizViewControls from 'components/datavizViewControls/datavizViewControls';
+import DatavizViewControls from 'components/state/datavizViewControls/datavizViewControls';
 import IndicatorSelector from 'components/indicatorSelector/indicatorSelector';
-import SchemeDetailsView from 'components/schemeDetailsView/schemeDetailsView';
+import SchemeDetailsView from 'components/state/schemeDetailsView/schemeDetailsView';
 import RelatedSchemes from 'components/relatedSchemes/relatedSchemes';
 import SchemeNews from 'components/schemeNews/schemeNews';
 
@@ -55,19 +55,24 @@ const stateCodes = {
 
 const Scheme = ({ scheme, related, news }) => {
   const [showViz, setShowViz] = useState(true);
-  const [activeViz, setActiveViz] = useState('map');
+  const [activeViz, setActiveViz] = useState('bar');
   const [activeIndicator, setActiveIndicator] = useState('');
-  const [activeYear, setActiveYear] = useState('2019-20');
+  const [activeEstimate, setActiveEstimate] = useState('Budget Estimates');
   const [loading, setLoading] = useState(true);
 
   const router = useRouter();
 
   useEffect(() => {
+    // generate indicators
+    const indicators = [
+      ...new Set(scheme.data.map((item) => item.Scheme || null)),
+    ];
+
     // Setting current indicator
-    let currentIndicator = Object.keys(scheme.data).find(
-      (indicator) => scheme.data[indicator].slug === router.query.indicator
+    let currentIndicator = indicators.find(
+      (indicator) => generateSlug(indicator) === router.query.indicator
     );
-    if (currentIndicator === undefined) currentIndicator = 'indicator_01';
+    if (currentIndicator === undefined) currentIndicator = indicators[0];
     setActiveIndicator(currentIndicator);
     setLoading(false);
   }, [router]);
@@ -80,8 +85,8 @@ const Scheme = ({ scheme, related, news }) => {
   const handleToggleShowViz = (status) => {
     setShowViz(status);
   };
-  const setYearChange = (year) => {
-    setActiveYear(year);
+  const setEstimateChange = (estimate) => {
+    setActiveEstimate(estimate);
   };
   const seo = {
     title: scheme.metadata.name,
@@ -143,27 +148,27 @@ const Scheme = ({ scheme, related, news }) => {
                     <SchemeSelector
                       schemeData={scheme}
                       activeIndicator={activeIndicator}
-                      currentSlug={router.query.scheme}
+                      currentSlug={router.query.state}
                     />
 
-                    {/* <SchemeDetailsView
+                    <SchemeDetailsView
                       handleDownloadReportImage={handleDownloadReportImage}
                       showViz={showViz}
                       activeViz={activeViz}
                       handleToggleShowViz={handleToggleShowViz}
                       schemeData={scheme}
                       activeIndicator={activeIndicator}
-                      activeYear={activeYear}
+                      activeEstimate={activeEstimate}
                       stateCodes={stateCodes}
-                      setYearChange={setYearChange}
-                    /> */}
+                      setEstimateChange={setEstimateChange}
+                    />
                   </>
                 )}
               </div>
 
-              {/* <SchemeNews newsData={news} />
+              <SchemeNews newsData={news} />
 
-              <RelatedSchemes related={related} /> */}
+              <RelatedSchemes related={related} /> 
             </>
           )}
         </div>
