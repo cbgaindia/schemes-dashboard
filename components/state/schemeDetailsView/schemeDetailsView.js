@@ -82,17 +82,16 @@ const SchemesDetailsView = (props) => {
 	       <figure>
                   
                 <SimpleBarLineChartViz
-		  color={"#00ABB7"}
+		  color="#00ABB7"
 		  dataset={barLineTransformer(props.schemeData.data, props.activeIndicator, props.activeEstimate )}
 		  type="bar"
-		  smooth={true}
-		  showSymbol={true}
+		  smooth
+		  showSymbol
 		  Title={
-		    props.activeIndicator +
-		    (" - " + props.activeEstimate)
+		    `${props.activeIndicator} - ${props.activeEstimate}`
 		  }
-		  subTitle={""}
-		  unit={"Cr"}
+		  subTitle=""
+		  unit="Cr"
 	      />
 
             </figure>
@@ -101,17 +100,16 @@ const SchemesDetailsView = (props) => {
 	       <figure>
                   
                 <SimpleBarLineChartViz
-		  color={"#00ABB7"}
+		  color="#00ABB7"
 		  dataset={barLineTransformer(props.schemeData.data, props.activeIndicator, props.activeEstimate )}
 		  type="line"
-		  smooth={true}
-		  showSymbol={true}
+		  smooth
+		  showSymbol
 		  Title={
-		    props.activeIndicator +
-		    (" - " + props.activeEstimate)
+		    `${props.activeIndicator} - ${props.activeEstimate}`
 		  }
-		  subTitle={""}
-		  unit={"Cr"}
+		  subTitle=""
+		  unit="Cr"
 	      />
 
             </figure>

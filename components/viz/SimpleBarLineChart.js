@@ -13,18 +13,18 @@ function seriesMaker(color, dataset, type, smooth, showSymbol, unit) {
 
   SetSeries.push({
     data: dataset[1],
-    type: type,
+    type,
     itemStyle: {
-      color: color,
+      color,
     },
-    smooth: smooth,
-    showSymbol: showSymbol,
+    smooth,
+    showSymbol,
     label: {
       normal: {
         show: true,
         position: "top",
         formatter: function (d) {
-          return d.data + " " + unit;
+          return `${d.data} ${unit}`;
         },
       },
     },
@@ -96,8 +96,8 @@ const SimpleBarLineChartViz = ({
   return (
     <ReactECharts
       option={options}
-      notMerge={true}
-      lazyUpdate={true}
+      notMerge
+      lazyUpdate
       style={{
         height: "400px",
       }}

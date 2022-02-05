@@ -9,7 +9,9 @@
 		"eqeqeq": "off",
 		"jsx-a11y/no-autofocus": "off",
 		"no-multi-str": "off",
-		"react-hooks/exhaustive-deps": "off"
+		"react-hooks/exhaustive-deps": "off",
+                "prefer-destructuring": ["error", {"object": true, "array": false}],
+                "object-shorthand": 0
 	},
 	"extends": [
 		"@ijsto",

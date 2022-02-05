@@ -7,11 +7,11 @@ import SchemeIntroduction from 'components/schemeIntroduction/schemeIntroduction
 import domtoimage from 'dom-to-image';
 import DatavizViewControls from 'components/state/datavizViewControls/datavizViewControls';
 import IndicatorSelector from 'components/indicatorSelector/indicatorSelector';
-import SchemeDetailsView from 'components/state/schemeDetailsView/schemeDetailsView';
 import RelatedSchemes from 'components/relatedSchemes/relatedSchemes';
 import SchemeNews from 'components/schemeNews/schemeNews';
 
 import SchemeSelector from 'components/state/schemeSelector/schemeSelector';
+import SchemeDetailsView from 'components/state/schemeDetailsView/schemeDetailsView';
 
 const stateCodes = {
   1: 'Andhra Pradesh',

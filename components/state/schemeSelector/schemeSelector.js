@@ -29,8 +29,7 @@ const IndicatorSelector = (props) => {
       <SearchBar handleChangeSearchTerm={handleChangeSearchTerm} />
       <fieldset className="indicator__wrapper">
         <legend className="screen-reader-text">Select Scheme</legend>
-        {searchedData.map((indicator, index) => {
-            return (
+        {searchedData.map((indicator, index) => 
               <SchemeRadioButton
                 checked={indicator === props.activeIndicator}
                 key={index}
@@ -38,8 +37,8 @@ const IndicatorSelector = (props) => {
                 stateSlug={props.currentSlug}
                 indicatorData={props.schemeData.data}
               />
-            );
-        })}
+           
+        )}
       </fieldset>
     </div>
   );
