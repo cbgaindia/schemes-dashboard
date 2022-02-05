@@ -142,6 +142,8 @@ const Scheme = ({ scheme, related, news }) => {
                 <DatavizViewControls
                   view={activeViz}
                   handleChangeViz={handleChangeViz}
+                  activeEstimate={activeEstimate}
+                  setEstimateChange={setEstimateChange}
                 />
                 {activeIndicator && (
                   <>

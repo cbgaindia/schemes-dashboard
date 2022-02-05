@@ -1395,6 +1395,21 @@ button {
     grid-template-rows: repeat(3, max-content);
   }
 }
+.scheme__container .dataVizControl {
+  grid-column: 1/3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.scheme__container .dataVizControl button {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.8rem;
+  margin-right: 8px;
+}
 .scheme__viz {
   display: flex;
   gap: 1.5rem;
