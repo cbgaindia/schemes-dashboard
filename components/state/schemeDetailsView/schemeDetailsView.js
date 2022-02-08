@@ -51,14 +51,14 @@ const SchemesDetailsView = (props) => {
                 </p>
               </div>
               <div className="details__header--viz-show text-end">
-                {/*<button
+                {/* <button
                   onClick={() => props.handleToggleShowViz(false)}
                   id="hide-this-button"
                   type="button"
                 >
                   View Editorial Notes
-                </button>*/}
-                <p>Unit : {props.schemeData.data[0]['Unit'] || "In Crores"}</p>
+                </button> */}
+                <p>Unit : {props.schemeData.data[0].Unit || "In Crores"}</p>
               </div>
             </>
           )}
@@ -116,7 +116,7 @@ const SchemesDetailsView = (props) => {
             ) : null}
             {props.showViz && props.activeViz === 'table' ? (
               <Table
-                schemeData={props.schemeData.data.filter((item) => item["Scheme"] == props.activeIndicator)} 
+                schemeData={props.schemeData.data.filter((item) => item.Scheme == props.activeIndicator)} 
               />
             ) : null}
           </div>
