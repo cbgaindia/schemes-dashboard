@@ -21,7 +21,21 @@ import scs from 'public/Images/schemesLogos/scs.jpg';
 import sts from 'public/Images/schemesLogos/sts.jpg';
 import pmkisan from 'public/Images/schemesLogos/pmkisan.jpg';
 import pmmvy from 'public/Images/schemesLogos/pmmvy.jpg';
-import up from 'public/Images/schemesLogos/up.jpg';
+
+import up from 'public/Images/stateLogos/Uttar_Pradesh.png';
+import bihar from 'public/Images/stateLogos/Bihar.png';
+import assam from 'public/Images/stateLogos/Assam.png';
+import tamilnadu from 'public/Images/stateLogos/TamilNadu.png';
+import gujarat from 'public/Images/stateLogos/Gujarat.png';
+import maharashtra from 'public/Images/stateLogos/Maharashtra.png';
+import chattisgarh from 'public/Images/stateLogos/Chhattisgarh.png';
+import mp from 'public/Images/stateLogos/Madhya_Pradesh.png';
+import odisha from 'public/Images/stateLogos/Odisha.png';
+import andhra_pradesh from 'public/Images/stateLogos/Andhra_Pradesh.png';
+import rajasthan from 'public/Images/stateLogos/Rajasthan.png';
+import west_bengal from 'public/Images/stateLogos/West_Bengal.png';
+import kerala from 'public/Images/stateLogos/Kerala.png';
+import karnataka from 'public/Images/stateLogos/Karnataka.png';
 
 const SchemesData = {
   jjm: {
@@ -99,6 +113,45 @@ const SchemesData = {
   up: {
     logo: up,
   },
+  bihar: {
+    logo: bihar,
+  },
+  west_bengal: {
+    logo: west_bengal,
+  },
+  tamilnadu: {
+    logo: tamilnadu,
+  },
+  rajasthan: {
+    logo: rajasthan,
+  },
+  odisha: {
+    logo: odisha,
+  },
+  maharashtra: {
+    logo: maharashtra,
+  },
+  mp: {
+    logo: mp,
+  },
+  kerala: {
+    logo: kerala,
+  },
+  gujarat: {
+    logo: gujarat,
+  },
+  karnataka: {
+    logo: karnataka,
+  },
+  chhattisgarh: {
+    logo: chattisgarh,
+  },
+  assam: {
+    logo: assam,
+  },
+  andhra_pradesh: {
+    logo: andhra_pradesh,
+  }
 };
 
 export default SchemesData;

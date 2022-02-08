@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Table = (props) => {
-  const headers = ['Scheme', 'Fiscal_Year', 'Estimate', 'Value'];  //Object.keys(props.schemeData[0]).slice(1,5);
+  const headers = ['Scheme', 'Fiscal Year', 'Estimate', 'Value'];  //Object.keys(props.schemeData[0]).slice(1,5);
   const indicatorName = props.schemeData.name;
   return (
     <div className="table-wrapper">

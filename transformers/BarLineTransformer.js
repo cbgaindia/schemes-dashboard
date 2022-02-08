@@ -18,7 +18,7 @@ export function barLineTransformer(mainData, indicator, estimatetype) {
   let valueData = [];
 
   for (var i = 0; i < data.length; i++) {
-    fiscalData.push(data[i]["Fiscal_Year"]);
+    fiscalData.push(data[i]["Fiscal Year"]);
     valueData.push(
       data[i]["Value"] === ''
         ? 0
