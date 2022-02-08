@@ -142,7 +142,7 @@ export async function dataTransform(id) {
 			   temp_data[dataParse[0][2].trim()] = dataParse[j][2].trim() ;
 			   temp_data[dataParse[0][3].trim()] = dataParse[j][3].trim() ;
 			   temp_data[dataParse[0][4].trim()] =  Math.round((dataParse[j][4] + Number.EPSILON) * 100) / 100 || '';
-                           temp_data['slug'] =  generateSlug(dataParse[j][2].trim()) || '';
+                           temp_data['Slug'] =  generateSlug(dataParse[j][2].trim()) || '';
                            state_data.push(temp_data);
 	         }
             }

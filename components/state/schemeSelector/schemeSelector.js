@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import SearchBar from 'components/searchBar/searchBar';
+import SearchBar from 'components/state/searchBar/searchBar';
 import SchemeRadioButton from 'components/state/schemeRadioButton/schemeRadioButton';
 import { dataTransform, fetchRelated, fetchNews, fetchQuery,  generateSlug } from 'utils/api';
 

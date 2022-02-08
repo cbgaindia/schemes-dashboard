@@ -2,7 +2,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import IndicatorDefinition from 'components/views/indicatorDefinitions';
 import GraphComponent from 'components/views/graphComponent';
-import Table from 'components/views/table';
+import Table from 'components/state/views/table';
 import SimpleBarLineChartViz from "components/viz/SimpleBarLineChart";
 import { barLineTransformer } from "transformers/BarLineTransformer";
 
@@ -51,14 +51,14 @@ const SchemesDetailsView = (props) => {
                 </p>
               </div>
               <div className="details__header--viz-show text-end">
-                <button
+                {/*<button
                   onClick={() => props.handleToggleShowViz(false)}
                   id="hide-this-button"
                   type="button"
                 >
                   View Editorial Notes
-                </button>
-                <p>Unit : {unit}</p>
+                </button>*/}
+                <p>Unit : {props.schemeData.data[0]['Unit'] || "In Crores"}</p>
               </div>
             </>
           )}
@@ -113,6 +113,11 @@ const SchemesDetailsView = (props) => {
 	      />
 
             </figure>
+            ) : null}
+            {props.showViz && props.activeViz === 'table' ? (
+              <Table
+                schemeData={props.schemeData.data.filter((item) => item["Scheme"] == props.activeIndicator)} 
+              />
             ) : null}
           </div>
         </div>

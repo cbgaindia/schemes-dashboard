@@ -137,7 +137,7 @@ const DatavizViewControls = (props) => (
     ))}
   </fieldset>
 
-    <div>
+    {props.activeViz != 'table' && <div>
       <button
         className="btn-geo-opt"
         type="button"
@@ -176,7 +176,7 @@ const DatavizViewControls = (props) => (
       >
         Actuals
       </button>
-    </div>
+    </div> }
 
 </div>
 );

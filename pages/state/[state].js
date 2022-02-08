@@ -12,6 +12,7 @@ import SchemeNews from 'components/schemeNews/schemeNews';
 
 import SchemeSelector from 'components/state/schemeSelector/schemeSelector';
 import SchemeDetailsView from 'components/state/schemeDetailsView/schemeDetailsView';
+import RelatedStates from 'components/state/relatedStates/relatedStates';
 
 const stateCodes = {
   1: 'Andhra Pradesh',
@@ -144,6 +145,7 @@ const Scheme = ({ scheme, related, news }) => {
                   handleChangeViz={handleChangeViz}
                   activeEstimate={activeEstimate}
                   setEstimateChange={setEstimateChange}
+                  activeViz={activeViz}
                 />
                 {activeIndicator && (
                   <>
@@ -168,9 +170,9 @@ const Scheme = ({ scheme, related, news }) => {
                 )}
               </div>
 
-              <SchemeNews newsData={news} />
+              {/* <SchemeNews newsData={news} /> */}
 
-              <RelatedSchemes related={related} /> 
+              <RelatedStates related={related} /> 
             </>
           )}
         </div>

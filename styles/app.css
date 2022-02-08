@@ -1295,6 +1295,10 @@ button {
   margin-right: 2rem;
   min-width: 270px;
 }
+.state__related {
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
 
 .news {
   margin: 3rem 0;
