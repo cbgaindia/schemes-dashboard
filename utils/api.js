@@ -137,14 +137,14 @@ export async function dataTransform(id) {
 	    for (let j = 1; j < dataParse.length; j += 1) {
 		if (dataParse[j][0]) {
                            let temp_data = {}
-		           temp_data[dataParse[0][0].trim()] = dataParse[j][0].trim() ;
-			   temp_data[dataParse[0][1].trim()] = dataParse[j][1].trim() ;
-			   temp_data[dataParse[0][2].trim()] = dataParse[j][2].trim() ;
-			   temp_data[dataParse[0][3].trim()] = dataParse[j][3].trim() ;
-                           temp_data[dataParse[0][4].trim()] = dataParse[j][4].trim() ;
+		           temp_data[dataParse[0][0].trim()] = dataParse[j][0] ? dataParse[j][0].trim() : "" ;
+			   temp_data[dataParse[0][1].trim()] = dataParse[j][1] ? dataParse[j][1].trim() : "" ;
+			   temp_data[dataParse[0][2].trim()] = dataParse[j][2] ? dataParse[j][2].trim() : "" ;
+			   temp_data[dataParse[0][3].trim()] = dataParse[j][3] ? dataParse[j][3].trim() : "" ;
+                           temp_data[dataParse[0][4].trim()] = dataParse[j][4] ? dataParse[j][4].trim() : "" ;
 			   temp_data[dataParse[0][5].trim()] = Math.round((dataParse[j][5] + Number.EPSILON) * 100) / 100 || '';
-                           temp_data[dataParse[0][6].trim()] = dataParse[j][6].trim() ;
-                           temp_data['Slug'] =  generateSlug(dataParse[j][2].trim()) || '';
+                           temp_data[dataParse[0][6].trim()] = dataParse[j][6] ? dataParse[j][6].trim() : "" ;
+                           temp_data['Slug'] =  generateSlug(dataParse[j][2].trim()) || '' ;
                            state_data.push(temp_data);
 	         }
             }
