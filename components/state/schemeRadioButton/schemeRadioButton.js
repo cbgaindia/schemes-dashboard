@@ -35,7 +35,7 @@ const IndicatorRadioButton = (props) => (
     </Link>
     {props.checked ? (
       <p className="indicator__text">
-        {props.indicatorData.filter((item) => item.Scheme == props.indicatorName)[0]['Scheme Description'] || ''}
+        {(props.indicatorData.filter((item) => item.Scheme == props.indicatorName)).length > 0 ? props.indicatorData.filter((item) => item.Scheme == props.indicatorName)[0]['Scheme Description'] : ''}
       </p>
     ) : null}
   </>
