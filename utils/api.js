@@ -64,12 +64,12 @@ export async function dataTransform(id) {
     type = data[0].extras[1].value;
     slug = data[0].name || '';
   });
-
+  console.log('read dataset');
   await fetchSheets(url).then((res) => {
     const dataParse = res[0];
     const metaParse = res[1];
     let metaObj = {};
-
+   console.log('read file');
     if (type == "Centrally Sponsored Scheme") {
 
 	    // Meta Data
@@ -210,7 +210,7 @@ export async function fetchRelated(name, type) {
     similar.forEach((scheme) => {
       otherSchemes.push({
         title: scheme.extras[0].value || 'Scheme Name not defined',
-        link: `/scheme/${scheme.extras[2].value || '#'}`,
+        link: (type != 'State Sponsored Scheme') ? `/scheme/${scheme.extras[2].value || '#'}` : `/state/${scheme.extras[2].value || '#'}`,
         icon: SchemesData[scheme.extras[2].value].logo || '',
       });
     });
