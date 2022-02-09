@@ -22,7 +22,7 @@ import sts from 'public/Images/schemesLogos/sts.jpg';
 import pmkisan from 'public/Images/schemesLogos/pmkisan.jpg';
 import pmmvy from 'public/Images/schemesLogos/pmmvy.jpg';
 
-import up from 'public/Images/stateLogos/Uttar Pradesh.jpg';
+import up from 'public/Images/stateLogos/Uttar Pradesh.png';
 import bihar from 'public/Images/stateLogos/Bihar.jpg';
 import assam from 'public/Images/stateLogos/Assam.jpg';
 import tamilnadu from 'public/Images/stateLogos/Tamil Nadu.jpg';
