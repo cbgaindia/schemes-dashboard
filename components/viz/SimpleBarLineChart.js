@@ -1,8 +1,7 @@
-import React, { FC } from "react";
+import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
 // import * as echarts from "echarts/core";
-
 
 // import ReactEChartsCore from "echarts-for-react/lib/core";
 
@@ -22,7 +21,7 @@ function seriesMaker(color, dataset, type, smooth, showSymbol, unit) {
     label: {
       normal: {
         show: true,
-        position: "top",
+        position: 'top',
         formatter: function (d) {
           return `${d.data} ${unit}`;
         },
@@ -45,31 +44,31 @@ const SimpleBarLineChartViz = ({
   const series = seriesMaker(color, dataset, type, smooth, showSymbol, unit);
   const options = {
     tooltip: {
-      trigger: "axis",
+      trigger: 'axis',
       formatter: function (params) {
-        return `${Title.split("-")[0]} - <br />
+        return `${Title.split('-')[0]} - <br />
         ${params[0].name}: ${params[0].data} ${unit}<br />`;
       },
     },
     grid: {
       show: false,
-      top: "20%",
+      top: '20%',
     },
     xAxis: {
-      type: "category",
+      type: 'category',
       data: dataset[0],
       name: dataset[2][0],
       axisLine: {
-        symbol: ["none", "arrow"],
+        symbol: ['none', 'arrow'],
       },
-      nameLocation: "middle",
+      nameLocation: 'middle',
       nameGap: 30,
     },
     yAxis: {
-      type: "value",
+      type: 'value',
       name: dataset[2][1],
-      axisLine: { onZero: false, show: true, symbol: ["none", "arrow"] },
-      nameLocation: "middle",
+      axisLine: { onZero: false, show: true, symbol: ['none', 'arrow'] },
+      nameLocation: 'middle',
       nameGap: 50,
       max: function (val) {
         return val.max <= 1 ? 1 : null;
@@ -77,7 +76,7 @@ const SimpleBarLineChartViz = ({
     },
     title: {
       text: Title,
-      left: "center",
+      left: 'center',
       subtext: subTitle,
     },
     // toolbox: {
@@ -99,7 +98,7 @@ const SimpleBarLineChartViz = ({
       notMerge
       lazyUpdate
       style={{
-        height: "400px",
+        height: '400px',
       }}
     />
   );

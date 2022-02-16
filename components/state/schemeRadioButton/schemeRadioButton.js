@@ -1,6 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { dataTransform, fetchRelated, fetchNews, fetchQuery,  generateSlug } from 'utils/api';
+import {
+  // dataTransform,
+  // fetchRelated,
+  // fetchNews,
+  // fetchQuery,
+  generateSlug,
+} from 'utils/api';
 
 const IndicatorRadioButton = (props) => (
   <>
@@ -8,14 +14,11 @@ const IndicatorRadioButton = (props) => (
       href={{
         pathname: `/state/${props.stateSlug}`,
         query: {
-          scheme: props.indicatorName
-            ? generateSlug(props.indicatorName)
-            : '',
+          scheme: props.indicatorName ? generateSlug(props.indicatorName) : '',
         },
       }}
       scroll={false}
     >
-
       <a key={`indicator_${props.index}`}>
         <label className="indicator__label" htmlFor={props.indicatorName}>
           {props.indicatorName}
@@ -35,7 +38,13 @@ const IndicatorRadioButton = (props) => (
     </Link>
     {props.checked ? (
       <p className="indicator__text">
-        {(props.indicatorData.filter((item) => item.Scheme == props.indicatorName)).length > 0 ? props.indicatorData.filter((item) => item.Scheme == props.indicatorName)[0]['Scheme Description'] : ''}
+        {props.indicatorData.filter(
+          (item) => item.Scheme == props.indicatorName
+        ).length > 0
+          ? props.indicatorData.filter(
+              (item) => item.Scheme == props.indicatorName
+            )[0]['Scheme Description']
+          : ''}
       </p>
     ) : null}
   </>

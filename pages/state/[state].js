@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Seo from 'components/seo/seo';
-import { dataTransform, fetchRelated, fetchNews, fetchQuery,  generateSlug } from 'utils/api';
+import {
+  dataTransform,
+  fetchRelated,
+  fetchNews,
+  fetchQuery,
+  generateSlug,
+} from 'utils/api';
 import { export_table_to_csv } from 'utils/download-table';
 import SchemeIntroduction from 'components/schemeIntroduction/schemeIntroduction';
 import domtoimage from 'dom-to-image';
 import DatavizViewControls from 'components/state/datavizViewControls/datavizViewControls';
-import IndicatorSelector from 'components/indicatorSelector/indicatorSelector';
-import RelatedSchemes from 'components/relatedSchemes/relatedSchemes';
-import SchemeNews from 'components/schemeNews/schemeNews';
+// import IndicatorSelector from 'components/indicatorSelector/indicatorSelector';
+// import RelatedSchemes from 'components/relatedSchemes/relatedSchemes';
+// import SchemeNews from 'components/schemeNews/schemeNews';
 
 import SchemeSelector from 'components/state/schemeSelector/schemeSelector';
 import SchemeDetailsView from 'components/state/schemeDetailsView/schemeDetailsView';
@@ -54,7 +60,7 @@ const stateCodes = {
   37: 'Puducherry',
 };
 
-const Scheme = ({ scheme, related, news }) => {
+const Scheme = ({ scheme, related }) => {
   const [showViz, setShowViz] = useState(true);
   const [activeViz, setActiveViz] = useState('bar');
   const [activeIndicator, setActiveIndicator] = useState('');
@@ -172,7 +178,7 @@ const Scheme = ({ scheme, related, news }) => {
 
               {/* <SchemeNews newsData={news} /> */}
 
-              <RelatedStates related={related} /> 
+              <RelatedStates related={related} />
             </>
           )}
         </div>
