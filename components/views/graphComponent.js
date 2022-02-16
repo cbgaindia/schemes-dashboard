@@ -175,7 +175,8 @@ class GraphComponent extends React.Component {
           </div>
         ) : null}
         <div className="compare__viz">
-          {this.state.value[0] != null && this.state.selectedFigures != null ? (
+          {this.state.value[0] != null &&
+          this.state.selectedFigures != null ? (
             <div id="chart" style={{ backgroundColor: 'white' }}>
               <FlexibleXYPlot
                 height={350}

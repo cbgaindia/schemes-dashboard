@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Seo from 'components/seo/seo';
 import Card from 'components/card/card';
 import SchemesData from 'utils/schemesData';
 import { fetchQuery } from 'utils/api';
 
 export default function Home({ Data }) {
+  const router = useRouter();
+
   const [schemes, setSchemes] = useState([]);
-  const [schemeType, setSchemetype] = useState('Central Schemes');
+  const [schemeType, setSchemetype] = useState(
+    router.query.type ? router.query.type : 'Central Schemes'
+  );
+
 
   useEffect(() => {
-    const cardsData  = (schemeType == 'Central Schemes') ? Data.central_data : Data.state_data
+    const cardsData =
+      schemeType == 'Central Schemes' ? Data.central_data : Data.state_data;
     const allSchemes = cardsData.map((scheme) => ({
       title: scheme.name,
-      link: (schemeType == 'Central Schemes') ? `/scheme/${scheme.slug}` : `/state/${scheme.slug}`,
+      link:
+        schemeType == 'Central Schemes'
+          ? `/scheme/${scheme.slug}`
+          : `/state/${scheme.slug}`,
       icon: SchemesData[scheme.slug].logo,
     }));
     allSchemes.sort((a, b) =>
@@ -22,8 +32,10 @@ export default function Home({ Data }) {
   }, [schemeType]);
 
   const handleChangeSchemeType = (value) => {
-    console.log(value);
     setSchemetype(value);
+    router.push({
+      query: { type: value },
+    });
   };
 
   const seo = {
@@ -39,33 +51,33 @@ export default function Home({ Data }) {
         <span id="maincontent">-</span>
       </div>
       <main id="main" tabIndex="-1" className="wrapper home">
-	    <div className="btn-switch-container">
-	      <button
-		className="btn-switch"
-		type="button"
-		style={
-		  schemeType == 'Central Schemes'
-		    ? { background: '#4b4797', color: 'white' }
-		    : {}
-		}
-		onClick={() => handleChangeSchemeType('Central Schemes')}
-	      >
-		Central Schemes
-	      </button>
+        <div className="btn-switch-container">
+          <button
+            className="btn-switch"
+            type="button"
+            style={
+              schemeType == 'Central Schemes'
+                ? { background: '#4b4797', color: 'white' }
+                : {}
+            }
+            onClick={() => handleChangeSchemeType('Central Schemes')}
+          >
+            Central Schemes
+          </button>
 
-	      <button
-		className="btn-switch"
-		type="button"
-		style={
-		  schemeType == 'State Schemes'
-		    ? { background: '#4b4797', color: 'white' }
-		    : {}
-		}
-		onClick={() => handleChangeSchemeType('State Schemes')}
-	      >
-		State Schemes
-	      </button>
-	    </div>
+          <button
+            className="btn-switch"
+            type="button"
+            style={
+              schemeType == 'State Schemes'
+                ? { background: '#4b4797', color: 'white' }
+                : {}
+            }
+            onClick={() => handleChangeSchemeType('State Schemes')}
+          >
+            State Schemes
+          </button>
+        </div>
         <ul className="home__cards">
           {schemes.length > 0 &&
             schemes.map((scheme, index) => (
@@ -80,17 +92,23 @@ export default function Home({ Data }) {
 }
 
 export async function getStaticProps() {
-  const central_data = await fetchQuery('schemeType', 'Centrally Sponsored Scheme');
+  const central_data = await fetchQuery(
+    'schemeType',
+    'Centrally Sponsored Scheme'
+  );
   const state_data = await fetchQuery('schemeType', 'State Sponsored Scheme');
   return {
-    props: {Data : {
-	"central_data" : central_data.map((scheme) => ({
-        slug: scheme.extras[2].value,
-        name: scheme.extras[0].value,})),
-        "state_data" : state_data.map((scheme) => ({
-        slug: scheme.extras[2].value,
-        name: scheme.extras[0].value,})),
-       }
+    props: {
+      Data: {
+        central_data: central_data.map((scheme) => ({
+          slug: scheme.extras[2].value,
+          name: scheme.extras[0].value,
+        })),
+        state_data: state_data.map((scheme) => ({
+          slug: scheme.extras[2].value,
+          name: scheme.extras[0].value,
+        })),
+      },
     },
     revalidate: 1,
   };

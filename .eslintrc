@@ -1,29 +1,27 @@
 {
-	"rules": {
-		"import/no-unresolved": [2, { "caseSensitive": false }],
-		"react/no-danger": "off",
-		"sort-keys": "off",
-		"no-param-reassign": [1, { "props": false }],
-		"no-unused-vars": [1],
-		"prettier/prettier": [1, {"singleQuote": true, "parser": "flow"}],
-		"eqeqeq": "off",
-		"jsx-a11y/no-autofocus": "off",
-		"no-multi-str": "off",
-		"react-hooks/exhaustive-deps": "off",
-                "prefer-destructuring": ["error", {"object": true, "array": false}],
-                "object-shorthand": 0
-	},
-	"extends": [
-		"@ijsto",
-		"plugin:import/errors",
-		"plugin:import/warnings"
-	],
-	"settings": {
-		"import/resolver": {
-			"node": {
-				"paths": [".", "src"],
-				"extensions": [".js", ".jsx", ".ts", ".tsx"]
-			}
-		}
-	}
+  "rules": {
+    "import/no-unresolved": [2, { "caseSensitive": false }],
+    "react/no-danger": "off",
+    "sort-keys": "off",
+    "no-param-reassign": [1, { "props": false }],
+    "no-unused-vars": [1],
+    "prettier/prettier": [1, { "singleQuote": true, "parser": "flow" }],
+    "eqeqeq": "off",
+    "jsx-a11y/no-autofocus": "off",
+    "no-multi-str": "off",
+    "no-console": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "prefer-destructuring": "off",
+    "func-names": "off",
+    "object-shorthand": 0
+  },
+  "extends": ["@ijsto", "plugin:import/errors", "plugin:import/warnings"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [".", "src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
 }

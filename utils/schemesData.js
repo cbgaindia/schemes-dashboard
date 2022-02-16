@@ -23,19 +23,19 @@ import pmkisan from 'public/Images/schemesLogos/pmkisan.jpg';
 import pmmvy from 'public/Images/schemesLogos/pmmvy.jpg';
 
 import up from 'public/Images/stateLogos/Uttar Pradesh.png';
-import bihar from 'public/Images/stateLogos/Bihar.jpg';
-import assam from 'public/Images/stateLogos/Assam.jpg';
-import tamilnadu from 'public/Images/stateLogos/Tamil Nadu.jpg';
-import gujarat from 'public/Images/stateLogos/Gujarat.jpg';
-import maharashtra from 'public/Images/stateLogos/Maharashtra.jpg';
-import chattisgarh from 'public/Images/stateLogos/Chhattisgarh.jpg';
-import mp from 'public/Images/stateLogos/Madhya Pradesh.jpg';
-import odisha from 'public/Images/stateLogos/Odisha.jpg';
-import andhra_pradesh from 'public/Images/stateLogos/Andhra Pradesh.jpg';
-import rajasthan from 'public/Images/stateLogos/Rajasthan.jpg';
-import west_bengal from 'public/Images/stateLogos/West Bengal.jpg';
-import kerala from 'public/Images/stateLogos/Kerala.jpg';
-import karnataka from 'public/Images/stateLogos/Karnataka.jpg';
+import bihar from 'public/Images/stateLogos/Bihar.png';
+import assam from 'public/Images/stateLogos/Assam.png';
+import tamilnadu from 'public/Images/stateLogos/Tamil Nadu.png';
+import gujarat from 'public/Images/stateLogos/Gujarat.png';
+import maharashtra from 'public/Images/stateLogos/Maharashtra.png';
+import chattisgarh from 'public/Images/stateLogos/Chhattisgarh.png';
+import mp from 'public/Images/stateLogos/Madhya Pradesh.png';
+import odisha from 'public/Images/stateLogos/Odisha.png';
+import andhra_pradesh from 'public/Images/stateLogos/Andhra Pradesh.png';
+import rajasthan from 'public/Images/stateLogos/Rajasthan.png';
+import west_bengal from 'public/Images/stateLogos/West Bengal.png';
+import kerala from 'public/Images/stateLogos/Kerala.png';
+import karnataka from 'public/Images/stateLogos/Karnataka.png';
 
 const SchemesData = {
   jjm: {
@@ -151,7 +151,7 @@ const SchemesData = {
   },
   andhra_pradesh: {
     logo: andhra_pradesh,
-  }
+  },
 };
 
 export default SchemesData;

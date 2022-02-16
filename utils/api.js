@@ -64,94 +64,101 @@ export async function dataTransform(id) {
     type = data[0].extras[1].value;
     slug = data[0].name || '';
   });
-  console.log('read dataset');
   await fetchSheets(url).then((res) => {
     const dataParse = res[0];
     const metaParse = res[1];
     let metaObj = {};
-   console.log('read file');
-    if (type == "Centrally Sponsored Scheme") {
+    if (type == 'Centrally Sponsored Scheme') {
+      // Meta Data
+      metaParse.forEach((val) => {
+        if (val[0]) {
+          metaObj = {
+            ...metaObj,
+            [generateSlug(val[0])]: val[1],
+          };
+        }
+      });
 
-	    // Meta Data
-	    metaParse.forEach((val) => {
-	      if (val[0]) {
-		metaObj = {
-		  ...metaObj,
-		  [generateSlug(val[0])]: val[1],
-		};
-	      }
-	    });
+      obj.metadata = {
+        description: metaObj['scheme-description'] || '',
+        name: name || '',
+        frequency: metaObj.frequency || '',
+        source: metaObj['data-source'] || '',
+        type: type || '',
+        note: metaObj['note:'] || '',
+        slug,
+        indicators: [],
+      };
 
-	    obj.metadata = {
-	      description: metaObj['scheme-description'] || '',
-	      name: name || '',
-	      frequency: metaObj.frequency || '',
-	      source: metaObj['data-source'] || '',
-	      type: type || '',
-	      note: metaObj['note:'] || '',
-	      slug,
-	      indicators: [],
-	    };  
+      // Tabular Data
+      for (let i = 3; i < dataParse[0].length; i += 1) {
+        const fiscal_year = {};
 
-	    // Tabular Data
-	    for (let i = 3; i < dataParse[0].length; i += 1) {
-	      const fiscal_year = {};
+        for (let j = 1; j < dataParse.length; j += 1) {
+          if (dataParse[j][2]) {
+            fiscal_year[dataParse[j][2].trim()] = {
+              ...fiscal_year[dataParse[j][2].trim()],
+              [dataParse[j][1]]:
+                Math.round((dataParse[j][i] + Number.EPSILON) * 100) / 100 ||
+                '',
+            };
+          }
+        }
 
-	      for (let j = 1; j < dataParse.length; j += 1) {
-		if (dataParse[j][2]) {
-		  fiscal_year[dataParse[j][2].trim()] = {
-		    ...fiscal_year[dataParse[j][2].trim()],
-		    [dataParse[j][1]]:
-		      Math.round((dataParse[j][i] + Number.EPSILON) * 100) / 100 || '',
-		  };
-		}
-	      }
+        const indicatorSlug =
+          generateSlug(metaObj[`indicator-${i - 2}-name`]) || '';
 
-	      const indicatorSlug =
-		generateSlug(metaObj[`indicator-${i - 2}-name`]) || '';
+        obj.metadata.indicators.push(indicatorSlug);
 
-	      obj.metadata.indicators.push(indicatorSlug);
-
-	      obj.data = {
-		...obj.data,
-		[`indicator_0${i - 2}`]: {
-		  fiscal_year,
-		  name: metaObj[`indicator-${i - 2}-name`] || '',
-		  description: metaObj[`indicator-${i - 2}-description`] || '',
-		  note: metaObj[`indicator-${i - 2}-note`] || '',
-		  slug: indicatorSlug,
-		  unit: metaObj[`indicator-${i - 2}-unit`] || '',
-		},
-	      };
-	    }
+        obj.data = {
+          ...obj.data,
+          [`indicator_0${i - 2}`]: {
+            fiscal_year,
+            name: metaObj[`indicator-${i - 2}-name`] || '',
+            description: metaObj[`indicator-${i - 2}-description`] || '',
+            note: metaObj[`indicator-${i - 2}-note`] || '',
+            slug: indicatorSlug,
+            unit: metaObj[`indicator-${i - 2}-unit`] || '',
+          },
+        };
       }
-      else {
+    } else {
+      obj.metadata = {
+        name: name || '',
+        type: type || '',
+        slug,
+      };
 
-	    obj.metadata = {
-	      name: name || '',
-	      type: type || '',
-	      slug,
-	    }; 
-
-            const state_data = []
-	    for (let j = 1; j < dataParse.length; j += 1) {
-		if (dataParse[j][0]) {
-                           let temp_data = {}
-		           temp_data[dataParse[0][0].trim()] = dataParse[j][0] ? dataParse[j][0].trim() : "" ;
-			   temp_data[dataParse[0][1].trim()] = dataParse[j][1] ? dataParse[j][1].trim() : "" ;
-			   temp_data[dataParse[0][2].trim()] = dataParse[j][2] ? dataParse[j][2].trim() : "" ;
-			   temp_data[dataParse[0][3].trim()] = dataParse[j][3] ? dataParse[j][3].trim() : "" ;
-                           temp_data[dataParse[0][4].trim()] = dataParse[j][4] ? dataParse[j][4].trim() : "" ;
-			   temp_data[dataParse[0][5].trim()] = Math.round((dataParse[j][5] + Number.EPSILON) * 100) / 100 || '';
-                           temp_data[dataParse[0][6].trim()] = dataParse[j][6] ? dataParse[j][6].trim() : "" ;
-                           temp_data['Slug'] =  generateSlug(dataParse[j][2].trim()) || '' ;
-                           state_data.push(temp_data);
-	         }
-            }
-            // console.log(state_data);
-            obj.data = state_data;
-     }
-
+      const state_data = [];
+      for (let j = 1; j < dataParse.length; j += 1) {
+        if (dataParse[j][0]) {
+          const temp_data = {};
+          temp_data[dataParse[0][0].trim()] = dataParse[j][0]
+            ? dataParse[j][0].trim()
+            : '';
+          temp_data[dataParse[0][1].trim()] = dataParse[j][1]
+            ? dataParse[j][1].trim()
+            : '';
+          temp_data[dataParse[0][2].trim()] = dataParse[j][2]
+            ? dataParse[j][2].trim()
+            : '';
+          temp_data[dataParse[0][3].trim()] = dataParse[j][3]
+            ? dataParse[j][3].trim()
+            : '';
+          temp_data[dataParse[0][4].trim()] = dataParse[j][4]
+            ? dataParse[j][4].trim()
+            : '';
+          temp_data[dataParse[0][5].trim()] =
+            Math.round((dataParse[j][5] + Number.EPSILON) * 100) / 100 || '';
+          temp_data[dataParse[0][6].trim()] = dataParse[j][6]
+            ? dataParse[j][6].trim()
+            : '';
+          temp_data.Slug = generateSlug(dataParse[j][2].trim()) || '';
+          state_data.push(temp_data);
+        }
+      }
+      obj.data = state_data;
+    }
   });
   return obj;
 }
@@ -210,7 +217,10 @@ export async function fetchRelated(name, type) {
     similar.forEach((scheme) => {
       otherSchemes.push({
         title: scheme.extras[0].value || 'Scheme Name not defined',
-        link: (type != 'State Sponsored Scheme') ? `/scheme/${scheme.extras[2].value || '#'}` : `/state/${scheme.extras[2].value || '#'}`,
+        link:
+          type != 'State Sponsored Scheme'
+            ? `/scheme/${scheme.extras[2].value || '#'}`
+            : `/state/${scheme.extras[2].value || '#'}`,
         icon: SchemesData[scheme.extras[2].value].logo || '',
       });
     });

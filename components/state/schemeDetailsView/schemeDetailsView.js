@@ -1,30 +1,29 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import IndicatorDefinition from 'components/views/indicatorDefinitions';
-import GraphComponent from 'components/views/graphComponent';
+// import GraphComponent from 'components/views/graphComponent';
 import Table from 'components/state/views/table';
-import SimpleBarLineChartViz from "components/viz/SimpleBarLineChart";
-import { barLineTransformer } from "transformers/BarLineTransformer";
-
+import SimpleBarLineChartViz from 'components/viz/SimpleBarLineChart';
+import { barLineTransformer } from 'transformers/BarLineTransformer';
 
 const SchemesDetailsView = (props) => {
-  const Choropleth = React.useMemo(
-    () =>
-      dynamic(() => import('components/views/choropleth'), {
-        loading: () => <p>Map is loading</p>,
-        ssr: false,
-      }),
-    []
-  );
+  // const Choropleth = React.useMemo(
+  //   () =>
+  //     dynamic(() => import('components/views/choropleth'), {
+  //       loading: () => <p>Map is loading</p>,
+  //       ssr: false,
+  //     }),
+  //   []
+  // );
 
   const indicatorName =
     props.schemeData.data[props.activeIndicator] &&
     props.schemeData.data[props.activeIndicator].name;
   const schemeName = props.schemeData.metadata.name;
-  const { activeYear } = props;
-  const unit =
-    props.schemeData.data[props.activeIndicator] &&
-    props.schemeData.data[props.activeIndicator].unit;
+  // const { activeYear } = props;
+  // const unit =
+  //   props.schemeData.data[props.activeIndicator] &&
+  //   props.schemeData.data[props.activeIndicator].unit;
   const dataSource = props.schemeData.metadata.source;
   return (
     <div className="schemes__details">
@@ -47,7 +46,7 @@ const SchemesDetailsView = (props) => {
                 <p>
                   {props.activeViz === 'bar' || props.activeViz === 'line'
                     ? ` ${schemeName} | ${props.activeIndicator} | ${props.activeEstimate} `
-                    : ` ${schemeName} | ${props.activeIndicator}` }
+                    : ` ${schemeName} | ${props.activeIndicator}`}
                 </p>
               </div>
               <div className="details__header--viz-show text-end">
@@ -58,7 +57,7 @@ const SchemesDetailsView = (props) => {
                 >
                   View Editorial Notes
                 </button> */}
-                <p>Unit : {props.schemeData.data[0].Unit || "In Crores"}</p>
+                <p>Unit : {props.schemeData.data[0].Unit || 'In Crores'}</p>
               </div>
             </>
           )}
@@ -79,44 +78,46 @@ const SchemesDetailsView = (props) => {
               />
             ) : null}
             {props.showViz && props.activeViz === 'bar' ? (
-	       <figure>
-                  
+              <figure>
                 <SimpleBarLineChartViz
-		  color="#00ABB7"
-		  dataset={barLineTransformer(props.schemeData.data, props.activeIndicator, props.activeEstimate )}
-		  type="bar"
-		  smooth
-		  showSymbol
-		  Title={
-		    `${props.activeIndicator} - ${props.activeEstimate}`
-		  }
-		  subTitle=""
-		  unit="Cr"
-	      />
-
-            </figure>
+                  color="#00ABB7"
+                  dataset={barLineTransformer(
+                    props.schemeData.data,
+                    props.activeIndicator,
+                    props.activeEstimate
+                  )}
+                  type="bar"
+                  smooth
+                  showSymbol
+                  Title={`${props.activeIndicator} - ${props.activeEstimate}`}
+                  subTitle=""
+                  unit="Cr"
+                />
+              </figure>
             ) : null}
             {props.showViz && props.activeViz === 'line' ? (
-	       <figure>
-                  
+              <figure>
                 <SimpleBarLineChartViz
-		  color="#00ABB7"
-		  dataset={barLineTransformer(props.schemeData.data, props.activeIndicator, props.activeEstimate )}
-		  type="line"
-		  smooth
-		  showSymbol
-		  Title={
-		    `${props.activeIndicator} - ${props.activeEstimate}`
-		  }
-		  subTitle=""
-		  unit="Cr"
-	      />
-
-            </figure>
+                  color="#00ABB7"
+                  dataset={barLineTransformer(
+                    props.schemeData.data,
+                    props.activeIndicator,
+                    props.activeEstimate
+                  )}
+                  type="line"
+                  smooth
+                  showSymbol
+                  Title={`${props.activeIndicator} - ${props.activeEstimate}`}
+                  subTitle=""
+                  unit="Cr"
+                />
+              </figure>
             ) : null}
             {props.showViz && props.activeViz === 'table' ? (
               <Table
-                schemeData={props.schemeData.data.filter((item) => item.Scheme == props.activeIndicator)} 
+                schemeData={props.schemeData.data.filter(
+                  (item) => item.Scheme == props.activeIndicator
+                )}
               />
             ) : null}
           </div>

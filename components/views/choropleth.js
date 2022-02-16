@@ -214,7 +214,6 @@ export default class Choropleth extends Component {
 		// 			5,
 		// 		],
 		// 	}
-		// 	console.log(retvalue);
 		// }
 
 		this.setState({ bandFigures: retvalue })
