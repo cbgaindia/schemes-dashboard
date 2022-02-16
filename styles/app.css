@@ -302,7 +302,6 @@ button {
 .card__image {
   width: 100%;
   height: 112px;
-  background: #f0f3f5;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -469,6 +468,16 @@ button {
   .home__cards {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+.home .btn-switch-container {
+  text-align: right;
+}
+.home .btn-switch {
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.8rem;
+  margin-right: 8px;
+  margin-top: 20px;
 }
 
 .seperator {
@@ -1295,10 +1304,6 @@ button {
   margin-right: 2rem;
   min-width: 270px;
 }
-.state__related {
-  margin-bottom: 3rem;
-  margin-top: 3rem;
-}
 
 .news {
   margin: 3rem 0;
@@ -1384,6 +1389,37 @@ button {
   margin-right: 0.5rem;
 }
 
+.state__related {
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+.state__related .related__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+.state__related .related__header h3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.state__related .related__header a {
+  color: #004fa4;
+}
+.state__related .related__cards {
+  position: relative;
+  display: flex;
+  overflow-x: auto;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  padding: 1rem 0;
+}
+.state__related .related__cards .card {
+  margin-right: 2rem;
+  min-width: 270px;
+}
+
 .scheme {
   min-height: calc(100vh - 80px);
 }
@@ -1424,20 +1460,9 @@ button {
   }
 }
 
-.btn-switch-container {
-  text-align: right;
-}
-.btn-switch {
-  border-radius: 8px;
-  padding: .5rem .8rem;
-  font-size: .8rem;
-  margin-right: 8px;
-  margin-top: 20px;
-}
-
 .page-404 {
   display: grid;
   place-content: center;
   height: 90vh;
   text-align: center;
-}/*# sourceMappingURL=app.css.map */
+}

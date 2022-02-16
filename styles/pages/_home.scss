@@ -5,22 +5,33 @@
 @use '../../components/footer/footer';
 
 .home {
-	min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
 
-	&__cards {
-		margin: 2rem auto;
-		display: grid;
-		grid-template-rows: max-content;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 1rem;
-		padding-left: 0;
+  &__cards {
+    margin: 2rem auto;
+    display: grid;
+    grid-template-rows: max-content;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding-left: 0;
 
-		@include respond-to('lt-desktop') {
-			grid-template-columns: repeat(3, 1fr);
-		}
+    @include respond-to('lt-desktop') {
+      grid-template-columns: repeat(3, 1fr);
+    }
 
-		@include respond-to('lt-tablet') {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
+    @include respond-to('lt-tablet') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .btn-switch-container {
+    text-align: right;
+  }
+  .btn-switch {
+    border-radius: 8px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    margin-right: 8px;
+    margin-top: 20px;
+  }
 }
