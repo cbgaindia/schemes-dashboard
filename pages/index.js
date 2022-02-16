@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Seo from 'components/seo/seo';
 import Card from 'components/card/card';
 import SchemesData from 'utils/schemesData';
 import { fetchQuery } from 'utils/api';
 
 export default function Home({ Data }) {
+  const router = useRouter();
+
   const [schemes, setSchemes] = useState([]);
-  const [schemeType, setSchemetype] = useState('Central Schemes');
+  const [schemeType, setSchemetype] = useState(
+    router.query.type ? router.query.type : 'Central Schemes'
+  );
+
 
   useEffect(() => {
     const cardsData =
@@ -26,8 +32,10 @@ export default function Home({ Data }) {
   }, [schemeType]);
 
   const handleChangeSchemeType = (value) => {
-    console.log(value);
     setSchemetype(value);
+    router.push({
+      query: { type: value },
+    });
   };
 
   const seo = {
