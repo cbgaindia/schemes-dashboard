@@ -14,7 +14,7 @@ import domtoimage from 'dom-to-image';
 import DatavizViewControls from 'components/state/datavizViewControls/datavizViewControls';
 // import IndicatorSelector from 'components/indicatorSelector/indicatorSelector';
 // import RelatedSchemes from 'components/relatedSchemes/relatedSchemes';
-// import SchemeNews from 'components/schemeNews/schemeNews';
+import SchemeNews from 'components/schemeNews/schemeNews';
 
 import SchemeSelector from 'components/state/schemeSelector/schemeSelector';
 import SchemeDetailsView from 'components/state/schemeDetailsView/schemeDetailsView';
@@ -60,7 +60,7 @@ const stateCodes = {
   37: 'Puducherry',
 };
 
-const Scheme = ({ scheme, related }) => {
+const Scheme = ({ scheme, related, news }) => {
   const [showViz, setShowViz] = useState(true);
   const [activeViz, setActiveViz] = useState('bar');
   const [activeIndicator, setActiveIndicator] = useState('');
