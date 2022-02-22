@@ -21,6 +21,7 @@ import scs from 'public/Images/schemesLogos/scs.jpg';
 import sts from 'public/Images/schemesLogos/sts.jpg';
 import pmkisan from 'public/Images/schemesLogos/pmkisan.jpg';
 import pmmvy from 'public/Images/schemesLogos/pmmvy.jpg';
+import nfsm from 'public/Images/schemesLogos/nfsm.png';
 
 import up from 'public/Images/stateLogos/Uttar Pradesh.png';
 import bihar from 'public/Images/stateLogos/Bihar.png';
@@ -109,6 +110,9 @@ const SchemesData = {
   },
   pmmvy: {
     logo: pmmvy,
+  },
+  nfsm: {
+    logo: nfsm,
   },
   up: {
     logo: up,

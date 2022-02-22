@@ -176,7 +176,7 @@ const Scheme = ({ scheme, related }) => {
                 )}
               </div>
 
-              {/* <SchemeNews newsData={news} /> */}
+              <SchemeNews newsData={news} /> 
 
               <RelatedStates related={related} />
             </>
