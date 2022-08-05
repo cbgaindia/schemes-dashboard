@@ -1,4 +1,5 @@
 import { read, utils as xlsxUtil } from 'xlsx';
+import placeholder from 'public/assets/icons/placeholder.jpg';
 import SchemesData from 'utils/schemesData';
 
 export async function fetchAPI(path) {
@@ -221,7 +222,9 @@ export async function fetchRelated(name, type) {
           type != 'State Sponsored Scheme'
             ? `/scheme/${scheme.extras[2].value || '#'}`
             : `/state/${scheme.extras[2].value || '#'}`,
-        icon: SchemesData[scheme.extras[2].value].logo || '',
+        icon: SchemesData[scheme.extras[2].value]
+          ? SchemesData[scheme.extras[2].value].logo
+          : placeholder,
       });
     });
   });
