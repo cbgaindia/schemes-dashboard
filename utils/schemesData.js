@@ -38,6 +38,10 @@ import west_bengal from 'public/Images/stateLogos/West Bengal.png';
 import kerala from 'public/Images/stateLogos/Kerala.png';
 import karnataka from 'public/Images/stateLogos/Karnataka.png';
 import uk from 'public/Images/stateLogos/uk.png';
+import haryana from 'public/Images/stateLogos/Haryana.png';
+import hp from 'public/Images/stateLogos/himachal Pradesh.png';
+import manipur from 'public/Images/stateLogos/Manipur.png';
+import punjab from 'public/Images/stateLogos/Punjab.png';
 
 const SchemesData = {
   jjm: {
@@ -159,6 +163,18 @@ const SchemesData = {
   },
   uk: {
     logo: uk,
+  },
+  haryana: {
+    logo: haryana,
+  },
+  hp: {
+    logo: hp,
+  },
+  manipur: {
+    logo: manipur,
+  },
+  punjab: {
+    logo: punjab,
   },
 };
 
