@@ -13,7 +13,8 @@
     "react-hooks/exhaustive-deps": "off",
     "prefer-destructuring": "off",
     "func-names": "off",
-    "object-shorthand": 0
+    "object-shorthand": 0,
+    "react/function-component-definition": "off"
   },
   "extends": ["@ijsto", "plugin:import/errors", "plugin:import/warnings"],
   "settings": {
