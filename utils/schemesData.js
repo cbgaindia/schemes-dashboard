@@ -37,6 +37,7 @@ import rajasthan from 'public/Images/stateLogos/Rajasthan.png';
 import west_bengal from 'public/Images/stateLogos/West Bengal.png';
 import kerala from 'public/Images/stateLogos/Kerala.png';
 import karnataka from 'public/Images/stateLogos/Karnataka.png';
+import uk from 'public/Images/stateLogos/uk.png';
 
 const SchemesData = {
   jjm: {
@@ -155,6 +156,9 @@ const SchemesData = {
   },
   andhra_pradesh: {
     logo: andhra_pradesh,
+  },
+  uk: {
+    logo: uk,
   },
 };
 
