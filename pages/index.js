@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Seo from 'components/seo/seo';
 import Card from 'components/card/card';
 import SchemesData from 'utils/schemesData';
+import placeholder from 'public/assets/icons/placeholder.jpg';
 import { fetchQuery } from 'utils/api';
 
 export default function Home({ Data }) {
@@ -13,7 +14,6 @@ export default function Home({ Data }) {
     router.query.type ? router.query.type : 'Central Schemes'
   );
 
-
   useEffect(() => {
     const cardsData =
       schemeType == 'Central Schemes' ? Data.central_data : Data.state_data;
@@ -23,7 +23,9 @@ export default function Home({ Data }) {
         schemeType == 'Central Schemes'
           ? `/scheme/${scheme.slug}`
           : `/state/${scheme.slug}`,
-      icon: SchemesData[scheme.slug].logo,
+      icon: SchemesData[scheme.slug]
+        ? SchemesData[scheme.slug].logo
+        : placeholder,
     }));
     allSchemes.sort((a, b) =>
       a.title.toLowerCase().localeCompare(b.title.toLowerCase())
