@@ -14,7 +14,8 @@
     "prefer-destructuring": "off",
     "func-names": "off",
     "object-shorthand": 0,
-    "react/function-component-definition": "off"
+    "react/function-component-definition": "off",
+    "react/no-unstable-nested-components": "off"
   },
   "extends": ["@ijsto", "plugin:import/errors", "plugin:import/warnings"],
   "settings": {

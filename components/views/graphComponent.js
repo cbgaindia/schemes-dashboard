@@ -1,5 +1,4 @@
 /* eslint-disable react/no-did-update-set-state */
-/* eslint-disable react/no-deprecated */
 
 import React from 'react';
 import Select from 'react-select';
@@ -35,7 +34,7 @@ class GraphComponent extends React.Component {
     this.setBudgetAttr = this.setBudgetAttr.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.getrecord_figures();
   }
 
