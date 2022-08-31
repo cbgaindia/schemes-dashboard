@@ -22,6 +22,8 @@ import sts from 'public/Images/schemesLogos/sts.jpg';
 import pmkisan from 'public/Images/schemesLogos/pmkisan.jpg';
 import pmmvy from 'public/Images/schemesLogos/pmmvy.jpg';
 import nfsm from 'public/Images/schemesLogos/nfsm.png';
+import nrlm from 'public/Images/schemesLogos/nrlm.png';
+import nirbhaya from 'public/Images/schemesLogos/nirbhaya.png';
 
 import up from 'public/Images/stateLogos/Uttar Pradesh.png';
 import bihar from 'public/Images/stateLogos/Bihar.png';
@@ -44,6 +46,12 @@ import manipur from 'public/Images/stateLogos/Manipur.png';
 import punjab from 'public/Images/stateLogos/Punjab.png';
 
 const SchemesData = {
+  nrlm: {
+    logo: nrlm,
+  },
+  nirbhaya: {
+    logo: nirbhaya,
+  },
   jjm: {
     logo: jjm,
   },

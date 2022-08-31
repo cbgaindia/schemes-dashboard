@@ -26,6 +26,11 @@ const IndicatorDefinitionView = (props) => {
           </p>
         </div>
       ))}
+      <div className="mt-3 pb-2 notes__section">
+        <p className="page-introduction-text">
+          <span className="notes__indicator">General Note:</span> {props.schemeData.note}
+        </p>
+      </div>
     </div>
   );
 };

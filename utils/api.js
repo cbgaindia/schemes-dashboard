@@ -86,7 +86,7 @@ export async function dataTransform(id) {
         frequency: metaObj.frequency || '',
         source: metaObj['data-source'] || '',
         type: type || '',
-        note: metaObj['note:'] || '',
+        note: metaObj['general-note'] || '',
         slug,
         indicators: [],
       };
