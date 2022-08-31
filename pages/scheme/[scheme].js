@@ -10,6 +10,7 @@ import IndicatorSelector from 'components/indicatorSelector/indicatorSelector';
 import SchemeDetailsView from 'components/schemeDetailsView/schemeDetailsView';
 import RelatedSchemes from 'components/relatedSchemes/relatedSchemes';
 import SchemeNews from 'components/schemeNews/schemeNews';
+import debug from 'debug';
 
 const stateCodes = {
   1: 'Andhra Pradesh',
@@ -170,29 +171,43 @@ const Scheme = ({ scheme, related, news }) => {
   );
 };
 
-export async function getStaticPaths() {
-  const data = await fetchQuery('schemeType', 'Centrally Sponsored Scheme');
-  return {
-    paths: data.map((scheme) => ({
-      params: {
-        scheme: scheme.extras[2].value,
-      },
-    })),
-    fallback: false,
-  };
-}
+// export async function getStaticPaths() {
+//   const data = await fetchQuery('schemeType', 'Centrally Sponsored Scheme');
+//   return {
+//     paths: data.map((scheme) => ({
+//       params: {
+//         scheme: scheme.extras[2].value,
+//       },
+//     })),
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
-  const scheme = await dataTransform(params.scheme);
+// export async function getStaticProps({ params }) {
+//   const scheme = await dataTransform(params.scheme);
+//   const related = await fetchRelated(
+//     scheme.metadata.name,
+//     scheme.metadata.type
+//   );
+//   const news = await fetchNews(params.scheme);
+
+//   return {
+//     props: { scheme, related, news },
+//     revalidate: 1,
+//   };
+// }
+
+// Moved to server side rendering from ISR as changes in rceent developments were not getting updated
+export async function getServerSideProps(context) {
+  const scheme = await dataTransform(context.query.scheme);
   const related = await fetchRelated(
     scheme.metadata.name,
     scheme.metadata.type
   );
-  const news = await fetchNews(params.scheme);
+  const news = await fetchNews(context.query.scheme);
 
   return {
     props: { scheme, related, news },
-    revalidate: 1,
   };
 }
 
