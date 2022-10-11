@@ -24,6 +24,7 @@ import pmmvy from 'public/Images/schemesLogos/pmmvy.jpg';
 import nfsm from 'public/Images/schemesLogos/nfsm.png';
 import nrlm from 'public/Images/schemesLogos/nrlm.png';
 import nirbhaya from 'public/Images/schemesLogos/nirbhaya.png';
+import pmfby from 'public/Images/schemesLogos/pmfby.png';
 
 import up from 'public/Images/stateLogos/Uttar Pradesh.png';
 import bihar from 'public/Images/stateLogos/Bihar.png';
@@ -46,6 +47,12 @@ import manipur from 'public/Images/stateLogos/Manipur.png';
 import punjab from 'public/Images/stateLogos/Punjab.png';
 
 const SchemesData = {
+  pmfby_rabi: {
+    logo: pmfby,
+  },
+  pmfby_kharif: {
+    logo: pmfby,
+  },
   nrlm: {
     logo: nrlm,
   },
