@@ -197,7 +197,7 @@ const Scheme = ({ scheme, related, news }) => {
 //   };
 // }
 
-// Moved to server side rendering from ISR as changes in rceent developments were not getting updated
+// Moved to server side rendering from ISR as changes in recent developments were not getting updated
 export async function getServerSideProps(context) {
   const scheme = await dataTransform(context.query.scheme);
   const related = await fetchRelated(

@@ -1,12 +1,6 @@
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
-// import * as echarts from "echarts/core";
-
-// import ReactEChartsCore from "echarts-for-react/lib/core";
-
-//  To import all the things at once
-
 function seriesMaker(color, dataset, type, smooth, showSymbol, unit) {
   const SetSeries = [];
 

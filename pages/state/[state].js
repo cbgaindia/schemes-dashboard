@@ -187,29 +187,43 @@ const Scheme = ({ scheme, related, news }) => {
   );
 };
 
-export async function getStaticPaths() {
-  const data = await fetchQuery('schemeType', 'State Sponsored Scheme');
-  return {
-    paths: data.map((state) => ({
-      params: {
-        state: state.extras[2].value,
-      },
-    })),
-    fallback: false,
-  };
-}
+// export async function getStaticPaths() {
+//   const data = await fetchQuery('schemeType', 'State Sponsored Scheme');
+//   return {
+//     paths: data.map((state) => ({
+//       params: {
+//         state: state.extras[2].value,
+//       },
+//     })),
+//     fallback: false,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
-  const scheme = await dataTransform(params.state);
+// export async function getStaticProps({ params }) {
+//   const scheme = await dataTransform(params.state);
+//   const related = await fetchRelated(
+//     scheme.metadata.name,
+//     scheme.metadata.type
+//   );
+//   const news = await fetchNews(params.state);
+
+//   return {
+//     props: { scheme, related, news },
+//     revalidate: 1,
+//   };
+// }
+
+// Moved to server side rendering from ISR as changes in recent developments were not getting updated
+export async function getServerSideProps(context) {
+  const scheme = await dataTransform(context.query.state);
   const related = await fetchRelated(
     scheme.metadata.name,
     scheme.metadata.type
   );
-  const news = await fetchNews(params.state);
+  const news = await fetchNews(context.query.state);
 
   return {
     props: { scheme, related, news },
-    revalidate: 1,
   };
 }
 
