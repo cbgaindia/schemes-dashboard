@@ -45,6 +45,8 @@ import haryana from 'public/Images/stateLogos/Haryana.png';
 import hp from 'public/Images/stateLogos/hp.png';
 import manipur from 'public/Images/stateLogos/Manipur.png';
 import punjab from 'public/Images/stateLogos/Punjab.png';
+import telangana from 'public/Images/stateLogos/Telangana.png';
+import jharkhand from 'public/Images/stateLogos/Jharkhand.png';
 
 const SchemesData = {
   pmfby_rabi: {
@@ -190,6 +192,12 @@ const SchemesData = {
   },
   punjab: {
     logo: punjab,
+  },
+  telangana: {
+    logo: telangana,
+  },
+  jharkhand: {
+    logo: jharkhand,
   },
 };
 
