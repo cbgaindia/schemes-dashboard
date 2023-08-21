@@ -6,6 +6,7 @@ import Layout from 'components/layout/layout';
 import NextNprogress from 'nextjs-progressbar';
 import Router from 'next/router';
 import * as ga from 'utils/ga';
+import Script from 'next/script';
 
 function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
@@ -72,6 +73,19 @@ function MyApp({ Component, pageProps }) {
         />
         <Component {...pageProps} />
       </Layout>
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-WNX72G1ZCS"
+      />
+      <Script strategy="afterInteractive" id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-WNX72G1ZCS');
+        `}
+      </Script>
     </>
   );
 }
