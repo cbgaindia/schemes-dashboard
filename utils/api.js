@@ -174,6 +174,7 @@ export async function fetchNews(query) {
     const allNews = res[0];
 
     allNews.forEach((news, index) => {
+      const code = news[0].trim();
       if (!index == 0) {
         const resultArr = {
           title: news[2] || '',
@@ -184,10 +185,10 @@ export async function fetchNews(query) {
           link: news[7] || '',
         };
 
-        if (result[news[0]]) {
-          result[news[0]][result[news[0]].length] = resultArr;
+        if (result[code]) {
+          result[code][result[code].length] = resultArr;
         } else {
-          result[news[0]] = [resultArr];
+          result[code] = [resultArr];
         }
       }
     });
