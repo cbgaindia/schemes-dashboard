@@ -183,17 +183,24 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const scheme = await dataTransform(params.scheme);
-  const related = await fetchRelated(
-    scheme.metadata.name,
-    scheme.metadata.type
-  );
-  const news = await fetchNews(params.scheme);
+  try {
+    const scheme = await dataTransform(params.scheme);
+    const related = await fetchRelated(
+      scheme.metadata.name,
+      scheme.metadata.type
+    );
+    const news = await fetchNews(params.scheme);
 
-  return {
-    props: { scheme, related, news },
-    revalidate: 1,
-  };
+    return {
+      props: { scheme, related, news },
+      revalidate: 1,
+    };
+  } catch (error) {
+    console.error(`Error in getStaticProps for scheme: ${params.scheme}`, error);
+    return {
+      notFound: true,
+    };
+  }
 }
 
 export default Scheme;
