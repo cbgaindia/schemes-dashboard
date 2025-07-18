@@ -10,7 +10,7 @@ export default function Home({ cardsData }) {
     const allSchemes = cardsData.map((scheme) => ({
       title: scheme.name,
       link: `/scheme/${scheme.slug}`,
-      icon: SchemesData[scheme.slug].logo,
+      icon: SchemesData[scheme?.slug]?.logo,
     }));
     allSchemes.sort((a, b) =>
       a.title.toLowerCase().localeCompare(b.title.toLowerCase())

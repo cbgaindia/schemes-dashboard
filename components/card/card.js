@@ -1,5 +1,6 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
+import fallback from "public/Images/schemesLogos/fallback.png";
 
 export default function Card({ scheme }) {
   return (
@@ -9,7 +10,12 @@ export default function Card({ scheme }) {
           <h2 className="card__text">{scheme.title}</h2>
 
           <div className="card__image">
-            <Image src={scheme.icon} alt="" placeholder="blur" quality={95} />
+            <Image
+              src={scheme?.icon ? scheme.icon : fallback}
+              alt=""
+              placeholder="blur"
+              quality={95}
+            />
           </div>
         </a>
       </Link>
