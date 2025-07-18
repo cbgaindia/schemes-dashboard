@@ -21,6 +21,10 @@ import scs from 'public/Images/schemesLogos/scs.jpg';
 import sts from 'public/Images/schemesLogos/sts.jpg';
 import pmkisan from 'public/Images/schemesLogos/pmkisan.jpg';
 import pmmvy from 'public/Images/schemesLogos/pmmvy.jpg';
+import nfsm from 'public/Images/schemesLogos/nfsm.jpeg';
+import pmfby from 'public/Images/schemesLogos/pmfby.png';
+import nrlm from 'public/Images/schemesLogos/nrlm.png';
+
 
 const SchemesData = {
   jjm: {
@@ -94,6 +98,18 @@ const SchemesData = {
   },
   pmmvy: {
     logo: pmmvy,
+  },
+  nfsm: {
+    logo: nfsm,
+  },
+  nrlm: {
+    logo: nrlm,
+  },
+ pmfby_rabi: {
+    logo: pmfby,
+  },
+  pmfby_kharif: {
+    logo: pmfby,
   },
 };
 
